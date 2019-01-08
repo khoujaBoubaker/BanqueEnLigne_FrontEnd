@@ -125,7 +125,7 @@ const appRoutes: Routes = [
       {path:'Agences',component:AgenceComponent},
       {path:'Calendrier',component:CalendarComponent},
       {path:'Agences',component:AgenceComponent},
-      {path:'Dashboard',component:DashBoardComponent},
+
       {path:'statistics',component:StaticsComponent},
       {path:'graphique',component:GraphiqueComponent},
       {path:'gallery',component:GalleryComponent},
@@ -175,7 +175,7 @@ const appRoutes: Routes = [
     HelloPageComponent,
     ModificationConseillerComponent,
     EditagenceComponent,
-    DashBoardComponent,
+
     StaticsComponent,
     GraphiqueComponent,
     GalleryComponent,
