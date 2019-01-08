@@ -27,6 +27,12 @@ export class ClientService{
   }
 
 
+  // liste des utilisateurs
+  public getBoubaker(motcle: String,page:number,size:number){
+    return this.http.get("http://localhost:8080/clients/chercherclients?mc="+motcle+"&page="+page+"&size="+size).map(data=>data.json());
+  }
+
+
 
 
 
