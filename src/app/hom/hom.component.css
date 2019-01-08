@@ -1,0 +1,32 @@
+.effetmenu {
+  border-right: #04B4AE solid 5px;
+
+
+}
+
+
+
+.bond{
+  animation: bounce 2s ease infinite ;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+.black{
+  border-style:  solid 2px;
+  border-color: #5A738E ;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+
+
+
+}
+
+.th{
+  background-color: white;
+}

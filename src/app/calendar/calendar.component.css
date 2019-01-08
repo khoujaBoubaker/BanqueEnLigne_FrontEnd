@@ -1,0 +1,11 @@
+:host{
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.c:hover{
+  background-color: #2A3F54;
+  color: white;
+}

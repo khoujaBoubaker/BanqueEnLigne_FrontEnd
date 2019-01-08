@@ -1,0 +1,77 @@
+
+<div class="container spacer">
+<div  class="panel panel-primary" *ngIf="mode==1">
+
+   <div class="panel panel-heading"> New Client </div>
+         <div class="panel-body">
+
+           <div class="form-group">
+             <label class="control-label">Nom :</label>
+             <input class="form-control" type="text" [(ngModel)]="administrateur.nom" />
+           </div>
+
+           <div class="form-group">
+             <label class="control-label">Prénom :</label>
+             <input class="form-control" type="text" [(ngModel)]="administrateur.prenom" />
+             </div>
+         <div class="form-group">
+             <label class="control-label">Date de naissance :</label>
+             <input class="form-control"  type="date"   [(ngModel)]="administrateur.dateDeNaissance"/>
+         </div>
+
+         <div class="form-group">
+             <label class="control-label">email :</label>
+             <input class="form-control" type="text" [(ngModel)]="administrateur.email" />
+           </div>
+
+           <button class="btn btn-primary" (click)="addnewContact()">add</button>
+
+         </div>
+  </div>
+  <div class="panel panel-primary" *ngIf="mode==2">
+    <div class="panel panel-heading">Confirmation</div>
+    <div panel panel-body>
+
+      <div class="spacer">
+<tr>
+      <td> Nom :</td>
+      <td>  <output  type="text">{{administrateur.nom}}</output></td>
+</tr>
+
+        <tr>
+          <td> Prénom : </td>
+          <td>  <output  type="text">{{administrateur.prenom}}</output></td>
+        </tr>
+
+        <tr>
+          <td> Email : </td>
+          <td>  <output  type="text">{{administrateur.email}}</output></td>
+        </tr>
+
+        <tr>
+          <td> Date de naissance : </td>
+          <td>  <output  type="text">{{administrateur.dateDeNaissance}}</output></td>
+        </tr>
+        <br/>
+
+        <tr>
+        <td><button class="btn btn-primary">Confirmer</button></td>
+        <td><button class="btn btn-danger" (click)="annulerAjout()">Annuler</button></td>
+        </tr>
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+  </div>
+</div>
+
+
+

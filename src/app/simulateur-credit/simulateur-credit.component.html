@@ -1,0 +1,204 @@
+
+<div class="nav-md">
+  <div class="container body" style="height: 820px;" >
+    <div class="main_container fixed_footer">
+      <div class="right_col" role="main" style="height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <br/>
+              <br/>
+              <br/>
+              <h3 style="color:#2A3F54;">Simulateur </h3>
+            </div>
+            <ng-progress></ng-progress>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+
+            <div class="title_right">
+
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12" >
+          <div  class="x_panel">
+            <div class="x_title">
+              <h2 style="color: #2A3F54;">Crédit en ligne <small>Users	<i class="fa fa-refresh fa-spin"></i></small></h2>
+
+              <div class="clearfix"></div>
+            </div>
+            <div id="s" class="x_content">
+              <div  class="form-group"></div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb menuperso ">
+                  <li class="breadcrumb-item"><a href="#">Home1</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Simulateur&nbsp;</li>
+                </ol>
+              </nav>
+
+
+              <div class="x_panel">
+                <!-- Simulateur crédit-->
+
+             
+
+                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" [formGroup]="creditgroup" (submit)="calculer(temp)">
+                  <div class="form-group">
+                    <br/>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Apport personnel<span class="required">*</span>
+                    </label>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                      <input type="number" id="first-name" class="form-control col-md-7 col-xs-12" formControlName="apportPersonnel" required>
+                    </div>
+                    <div *ngIf="creditgroup.controls.apportPersonnel.invalid && (creditgroup.controls.apportPersonnel.dirty || creditgroup.controls.apportPersonnel.touched)">
+                      <div *ngIf="creditgroup.controls.apportPersonnel.errors.required" class="alertt">
+                        <i style="color: white;"> Apport personnel manquant.</i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Montant Crédit<span class="required">*</span>
+                    </label>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                      <input type="number" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" formControlName="MontantTotalCredit" required>
+                    </div>
+                    <div *ngIf="creditgroup.controls.MontantTotalCredit.invalid && (creditgroup.controls.MontantTotalCredit.dirty || creditgroup.controls.MontantTotalCredit.touched)">
+                      <div *ngIf="creditgroup.controls.MontantTotalCredit.errors.required" class="alertt">
+                        <i style="color: white;"> Montant crédit manquant.</i>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="middle-nam" class="control-label col-md-3 col-sm-3 col-xs-12">Durée de remboursement</label>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                      <select  class="form-control"  formControlName="dureeCredit" required>
+                        <optgroup label="Nombre d'années">
+                          <option class="option" value="12">1 année</option>
+                          <option class="option" value="24">2 années</option>
+                          <option class="option" value="36">3 années</option>
+                          <option class="option" value="48">4 années</option>
+                          <option class="option" value="60">5 années</option>
+                          <option class="option" value="72">6 années</option>
+                        </optgroup>
+                      </select>
+                    </div>
+                    <div *ngIf="creditgroup.controls.dureeCredit.invalid && (creditgroup.controls.dureeCredit.dirty || creditgroup.controls.dureeCredit.touched)">
+                      <div *ngIf="creditgroup.controls.dureeCredit.errors.required" class="alertt">
+                        <i style="color: white;"> Durée de remboursement manquante.</i>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                      <button [disabled]="creditgroup.invalid" type="submit" class="btn btn-success">Simuler</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                <ng-template #temp>
+                  <div id="costumModal" class="" >
+                    <div style="height:60px; " class="modal-header">
+                      <nav  aria-label="breadcrumb">
+                        <ol class="breadcrumb ">
+                          <li class="breadcrumb-item"><a href="#">Résultats de simulation</a></li>
+                          <button type="button" class="close pull-right"
+                                  aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </ol>
+                      </nav>
+                    </div>
+                    <div class="modal-body animate">
+                      <!-- Mensualités-->
+
+                        <div id="demo-formConfirm" data-parsley-validate class="form-horizontal form-label-left x_panel" >
+
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Mensualité : <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{mensualite}}&nbsp;<small>(dt)</small></i></p>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cout total: <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                            <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{CoutTotal}}&nbsp;<small>(dt)</small></i></p>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button  type="submit" class="btn btn-danger" (click)="fermeModalSuppression()" tooltip="Fermer?" data-placement="right">Fermer</button>
+                    </div>
+
+                  </div>
+                </ng-template>
+
+                <div class="alertt" id="snack">
+                  <ul  class="nav navbar-right panel_toolbox">
+                    <li  class="pull-right">
+                      <span style="color: #2A3F54;" (click)="closeModalProfile()" class="pull-right" class="close">&times;</span>
+                    </li>
+                  </ul>
+
+                  <p style="color: #2A3F54;">Profile: Boubakker </p>
+                  <br/>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- -->
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+    
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

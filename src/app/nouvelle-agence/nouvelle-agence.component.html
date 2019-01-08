@@ -1,0 +1,175 @@
+
+<div class="nav-md">
+  <div class="container body" style="height: 820px;" class="container body">
+    <div class="main_container fixed_footer">
+
+      <ng-progress></ng-progress>
+
+
+
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main" style="height: 950px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <br/>
+              <br/>
+              <br/>
+              <h3 style="color: #2A3F54;">Nouvelle agence </h3>{{titl}}
+              <br/>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Agence <small>détails</small></h2>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div id="nv" class=" x_content">
+                  <div class="alertDIV x_panel">
+                  <div *ngIf="x==0">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" [formGroup]="agencegroup" (submit)="SaveAgence()">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Addresse<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" formControlName="addresse" class="form-control col-md-7 col-xs-12" required placeholder="Addresse complète ..">
+                        </div>
+                        <div *ngIf="agencegroup.controls.addresse.invalid && (agencegroup.controls.addresse.dirty || agencegroup.controls.addresse.touched)">
+                          <div *ngIf="agencegroup.controls.addresse.errors.required" class="alertt">
+                            <i style="color: white;"> Addresse obligatoire.</i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Commune<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="last-name" name="last-name" formControlName="commune" class="form-control col-md-7 col-xs-12" required placeholder="commune ou ville ..">
+                        </div>
+                        <div *ngIf="agencegroup.controls.commune.invalid && (agencegroup.controls.commune.dirty || agencegroup.controls.commune.touched)">
+                          <div *ngIf="agencegroup.controls.commune.errors.required" class="alertt">
+                            <i style="color: white;"> Champs obligatoire.</i>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tel <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" formControlName="tel" type="number" required placeholder="Votre numero de telephone ..">
+                        </div>
+                        <div *ngIf="agencegroup.controls.tel.invalid && (agencegroup.controls.tel.dirty || agencegroup.controls.tel.touched)">
+                          <div *ngIf="agencegroup.controls.tel.errors.required" class="alertt">
+                            <i style="color: white;"> Champs obligatoire.</i>
+                          </div>
+
+                        </div>
+
+
+                      </div>
+
+
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group pull-right">
+                        <button [disabled]="agencegroup.invalid" type="submit" class="btn btn-default pull-right">Poursuivre</button>
+                      </div>
+                      {{agencegroup.value|json}}
+
+                    </form>
+
+                  </div>
+                  <div *ngIf="x==2">
+
+                    <div id="demo-formConfirm" data-parsley-validate class="form-horizontal form-label-left" >
+                       <div class="alertvalid" style="text-align: center;font-size: medium;color: #2e6da4;">Confirmation</div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Addresse :<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{agence.addresse}}</i></p>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Commune : <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{agence.commune}}</i></p>
+                        </div>
+                      </div>
+
+
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">tel :<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;"><span>(+216)</span>&nbsp;{{agence.tel}}</i></p>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+
+                          <button class="btn btn-primary" type="button" (click)="annuler()">Annuler</button>
+                          <button type="submit" class="btn btn-success" (click)="confirmerAjoutAgence()" >Confirmer</button>
+                        </div>
+                      </div>
+
+
+
+                  </div>
+                    </div>
+                  <div *ngIf="x==3">
+                    <p style="color: #2A3F54;font-size: 15px;">l'ajout de l'agence a été fait avec succés .pour revenir au formulaire<a class="clickable" (click)="formulaire()"> cliquez ici</a></p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+
+

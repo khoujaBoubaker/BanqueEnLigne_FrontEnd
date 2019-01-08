@@ -1,0 +1,669 @@
+
+<div id="nav" class="nav-md footer_fixed" >
+  <div  class="container body" style="height: 920px;">
+    <div class="main_container fixed_footer">
+
+      <ng-progress></ng-progress>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="i" class="right_col" role="main" style="color: #4CAF50;height: 1000px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <br/>
+              <br/>
+              <br/>
+
+              <h3 style="color:#2A3F54;">Gestion clients </h3>
+              <br/>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="pull-right">
+
+            <a class="btn btn-app">
+              <i (click)="refreshData()" class="fa fa-repeat"></i> Raffraichir
+            </a>
+            <a class="btn btn-app">
+              <span class="badge bg-green">{{nombreDeClients}}</span>
+              <i class="fa fa-users"></i> Clients
+            </a>
+
+          </div>
+
+
+
+
+
+          <div class="clearfix"></div>
+    <div style="color:#2A3F54;" class="col-md-12 col-sm-12 col-xs-12" >
+      <div  class="x_panel">
+        <div class="x_title">
+          <h2>Liste des clients<small>Gestion	<i class="fa fa-refresh fa-spin"></i></small></h2>
+
+          <div class="clearfix"></div>
+        </div>
+        <div id="sc" class="x_content">
+          <div  class="form-group"></div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li><a> <span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><a><span class="glyphicon glyphicon-user"></span></a>&nbsp;Clients</li>
+            </ol>
+          </nav>
+
+
+
+
+          <nav class="navbar navbar-light bg-faded">
+            <form class="form-inline">
+              <div class="input-group">
+                <span  class="clickable input-group-addon " id="basic-addon1" (click)="chercher()">Chercher</span>
+                <input id="t" name="f" type="text" class="form-control" placeholder="Nom client" aria-describedby="basic-addon1" [(ngModel)]="motCle" (keyup)="cherche()">
+              </div>
+
+              <!-- debut installing data-->
+
+
+
+
+
+
+              <!-- fin installing data-->
+              <div class="pull-right">
+
+              <button tooltip="nouveau client" class="bouton17" routerLink="/home/NouveauClient"><span class="glyphicon glyphicon-plus"></span></button>
+              </div>
+
+            </form>
+          </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- The Modal -->
+
+
+
+
+        <br/>
+
+
+
+        <p class="text-muted font-13 m-b-30"></p>
+        <div>
+
+
+
+
+          <div *ngIf="!clients" style="text-align: center;padding:20px;">
+            <img  src="../../assets/images/ajax-loader%20(1).gif">
+          </div>
+
+
+      <div *ngIf="clients" id="customers">
+
+
+
+        <table  id="content" #content class="table table-striped projects">
+
+          <thead class="thead-dark">
+          <tr class="table-active">
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+
+            <th>Email<span class="glyphicon glyphicon-arrow-up pull-right border-bottom-0" [ngClass]="{'tri':tricl=='emaildec'}" tooltip="email décroissant" (click)="triemaildec()"></span>
+              <span style="right: 0px;z-index: 1;" class="glyphicon glyphicon-arrow-down pull-right" [ngClass]="{'triS':tricl=='emailcr'}"  tooltip="email croissant" (click)="triemailcr()"></span>
+            </th>
+            <th>Salaire<span class="glyphicon glyphicon-arrow-up pull-right border-bottom-0" [ngClass]="{'tri':tricl=='salaire'}" tooltip="salaire décroissant" (click)="TousLesClientsTriesParSalaire()"></span>
+              <span style="right: 0px;z-index: 1;" class="glyphicon glyphicon-arrow-down pull-right" [ngClass]="{'triS':tricl=='salaireCroissant'}"  tooltip="salaire croissant" (click)="trierOC()"></span></th>
+            <th>Date de naissance</th>
+
+            <th style="text-align:center;">Action<span style="cursor: pointer;" class="glyphicon glyphicon-link pull-right" *ngIf="tricl!=''" tooltip="désactiver tri" data-placement="right" (click)="DT()"></span></th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+
+
+          <tr  *ngFor="let client of clients?.content">
+
+
+            <td class="tdc">{{client.idclient}}</td>
+            <td class="tdc">{{client.nom}}</td>
+            <td class="tdc">{{client.prenom}}</td>
+            <td class="tdc">{{client.email}}</td>
+            <td class="tdc">{{client.salaire}}</td>
+            <td class="tdc">{{client.datedenaissance}}</td>
+            <td>
+              <div>
+
+                <a (click)="editclient(client.idclient)" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                <a (click)="consulterComptes(client.idclient)" tooltip="liste des comptes" class="btn btn-info btn-xs"><i class="fa fa-balance-scale"></i> Comptes </a>
+                <a (click)="show(client,temp)" tooltip="supprimer client" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                <a (click)="openModalRendezVous(client,tempRendezVous)" class="btn btn-warning btn-xs" tooltip="chercher rendez-vous"><i class="fa fa-address-book" ></i>Rendez-vous </a>
+                <a (click)="editCredits(client.idclient)" class="btn btn-dark btn-xs" tooltip="crédits"><i class="fa fa-address-book" ></i>Crédits </a>
+
+
+              </div>
+            </td>
+
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+          <div style="text-align: center;">
+
+
+          <button *ngIf="clients?.totalElements>0" style="border-radius: 15px;" type="button" class="btn btn-primary" (click)="telechargerFile()">
+            PDF
+          </button>
+          </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div *ngIf="clients?.totalElements==0" style="text-align: center"><label>Pas de résultats</label></div>
+        <br/>
+        <div  class="container">
+
+
+
+
+
+          <ul *ngIf="clients?.totalElements>0" class="pagination">
+            <li [ngClass]="{'disabled':page==0}"><a class="clickmoi" (click)="previous()">Previous</a></li>
+            <li [ngClass]="{'active':i==page}" *ngFor="let p of pages;let i=index">
+              <a  class="clickable" (click)="gotoPage(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+            </li>
+            <li [ngClass]="{'disabled':page==pages.length-1}"><a class="clickmoi" (click)="next()">Next</a></li>
+
+          </ul>
+
+        </div>
+        <!-- Modal pour confirmation de suppression. -->
+        <div>
+
+
+
+
+          <ng-template #tempRendezVous>
+            <div id="c" class="" >
+              <div style="height: 60px;" class="modal-header">
+                <nav  aria-label="breadcrumb">
+                  <ol class="breadcrumb ">
+                    <li class="breadcrumb-item" data-toggle="collapse" data-target="#rendezvous"><a>Rendez vous</a><i class="fa fa-bars"></i></li>
+
+
+
+                    <button type="button" class="close pull-right"
+                            aria-label="Close" (click)="modalRef.hide()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </ol>
+                </nav>
+              </div>
+              <div class="alertDIV modal-body" style="color: #2A3F54;">
+                <div id="rendezvous" class="alertDIV2 collapse">
+                  Nombre de rendez-vous :{{rdvs.totalElements}}
+                  <h1></h1>
+                </div>
+
+
+
+
+        <div>
+          <div *ngIf="z==1">
+            <div >
+              <br />
+              <form  id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" [formGroup]="formgroupRendezVous" (submit)="saveRendezVous()">
+                <div class="alertform">
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Motif <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input style="border-radius: 5px;" type="text" id="first-name" formControlName="libelleRDV" class="form-control col-md-7 col-xs-12" required>
+                      <div *ngIf="formgroupRendezVous.controls.libelleRDV.valid">
+                            <span
+                              class="label label-success pull-right"><i>Motif valide</i></span></div>
+
+
+                    </div>
+                    <div *ngIf="formgroupRendezVous.controls.libelleRDV.invalid && (formgroupRendezVous.controls.libelleRDV.dirty || formgroupRendezVous.controls.libelleRDV.touched)"
+                         class=" error">
+                      <div class="alertt2" *ngIf="formgroupRendezVous.controls.libelleRDV.errors.required"><i style="color: white;">Motif manquant</i></div>
+                      <!-- other errors validations  -->
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Date <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input style="border-radius: 5px;" type="Date" id="date" formControlName="dateRDV" class="form-control col-md-7 col-xs-12" required>
+                      <div *ngIf="formgroupRendezVous.controls.dateRDV.valid">
+                            <span
+                              class="label label-success pull-right"><i>date valide</i></span></div>
+
+
+                    </div>
+                    <div *ngIf="formgroupRendezVous.controls.dateRDV.invalid && (formgroupRendezVous.controls.dateRDV.dirty || formgroupRendezVous.controls.dateRDV.touched)"
+                         class=" error">
+                      <div class="alertt2" *ngIf="formgroupRendezVous.controls.dateRDV.errors.required"><i style="color: white;">date manquante</i></div>
+                      <!-- other errors validations  -->
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Heure <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input style="border-radius: 5px;" type="time" id="heure" formControlName="heureRDV" class="form-control col-md-7 col-xs-12" required>
+                      <div *ngIf="formgroupRendezVous.controls.heureRDV.valid">
+                            <span
+                              class="label label-success pull-right"><i>heure valide</i></span></div>
+
+
+
+                    </div>
+                    <div *ngIf="formgroupRendezVous.controls.heureRDV.invalid && (formgroupRendezVous.controls.heureRDV.dirty || formgroupRendezVous.controls.heureRDV.touched)"
+                         class=" error">
+                      <div class="alertt2" *ngIf="formgroupRendezVous.controls.heureRDV.errors.required"><i style="color: white;">Heure manquante</i></div>
+                      <!-- other errors validations  -->
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="conseiller">Conseiller <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12"  (change)="onChangeConseil()">
+                        <select id="conseiller" name="conseiller" style="border-radius: 5px;" class="form-control" formControlName="conseillerRDV"  required>
+                          <option style="background-color: #90EE90;color: black;border-radius: 2px;"   class="option" *ngFor="let conseiller of conseillers" [ngValue]="conseiller" required >{{conseiller.nom}}</option>
+                        </select>
+                        <div *ngIf="formgroupRendezVous.controls.conseillerRDV.valid">
+                          <span class="label label-success pull-right">valide</span></div>
+
+
+                      </div>
+
+
+                    </div>
+                    <div *ngIf="formgroupRendezVous.controls.conseillerRDV.invalid && (formgroupRendezVous.controls.conseillerRDV.dirty || formgroupRendezVous.controls.conseillerRDV.touched)"
+                    >
+                      <div class="alertt" *ngIf="formgroupRendezVous.controls.conseillerRDV.errors.required"><i style="color: white;">Conseiller non renseigné</i></div>
+                      <!-- other errors validations  -->
+                    </div>
+
+
+                  </div>
+
+
+
+                  </div>
+                    <br/>
+
+
+
+                  <div class="pull-right">
+                    <button [disabled]="!formgroupRendezVous.valid" style="background-color: #4CAF50;" type="submit" class="btn btn-success" tooltip="Fermer" data-placement="right">Valider</button>
+                    <button style="border-radius: 15px;" (click)="RETOUR()" tooltip="retour" data-placement="top" type="button" class="btn btn-default btn-sm pull-right">
+                      <span class="glyphicon glyphicon-home"></span>
+                    </button>
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  {{formgroupRendezVous.value|json}}
+
+              </form>
+            </div>
+          </div>
+          <div *ngIf="z==0">
+
+                <nav class="navbar navbar-light bg-faded">
+                  <form class="form-inline">
+                    <div class="input-group">
+                      <span  class="clickable input-group-addon " id="basic-addo1" (click)="chercherRendezVousParMotCle()">Chercher</span>
+                      <input id="tu" name="f" type="text" class="form-control" placeholder="rendez vous" aria-describedby="basic-addon1" [(ngModel)]="motif" (keyup)="chercherRendezVousParMotCle()">
+                    </div>
+                    <button (click)="nouveauRendezVous()" tooltip="nouveau rendez vous" data-placement="top" type="button" class="btn btn-default btn-sm pull-right">
+                      <span class="glyphicon glyphicon-user" tooltip="nouveau rendez-vous"></span> autre
+                    </button>
+                  </form>
+                </nav>
+
+                <div  *ngIf="rdvs.totalElements==0" style="text-align: center;">
+
+                  <h2 style="text-align: center" class="alertDIV"> Aucun rendez vous trouvé avec motif <i style="color: #3384b1;">{{motif}}</i></h2>
+                </div>
+                <div  *ngIf="rdvs.totalElements>0">
+
+
+
+                  <div class="alertLoadingRDV" style="padding-left: 240px">
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  </div>
+
+                  <table  id="rendezvousdtatable"  class="alertDIV table table table-hover">
+                    <thead>
+                    <tr class="dfix">
+                      <th>ID</th>
+                      <th>Date</th>
+                      <th>Heure</th>
+                      <th>Motif</th>
+                      <th style="text-align:center;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let rendezvous of rdvs?.content">
+                      <td> {{rendezvous.id}}</td>
+                      <td class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{rendezvous.dateRendezVous}}</td>
+                      <td >{{rendezvous.heureRendezVous}}</td>
+                      <td>{{rendezvous.libelle}}</td>
+                      <td>
+                        <span (click)="supprimerRDV(rendezvous)" tooltip="supprimer"  class="clicks glyphicon glyphicon-trash"></span>
+                        <span (click)="horaireRDV(rendezvous)" tooltip="horaires" class="horaires glyphicon glyphicon-time"></span>
+                        <span (click)="detailRendezVous(rendezvous)" tooltip="détails" class="det glyphicon glyphicon-zoom-in"></span>
+                        <span (click)="conseiller(rendezvous)" tooltip="conseiller" class="cons glyphicon glyphicon-user"></span>
+                      </td>
+                    </tr>
+
+                    </tbody>
+
+                  </table>
+
+
+                </div>
+            <br/>
+                <hr/>
+
+                <div  class="container">
+                  <ul *ngIf="rdvs.totalElements>0" class="pager">
+                      <li class="clickableoperations"[ngClass]="{'disabled':pageRDV==0}"><a (click)="previouspageRDV()" class="clickmoi" >Previous</a></li>
+                      <li  *ngFor="let p of pagesRDV;let i=index">
+                      <a [ngClass]="{'boot':i==pageRDV}" class="clickmoi" (click)="gotoPagerdv(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                      </li>
+                     <li class="clickableoperations" [ngClass]="{'disabled':pageRDV==pagesRDV.length-1}"><a (click)="nextpageRDV()" class="clickmoi" >Next</a></li>
+
+                     <div class="pull-right">
+                         <button style="border-radius: 15px;" (click)="nbreRDV()" tooltip="nombre de rendez vous" data-placement="top" type="button" class="btn btn-default btn-sm pull-right">
+                             <span class="glyphicon glyphicon-home"></span>
+                         </button>
+                     </div>
+                   </ul>
+                </div>
+          </div>
+          <div *ngIf="z==2">
+
+          </div>
+
+        </div>
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button  type="submit" class="btn btn-danger" (click)="fermerModalRendezVous()" tooltip="Fermer" data-placement="right">Fermer</button>
+            </div>
+
+          </ng-template>
+
+
+        <ng-template #temp>
+          <div id="costumModal30" >
+            <div style="height: 60px;" class="modal-header">
+              <nav  aria-label="breadcrumb">
+                <ol class="breadcrumb ">
+                  <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
+
+
+
+                  <button type="button" class="close pull-right"
+                          aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </ol>
+              </nav>
+            </div>
+            <div class="modal-body animate">
+              <h2 style="text-align:center;color: #2A3F54;" class="alertDIV">  Etes vous sur de supprimer le client<a class="s" style="color: #1b6d85;" (click)="detailClient()"> {{selectedClient.nom}}&nbsp;{{selectedClient.prenom}}</a></h2>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="closeModalsupression()" tooltip="annuler" data-placement="top">Annuler</button>
+              <button  type="submit" class="btn btn-danger" (click)="supprimerModalClient()" tooltip="Supprimer ce client ?" data-placement="right">Confirmer</button>
+            </div>
+
+          </div>
+        </ng-template>
+
+        <!-- modification ou détail-->
+          <ng-template #tempModification>
+          <div style="background-color: #2A3F54;color: white;" class="modal-header">
+            <h4 class="modal-title pull-left">{{selectedClient.nom}}&nbsp;{{selectedClient.prenom}}</h4>
+            <button type="button" class="close pull-right"
+                    aria-label="Close" (click)="modalRef.hide()">
+              <span style="color: #FFFFFF;" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+
+            <form class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="updateClient()">
+              <div class="modal-body">
+
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input  type="text" class="form-control col-md-7 col-xs-12" formControlName="nomClient"
+                           placeholder="Michel" [ngModel]="selectedClient.nom" required>
+                    <div  *ngIf="formgroupClient.controls.nomClient.valid">
+                      <span class="label label-success pull-right">valide</span></div>
+                  </div>
+
+                  <div *ngIf="formgroupClient.controls.nomClient.invalid && (formgroupClient.controls.nomClient.dirty ||formgroupClient.controls.nomClient.touched)"
+                       class=" alertt" style="color: #2A3F54;">
+                    <i >nom manquant</i>
+
+                    <!-- other errors validations  -->
+                  </div>
+
+
+                </div>
+
+
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Prenom <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="text" name="prenom" class="form-control col-md-7 col-xs-12"
+                           formControlName="prenomClient" placeholder="Michel" [ngModel]="selectedClient.prenom"
+                           required>
+                    <div *ngIf="formgroupClient.controls.prenomClient.valid">
+                      <span class="label label-success pull-right">valide</span></div>
+                  </div>
+                  <div
+                    *ngIf="formgroupClient.controls.prenomClient.invalid && (formgroupClient.controls.prenomClient.dirty || formgroupClient.controls.prenomClient.touched)"
+                    class="alertt" style="color: #2A3F54;">
+                    <div *ngIf="formgroupClient.controls.prenomClient.errors.required"><i>prenom manquant</i></div>
+
+                    <!-- other errors validations  -->
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Salaire <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="number" name="prenom" class="form-control col-md-7 col-xs-12"
+                           formControlName="salaireClient" placeholder="Michel" [ngModel]="selectedClient.salaire"
+                           required>
+                    <div *ngIf="formgroupClient.controls.salaireClient.valid">
+                      <span class="label label-success pull-right">valide</span></div>
+                  </div>
+                  <div
+                    *ngIf="formgroupClient.controls.salaireClient.invalid && (formgroupClient.controls.salaireClient.dirty || formgroupClient.controls.salaireClient.touched)"
+                    class="alertt" >
+                    <div *ngIf="formgroupClient.controls.salaireClient.errors.required"><i>salaire manquant</i></div>
+
+                    <!-- other errors validations  -->
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="email" name="prenom" class="form-control col-md-7 col-xs-12"
+                           formControlName="emailClient" placeholder="Michel" [ngModel]="selectedClient.email"
+                           required valid>
+                    <div *ngIf="formgroupClient.controls.emailClient.valid">
+                      <span class="label label-success pull-right">valide</span></div>
+                  </div>
+                  <div
+                    *ngIf="formgroupClient.controls.emailClient.invalid && (formgroupClient.controls.emailClient.dirty || formgroupClient.controls.emailClient.touched)"
+                    class=" error">
+                    <div *ngIf="formgroupClient.controls.emailClient.errors.required"><i>email manquant</i></div>
+
+                    <!-- other errors validations  -->
+                  </div>
+
+                </div>
+
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12"> Naissance <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input type="date" class="form-control col-md-7 col-xs-12" formControlName="datedenaissance"
+                           placeholder="Michel" [ngModel]="selectedClient.datedenaissance" required></div>
+
+                  <div *ngIf="formgroupClient.controls.datedenaissance.invalid && (formgroupClient.controls.datedenaissance.dirty || formgroupClient.controls.datedenaissance.touched)"
+                       class="error">
+                    <i>date de naissance manquante</i>
+                    <!-- other errors validations  -->
+                  </div>
+                </div>
+
+                {{formgroupClient.value|json}}{{formgroupClient.status}}
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                <button [disabled]="formgroupClient.invalid"  type="submit" class="btn btn-primary">Enregistrer</button>
+              </div>
+            </form>
+
+
+          </div>
+        </ng-template>
+
+
+
+          <ng-template #nouveauclient>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Nouveau client</h4>
+              <button type="button" class="close pull-right"
+                      aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+              <form class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="nv1()">
+                <div class="modal-body" >
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" class="form-control col-md-7 col-xs-12" formControlName="nomClient"
+                             placeholder="Michel"  required>
+                      <div *ngIf="formgroupClient.controls.nomClient.valid">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                    </div>
+                    <div

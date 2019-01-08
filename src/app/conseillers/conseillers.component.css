@@ -1,0 +1,318 @@
+.error{
+  color:red;
+}
+
+.med{
+  color: black;
+  background-color: #ff9800;
+  font-size: 1.5em;
+}
+
+.act{
+  font-size: .8em;
+  color: #2A3F54;
+  background-color: #90EE90;
+}
+
+.clickable{
+  cursor:pointer;
+}
+
+
+
+.loader {
+  margin-left: auto;
+  margin-right: auto;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+
+.tri{
+  color:#ff9800;
+}
+
+
+
+
+.detail{
+  font-size: 15px;
+  color: #4CAF50;
+}
+
+.profile:hover{
+  color: #90EE90;
+
+}
+
+
+
+
+
+
+
+
+
+.contenu-blanc-avec-scroll{
+  overflow:scroll;
+  height: 320px;
+}
+
+.tdc{
+  color:#2A3F54;
+}
+
+.btn-default:hover{
+  background-color: #FFF;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
+.client:hover {
+
+  line-height: 1.5em;
+  color: #444444;
+  background-color: #ddd;
+
+  box-shadow: #2A3F54;
+  background-color:#FFF6CE;
+  color: #2A3F54;
+  border-color: #90EE90;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+  -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+}
+
+
+
+
+.button1 {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  color:#FFF6CE;
+  background-color: #2A3F54;
+}
+
+.a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+.boub:hover{
+  color:#2A3F54;
+  background-color: #FFF6CE;
+}
+
+.update:hover{
+  border: 0.5px solid;
+  border-color: #2A3F54;
+}
+
+.c:hover{
+  opacity: 0.2;
+}
+
+@import '~dhtmlx-scheduler/codebase/dhtmlxscheduler.css';
+
+:host{
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.logger{
+  z-index:99;
+  top:100px;
+  left:0px;
+  background-color: #80808075;
+  color: green;
+  height:200px;
+  overflow: auto;
+}
+
+input:focus:invalid {
+  box-shadow: 0 0 5px #d45252;
+  border-color: #b03535;
+}
+
+input:focus:valid {
+  box-shadow: 0 0 5px #5cd053;
+  border-color: #28921f;
+}
+
+label, input[type="submit"] {
+  width: 110px;
+  display: inline-block;
+}
+
+.red-tooltip + .tooltip > .tooltip-inner, .red-tooltip + .tooltip > .tooltip-arrow {background-color: teal;color: black;}
+
+
+
+
+
+
+.fade-scale {
+  transform: scale(0);
+  opacity: 0.5;
+  -webkit-transition: all .25s linear;
+  -o-transition: all .25s linear;
+  transition: all .25s linear;
+}
+
+.fade-scale.in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.div:hover {
+
+  height: 50px;
+}
+
+
+
+
+.animation-target {
+  animation: animation 1000ms linear infinite both;
+}
+
+/* Generated with Bounce.js. Edit at https://goo.gl/esw55w */
+
+@keyframes animation {
+  0% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  4.1% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 58.029, 0, 0, 1); }
+  8.11% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 89.451, 0, 0, 1); }
+  12.11% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 101.843, 0, 0, 1); }
+  16.12% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 104.336, 0, 0, 1); }
+  27.23% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100.784, 0, 0, 1); }
+  38.34% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 99.896, 0, 0, 1); }
+  60.56% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100.002, 0, 0, 1); }
+  82.78% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100, 0, 0, 1); }
+  100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 100, 0, 0, 1); }
+}
+
+
+
+@keyframes alertAnim1 {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+
+  }
+}
+
+.alertDIV{
+
+
+
+  animation: 2s alertAnim1 forwards;
+
+}
+
+
+
+
+@keyframes alertAnim2 {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+
+  }
+}
+
+.alertDIV2{
+
+
+
+  animation: 3s alertAnim2 forwards;
+
+}
+
+.bond{
+  animation: bounce 2s ease infinite ;
+}
+@keyframes bounce {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+
+.alertLoading{
+  padding: 0px;
+  font-size: 1,9em;
+
+  animation: 2s alertAnimloading forwards;
+
+}
+
+
+@keyframes alertAnimloading {
+  from{
+    opacity:1;
+    transform: translateY(-80px);
+
+  }
+  to{
+    opacity: 0;
+    transform: translateY(0);
+
+  }
+
+}
+
+
+.alertLoading{
+  padding: 0px;
+  font-size: 1,9em;
+
+  animation: 2s alertAnimloading forwards;
+
+}
+
+
+@keyframes alertAnimloading {
+  from{
+    opacity:1;
+
+
+  }
+  to{
+    opacity: 0;
+
+
+  }
+
+}
+
+.cd{
+  border-right: #04B4AE solid 1 px;
+}
+
+

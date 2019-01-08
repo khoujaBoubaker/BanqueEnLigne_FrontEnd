@@ -1,0 +1,150 @@
+
+
+.huge{
+  font-size: 40px;
+}
+
+
+
+
+.s{
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+.s:hover{
+  opacity: 1;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 300%;
+    width: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+
+
+.s1{
+  animation-duration: 3s;
+  animation-name: slidein1;
+}
+.s:hover{
+  opacity: 1;
+}
+
+@keyframes slidein1 {
+  from {
+    margin-top: 200%;
+    width: 10%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+
+.s3{
+  animation-duration: 1s;
+  animation-name: slidein3;
+}
+.s:hover{
+  opacity: 1;
+}
+
+.s3:hover{
+
+  transform: translateY(-10px) scale(1.02);
+  cursor: pointer;
+
+
+}
+
+
+
+@keyframes slidein3 {
+  from {
+    margin-top: 200%;
+    width: 10%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.c:hover{
+
+  opacity: 0.8;
+  border: #2A3F54 solid 2px;
+
+  cursor: pointer;
+
+}
+
+.tz-gallery .thumbnail {
+  padding: 0;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: none;
+  transition: 0.15s ease-in-out;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.image{
+  height:40em; background-size:cover; width:auto;
+  background-image:url('../../assets/images/benches.jpg');
+  background-position:60% 60%;
+}
+
+
+.lightbox img {
+  width: 100%;
+  border-radius: 0;
+  position: relative;
+}
+
+.lightbox:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -13px;
+  margin-left: -13px;
+  opacity: 0;
+  color: #fff;
+  font-size: 26px;
+  font-family: 'Glyphicons Halflings';
+  content: '\e003';
+  pointer-events: none;
+  z-index: 9000;
+  transition: 0.4s;
+}
+
+
+ .lightbox:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: rgba(46, 132, 206, 0.7);
+  content: '';
+  transition: 0.4s;
+}
+
+.lightbox:hover:after,
+.lightbox:hover:before {
+  opacity: 1;
+}
+
+
+

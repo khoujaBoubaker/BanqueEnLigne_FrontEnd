@@ -1,0 +1,562 @@
+
+<div class="nav-md">
+  <div class="container body" style="height:820px;">
+    <div class="main_container fixed_footer">
+
+
+
+
+
+
+      <div class="right_col" role="main" style="color: #2A3F54;height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3 style="color: #2A3F54;">Gestion agences </h3>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="clearfix"></div>
+          <ng-progress></ng-progress>
+
+
+
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Agences <small>banques</small></h2>
+
+        <div class="clearfix"></div>
+      </div>
+      <div id="agences1" class="x_content">
+        <div class="form-group"></div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Agences&nbsp;</li>
+            <div class="pull-right"></div>
+
+          </ol>
+
+        </nav>
+        <nav class="navbar navbar-light bg-faded">
+        <div class="form-inline">
+          <div class="input-group">
+            <span  class="clickable input-group-addon " (click)="chercherAgence()">Chercher</span>
+            <input id="hy" name="g" type="text" class="form-control" placeholder="Addresse .." aria-describedby="basic-addon1" [(ngModel)]="motCle" (keyup)="chercherAgence()">
+          </div>
+
+
+        </div>
+        </nav>
+
+        <div>
+
+          <div style="text-align: center;" *ngIf="!agences">
+            <img src="../../assets/images/ajax-loader%20(1).gif">
+          </div>
+
+
+      <div *ngIf="agences">
+        <table  id="datatable" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Addresse</th>
+            <th>Commune<span class="glyphicon glyphicon-align-right pull-right clickable" [ngClass]="{'tri':tri=='commune'}" tooltip="trier" (click)="agencesTriCommune()"></span></th>
+            <th>Telephone</th>
+            <th>Action</th>
+          </tr>
+
+          </thead>
+
+
+
+          <tbody>
+
+
+
+
+
+
+
+          <tr *ngFor="let agence of agences?.content">
+
+            <td>{{agence.idagence}}</td>
+            <td>{{agence.addresse}}</td>
+            <td>{{agence.commune}}</td>
+            <td>{{agence.telephone}}</td>
+
+            <td>
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button  (click)="detail(tempDetailAgence,agence)" type="button" class="btn btn-secondary"><span tooltip="detail" class="glyphicon glyphicon-cog"></span></button>
+                <button (click)="ouvrirModalSuppressionagence(templatesuppression,agence)" type="button" class="btn btn-secondary"><span tooltip="supprimer agence" class="glyphicon glyphicon-trash"></span></button>
+                <button (click)="EditAgence(agence.idagence)" type="button" class="btn btn-secondary"><span tooltip="modifier agence" class="glyphicon glyphicon-pencil"></span></button>
+                <button type="button" type="button" (click)="ouvrirModalConseillers(tempConseillers,agence)" class="btn btn-secondary" tooltip="conseillers"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                <button type="button" type="button" (click)="ouvrirModalClients(tempClients,agence)"  class="btn btn-secondary" tooltip="clients"><span class="glyphicon glyphicon-user"></span></button>
+              </div>
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+        </div>
+
+        <div *ngIf="agences?.totalElements==0"  style="text-align: center"><label>Pas de résultats</label></div>
+
+        <div class="container">
+
+
+          <ul *ngIf="agences?.numberOfElements>0" class="pagination">
+            <li [ngClass]="{'disabled':page==0}"><a class="clickable" (click)="previous()">Previous</a></li>
+            <li [ngClass]="{'active':i==page}" *ngFor="let p of pages;let i=index">
+              <a  class="clickable" (click)="gotoPage(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+            </li>
+            <li [ngClass]="{'disabled':page==pages.length-1}"><a class="under clickable" (click)="next()">Next</a></li>
+
+          </ul>
+          <button style="background-color: #4CAF50;color: white;" class="btn btn-primary pull-right" (click)="nvelleAgence(templateAjoutAgence)">nouvelle agence</button>
+
+
+        </div>
+
+
+<div>
+
+  <ng-template #tempClients class="modal-dialog modal-lg">
+
+
+    <div id="costummodaldesclients" >
+
+      <div style="background-color: #2A3F54;color: white;" class="modal-header">
+        <h4 class="modal-title pull-left">Liste des clients</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body form-horizontal form-label-left">
+
+        <table  id="datatableClients" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom<span class="glyphicon glyphicon-align-right pull-right clickable" [ngClass]="{'tri':tri=='commune'}" tooltip="trier" (click)="agencesTriCommune()"></span></th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+
+          </thead>
+
+
+
+          <tbody>
+
+          <tr *ngFor="let client of clients?.content">
+
+            <td style="color: #2A3F54;">{{client.idclient}}</td>
+            <td style="color: #2A3F54;">{{client.nom}}</td>
+            <td style="color: #2A3F54;">{{client.prenom}}</td>
+            <td style="color: #2A3F54;">{{client.email}}</td>
+
+            <td>
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="cc" (click)="detailClientParAgence(client)" type="button" class="btn btn-secondary"><span tooltip="détail client" class="glyphicon glyphicon-cog"></span></button>
+                <button (click)="supprimerClientfromLiseClientsParAgence(client)" type="button" class="btn btn-secondary"><span tooltip="supprimer client" class="glyphicon glyphicon-trash"></span></button>
+              </div>
+
+
+            </td>
+
+          </tr>
+
+
+
+
+          </tbody>
+        </table>
+
+        <div *ngIf="clients?.totalElements==0"  style="text-align: center;color: #3a87ad;"><label>Pas de clients trouvés.</label></div>
+
+        <div class="container">
+
+
+          <ul *ngIf="clients?.totalElements>0" class="pagination" style="padding-left: 180px;">
+            <li [ngClass]="{'disabled':pageClient==0}"><a class="clickable" (click)="previousClient()">Previous</a></li>
+            <li [ngClass]="{'active':i==pageClient}" *ngFor="let p of pagesClients;let i=index">
+              <a  class="clickable" (click)="gotoPageClient(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+            </li>
+            <li [ngClass]="{'disabled':pageClient==pagesClients.length-1}"><a class="under clickable" (click)="nextClient()">Next</a></li>
+
+          </ul>
+
+
+
+        </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="modalRef.hide()">Close</button>
+      </div>
+
+    </div>
+
+
+
+
+  </ng-template>
+
+        <ng-template #templatesuppression class="modal-dialog modal-lg">
+
+
+          <div id="costumModal30" >
+
+            <div  style="height: 60px;" class="modal-header">
+
+              <nav  aria-label="breadcrumb">
+                <ol class="breadcrumb ">
+                  <li class="bond2 breadcrumb-item"><a>Suppression</a></li>
+
+
+
+                  <button type="button" class="close pull-right"
+                          aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </ol>
+              </nav>
+            </div>
+            <div class="modal-body form-horizontal form-label-left">
+
+              <h2 style="text-align: center" class="alertDIV"> Etes vous sur de supprimer cette agence</h2>
+            </div>
+            <div style="color: lightgray;" class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="modalRef.hide()" tooltip="annuler" data-placement="top">Annuler</button>
+              <button  type="submit" class="btn btn-danger" (click)="supprimerAgence()" tooltip="Supprimer cette agence ?" data-placement="right">Confirmer</button>
+            </div>
+
+          </div>
+
+
+
+
+        </ng-template>
+
+  <ng-template #tempConseillers class="modal-dialog modal-lg">
+
+
+    <div id="conseillersParAgence" >
+
+      <div style="background-color: #2A3F54;color: #FFFFFF;" class="modal-header">
+        <h4 class="modal-title pull-left">Liste conseillers</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body form-horizontal form-label-left">
+
+        <table  id="dataConseillers" class="table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+
+          </thead>
+
+
+
+          <tbody>
+
+          <tr *ngFor="let conseiller of conseillers?.content">
+
+            <td style="color: #2A3F54;">{{conseiller.id}}</td>
+            <td style="color: #2A3F54;">{{conseiller.nom}}</td>
+            <td style="color: #2A3F54;">{{conseiller.prenom}}</td>
+            <td style="color: #2A3F54;">{{conseiller.email}}</td>
+
+
+            <td>
+              <div style="padding-left: 30px;" class="btn-group" role="group" aria-label="Basic example">
+                <button (click)="detailConseiller(conseiller)" type="button" class="btn btn-secondary"><span tooltip="details" class="glyphicon glyphicon-cog"></span></button>
+                <button (click)="supprimerCons(conseiller)" type="button" class="btn btn-secondary"><span class="conseillers" tooltip="delete" class="glyphicon glyphicon-trash"></span></button>
+              </div>
+            </td>
+
+
+          </tr>
+
+
+
+
+          </tbody>
+
+        </table>
+        <div *ngIf="conseillers?.totalElements==0"  style="text-align: center;color: #3a87ad;"><label>Aucun conseiller trouvé</label></div>
+        <div class="container">
+
+
+          <ul *ngIf="conseillers?.totalElements>0" class="pagination" style="padding-left: 180px;">
+            <li [ngClass]="{'disabled':pageConseiller==0}"><a class="clickable" (click)=" previousConseiller()">Previous</a></li>
+            <li [ngClass]="{'page-item active':i==pageConseiller}" *ngFor="let p of pagesConseillers;let i=index">
+              <a class="page-link" class="clickable" (click)="gotoPageConseillers(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+            </li>
+            <li [ngClass]="{'disabled':pageConseiller==pagesConseillers.length-1}"><a class="under clickable" (click)="NextConseiller()">Next</a></li>
+
+          </ul>
+
+
+
+        </div>
+
+
+      </div>
+      <div style="background-color: lightgray;" class="modal-footer">
+        <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="modalRef.hide()">Close</button>
+        <span tooltip="détail" style="color: #2A3F54;"  class="clickable glyphicon glyphicon-question-sign"></span>
+      </div>
+
+    </div>
+
+
+
+
+  </ng-template>
+
+  <ng-template #templateModificationConseiller>
+
+
+    <div id="cstumModalModificationConseiller" >
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Modification conseiller</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body form-horizontal form-label-left">
+
+        Modification du conseiller<p style="color: #3384b1;" class="clickable"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="modalRef.hide()" tooltip="annuler" data-placement="top">Annuler</button>
+        <button  type="submit" class="btn btn-danger" (click)="supprimerAgence()" tooltip="Supprimer cette agence ?" data-placement="right">Confirmer</button>
+
+      </div>
+    </div>
+
+
+
+
+  </ng-template>
+
+
+
+  <ng-template #templateModification>
+
+
+    <div id="costumModal35" >
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Modification</h4>
+        <button type="button" class="close pull-right"
+                aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body form-horizontal form-label-left">
+
+        <h2 style="text-align: center" class="alertDIV"> Voulez vous modifier cette agence</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="modalRef.hide()" tooltip="annuler" data-placement="top">Annuler</button>
+        <button  type="submit" class="btn btn-danger" (click)="modifierAgence()" tooltip="Supprimer cette agence ?" data-placement="right">Confirmer</button>
+
+      </div>
+    </div>
+
+
+
+
+  </ng-template>
+      </div>
+
+        <ng-template #tempDetailAgence>
+          <div style="height: 60px;" class="modal-header">
+            <nav  aria-label="breadcrumb">
+              <ol class="breadcrumb ">
+                <li class="breadcrumb-item "><a>Détails</a></li>
+
+
+
+                <button type="button" class="close pull-right"
+                        aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </ol>
+            </nav>
+          </div>
+          <div class="modal-body form-horizontal form-label-left">
+
+            <div class="alertDIV">
+
+
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Addresse &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{agenceAffich.addresse}}</i></p>
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Commune&nbsp;<span class="glyphicon glyphicon-envelope"></span> <span class="required">:</span></label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color: #2A3F54;font-size: 15px;">{{agenceAffich.addresse}}</i></p>
+              </div>
+
+            </div>
+            </div>
+            <div class="alertDIV2">
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tel&nbsp;<span class="glyphicon glyphicon-envelope"></span> <span class="required">:</span></label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{agenceAffich.telephone}}</i></p>
+              </div>
+
+            </div>
+            </div>
+
+
+            <div class="modal-footer">
+              <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="modalRef.hide()">Close</button>
+
+            </div>
+          </div>
+        </ng-template>
+
+
+        <div>
+          <ng-template #templateAjoutAgence>
+            <div style="height: 60px;" class="modal-header">
+
+              <nav  aria-label="breadcrumb">
+                <ol class="breadcrumb ">
+                  <li class="breadcrumb-item"><a href="#">Nouvelle agence</a></li>
+
+
+
+                  <button type="button" class="close pull-right"
+                          aria-label="Close" (click)="closeModale()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </ol>
+              </nav>
+
+            </div>
+            <div class="modal-body">
+
+              <form class="form-horizontal form-label-left" [formGroup]="agencegroup" (submit)="ajout(agencegroup.value)">
+                <div class="modal-body">
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Addresse <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" class="form-control col-md-7 col-xs-12" formControlName="addresse"   placeholder="Michel"  required>
+                    </div>
+                    <div *ngIf="agencegroup.controls.addresse.invalid && (agencegroup.controls.addresse.dirty || agencegroup.controls.addresse.touched)">
+                      <div *ngIf="agencegroup.controls.addresse.errors.required" class="alertt pull-right">
+                       <i style="color: white;"> Addresse obligatoire.</i>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Commune <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text" name="prenom"  class="form-control col-md-7 col-xs-12" formControlName="commune"  placeholder="Michel" required>
+                    </div>
+                    <div *ngIf="agencegroup.controls.commune.invalid && (agencegroup.controls.commune.dirty || agencegroup.controls.commune.touched)">
+                      <div *ngIf="agencegroup.controls.commune.errors.required" class="alertt pull-right">
+                        <i style="color: white;"> Champs obligatoire.</i>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tel <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="tel" name="prenom"  class="form-control col-md-7 col-xs-12" formControlName="telephone"  placeholder="Michel">
+                    </div>
+
+
+
+
+                </div>
+                 
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                  <button [disabled]="agencegroup.invalid"  type="submit" class="btn btn-primary">Enregistrer</button>
+
+                </div>
+                </div>
+              </form>
+            </div>
+
+          </ng-template>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+</div>
+</div>
+    </div>
+  </div>
+

@@ -1,0 +1,450 @@
+
+<div class="nav-md">
+  <div style="height: 920px;" class="container body">
+    <div class="main_container fixed_footer">
+      <ng-progress></ng-progress>
+
+
+
+
+
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main" style="height: 1000px;">
+        <div class="">
+          <div class="page-title">
+            <br/>
+            <br/>
+            <br/>
+            <div class="title_left">
+              <h3>Nouveau client </h3>
+              <br/>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>client <small>informations personnelles</small></h2>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div id="s"class="x_content">
+
+
+                  <!-- Smart Wizard -->
+                  <p>Formuliare ajout client.</p>
+                  <div  id="wizard" class="alertDIV1 form_wizard wizard_horizontal">
+                    <ul   class="wizard_steps">
+                      <li>
+                        <a  class="clickable" (click)="stub0()">
+                          <span  [ngClass]="{'step':x==0}" class="step_no">1</span>
+                          <span class="step_descr">
+                                              Step 1<br />
+
+                          </span>
+                        </a>
+                      </li>
+                      <li  >
+                        <a   class="clickable" (click)="stub1()">
+                          <span [ngClass]="{'step':x==1}" class="step_no" >2</span>
+                          <span class="step_descr">
+                                              Step 2<br />
+
+                                          </span>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="clickable" disabled="disabled">
+                          <span [ngClass]="{'step':x==3}" class="step_no">3</span>
+                          <span class="step_descr">
+                                              Step 3<br />
+
+                                          </span>
+                        </a>
+                      </li>
+
+                    </ul>
+                    <div class="alertDIV x_panel">
+                      <div *ngIf="x==0" id="step-1">
+                        <form class="form-horizontal form-label-left" (submit)="confirmer()" [formGroup]="clientForm" #f="ngForm" >
+
+                          <br/>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input   type="text"  formControlName="nomclient" class="form-control col-md-7 col-xs-12" required placeholder="delarche">
+
+                              <div *ngIf="f.submitted && !clientForm.controls.nomclient.valid"><span class="bg glyphicon glyphicon-remove form-control-feedback"></span></div>
+                            </div>
+                            <div *ngIf="clientForm.controls.nomclient.invalid && f.submitted"
+                                 class="error">
+
+                              <div class="alertt" *ngIf="clientForm.controls.nomclient.errors.required">
+                                Nom client manquant.
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Prenom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text"  class="form-control col-md-7 col-xs-12" formControlName="prenomclient" required placeholder="Michel" minlength="2">
+
+                              <div *ngIf="f.submitted && !clientForm.controls.prenomclient.valid"><span class="bg glyphicon glyphicon-remove form-control-feedback"></span></div>
+                            </div>
+                            <div *ngIf="clientForm.controls.prenomclient.invalid && f.submitted"
+                                 class="error">
+                              <div class="alertt" *ngIf="clientForm.controls.prenomclient.errors.required">champs obligatoire</div>
+                              <div class="alertwarning" *ngIf="clientForm.controls.prenomclient.errors.minlength">Le prénom doit contenir au moins 2 lettres</div>
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">addresse <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text"  class="form-control col-md-7 col-xs-12" formControlName="addresseclient" required placeholder="addresse ..">
+
+                              <div *ngIf="f.submitted && !clientForm.controls.addresseclient.valid"><span class="bg glyphicon glyphicon-remove form-control-feedback"></span></div>
+                            </div>
+
+                            <div *ngIf="clientForm.controls.addresseclient.invalid && f.submitted"
+                                 class="error">
+
+                              <div class="alertt" *ngIf="clientForm.controls.addresseclient.errors.required">
+                                addresse obligatoire
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text"  formControlName="email" class="form-control col-md-7 col-xs-12" required placeholder="xyz.azerty@domaine.com">
+
+                              <div *ngIf="f.submitted && !clientForm.controls.email.valid"><span class="bg glyphicon glyphicon-remove form-control-feedback"></span></div>
+                            </div>
+                            <div *ngIf="clientForm.controls.email.invalid && f.submitted"
+                                 class="error">
+
+                              <div class="alertt" *ngIf="clientForm.controls.email.errors.required">Addresse email obligatoire.</div>
+                              <div class="alertwarning" *ngIf="clientForm.controls.email.errors.pattern"><i style="color:#2A3F54;">email non valide</i></div>
+
+
+                            </div>
+                          </div>
+
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Salaire <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number"  class="form-control col-md-7 col-xs-12 custom-select" formControlName="salaire" required min={{minimal}}>
+
+                              <div *ngIf="f.submitted && !clientForm.controls.salaire.valid"><span class="bg glyphicon glyphicon-remove form-control-feedback"></span></div>
+                            </div>
+                            <div *ngIf="clientForm.controls.salaire.invalid && f.submitted"
+                                 class="error">
+
+                              <div class="alertt" *ngIf="clientForm.controls.salaire.errors.required"> salaire obligatoire. </div>
+                              <div class="alertwarning" *ngIf="clientForm.controls.salaire.errors.min">
+                                le salaire ne peut etre nul.
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date de naissance <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="date"  class="form-control col-md-7 col-xs-12" formControlName="datedenaissance" required>
+
+                              <div *ngIf="f.submitted && !clientForm.controls.datedenaissance.valid"><span class="bg glyphicon glyphicon-remove form-control-feedback"></span></div>
+                            </div>
+                            <div *ngIf="clientForm.controls.datedenaissance.invalid && f.submitted"
+                                 class="error">
+
+                              <div class="alertt" *ngIf="clientForm.controls.datedenaissance.errors.required">
+                                date de naissance obligatoire.
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Agence <span class="required">*</span>
+                            </label>
+
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                <select id="soflow" class="form-control"  [(ngModel)]="agenceSelected" formControlName="agenceClient" required name="myselect" >
+                                  <optgroup label="Liste des agences">
+                                    <option *ngIf="agences.totalElements==0" style="font-size: 10px;">Aucune agence trouvée</option>
+                                  <option  *ngFor="let agence of agences?.content" [ngValue]="agence" required style="color: #2e6da4;">{{agence.addresse}}</option>
+                                  </optgroup>
+                                </select>
+
+                                  </div>
+                                </div>
+
+
+                                <div *ngIf="f.submitted && !clientForm.controls.agenceClient.valid"><span style="padding-right: 40px;color: #b03535;" class=" glyphicon glyphicon-remove form-control-feedback"></span></div>
+
+                            </div>
+
+
+
+                            <div *ngIf="clientForm.controls.agenceClient.invalid && f.submitted"
+                                 class="error">
+
+                              <div class="alertt" *ngIf="clientForm.controls.agenceClient.errors.required">
+                                Agence manquante
+                              </div>
+                            </div>
+
+
+
+
+                          </div>
+
+
+
+
+
+
+
+
+                          <hr/>
+                          <div class="form-group">
+                          <button  type="submit" class="btn btn-default pull-right">Confirmer</button>
+
+                          </div>
+
+
+
+                        </form>
+
+
+
+
+                        <div>
+                          <div class="modal-fade backdrop "></div>
+                          <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <nav aria-label="breadcrumb">
+                                    <h2>Confirmation ajout client</h2>
+                                  </nav>
+
+                                  <h4 style="text-align: center" class="modal-title"></h4>
+                                </div>
+
+
+                                <div class="modal-body">
+
+                                  <p><cite>l'ajout du client </cite></p> <h5>{{cl.nom}} {{cl.prenom}}</h5>
+                                  <p><cite>a été fait avec succés</cite></p>
+
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" (click)="fermerModal()" >Close</button>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                      <div *ngIf="x==1" id="step-2">
+                        <div class="form-horizontal form-label-left"  >
+
+                          <h2 style="text-align: center" class="alertDIV">Confirmer ajout client</h2>
+                          <div >
+
+                            <div  class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nom :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-3 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.nom}}</p>
+
+                              </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Prenom :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.prenom}}</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Addresse :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.addresse}}</p>
+                              </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Email :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.email}}</p>
+                              </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Salaire :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.salaire}}</p>
+                              </div>
+                            </div>
+
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Date de naissance :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.datedenaissance}}</p>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12">Agence :<span class="required">*</span>
+                              </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static" style="color:#2A3F54;font-size: 15px;">{{cl.agence.addresse}}</p>
+                              </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          </div>
+                          <hr/>
+
+
+
+                          <div class="pager">
+                            <button tooltip="réinitialiser le formulaire" class=" styleBorder btn btn-default" (click)="annuler()">Annnuler</button>
+                            <button tooltip="formulaire sauvegardé" class=" styleBorder btn btn-default" (click)="precedent()">Precedent</button>
+                            <button tooltip="ajouter client"  class=" styleBorder btn btn-default" (click)="prochain()">Prochain</button>
+                            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                          </div>
+
+
+
+
+                        </div>
+
+
+                      </div>
+
+                      <div *ngIf="x==3">
+                        <form  class="form-horizontal form-label-left">
+                        <div class="center-block">
+
+
+
+                          <h4 style="text-align: center;" class="alertDIV">Le client {{cl.nom}}&nbsp;{{cl.prenom}}&nbsp; est ajouté avec succès</h4>
+
+
+
+
+                          <hr/>
+                          <div   class="pager">
+
+                            <button tooltip="formulaire sauvegardé" class=" styleBorder btn btn-default" (click)="Retour()">Retour au formulaire</button>
+                          </div>
+
+                        </div>
+                        </form>
+
+
+
+
+
+
+
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+      </div>
+
+            <!-- Debut de Notifications-->
+
+            <!-- -->
+
+          </div>
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+

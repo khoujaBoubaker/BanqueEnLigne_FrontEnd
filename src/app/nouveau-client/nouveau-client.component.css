@@ -1,0 +1,262 @@
+.s:hover{
+  opacity: 0.5;
+}
+
+
+.clickable{
+  cursor: pointer;
+
+}
+
+.step{
+  background-color: #4CAF50;
+}
+
+.error {
+  color: red;
+}
+
+.cl{
+  background-color: Tomato;
+  color: white;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10px;
+  padding: 0;
+  border: 1px solid #888;
+  width: 100%;
+
+  box-shadow: 0 4px 8px 6px rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.51s;
+  animation-name: animatetop;
+  animation-duration:  0.51s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top: -400px; opacity:0.2}
+  to {top:0; opacity:0.2}
+}
+
+
+.is-active {
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.easy:hover{
+  color:#2A3F54;
+}
+
+.styleBorder{
+  border-radius: 10px;
+}
+
+
+
+.alertt{
+
+  padding:0px;
+  background: #90EE90;
+  padding:7px;
+  color:#122b40;
+
+  border-top-color: black;
+
+
+
+  font-size: .9em;
+  margin-bottom: 2px;
+  display: inline-block;
+  animation: 2s alertAnim forwards;
+
+}
+
+
+
+@keyframes alertAnim {
+  from{
+    opacity:0;
+    transform: translateY(-10px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.bg{
+  color: #b03535;padding-right: 5px;padding-top: 0px;
+}
+
+
+
+.alertwarning{
+
+
+  background: #ff9800;
+  color: #1b6d85;
+  padding:7px;
+  font-size: .9em;
+  margin-bottom: 2px;
+  display: inline-block;
+  animation: 2s alertAnim forwards;
+
+}
+
+.alertDIV1{
+
+
+  padding: 15px;
+  animation: 3s alertAnim2 forwards;
+
+}
+
+@keyframes alertAnim2 {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+
+  }
+}
+
+
+
+
+.alertDIV{
+
+
+  padding: 5px;
+  animation: 2s alertAnim1 forwards;
+
+}
+
+
+
+@keyframes alertAnim1 {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+
+  }
+}
+
+
+p {
+  font-family: sans-serif;
+}
+
+label.custom-select {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select select {
+  display: inline-block;
+  border: 2px solid #bbb;
+  padding: 4px 3px 3px 5px;
+  margin: 0;
+  font: inherit;
+  outline:none; /* remove focus ring from Webkit */
+  line-height: 1.2;
+  background: #f8f8f8;
+
+  -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* for Webkit's CSS-only solution */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .custom-select select {
+    padding-right:30px;
+  }
+}
+
+/* Since we removed the default focus styles, we have to add our own */
+.custom-select select:focus {
+  -webkit-box-shadow: 0 0 3px 1px #c00;
+  -moz-box-shadow: 0 0 3px 1px #c00;
+  box-shadow: 0 0 3px 1px #c00;
+}
+
+/* Select arrow styling */
+.custom-select:after {
+  content: "▼";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 60%;
+  line-height: 30px;
+  padding: 0 7px;
+  background: #bbb;
+  color: white;
+
+  pointer-events:none;
+
+  -webkit-border-radius: 0 6px 6px 0;
+  -moz-border-radius: 0 6px 6px 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.no-pointer-events .custom-select:after {
+  content: none;
+}
+
+
+
+
+input:focus {
+  border:1px solid #0F056B;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 0 0 3px 1px #2E9AFE;
+  -moz-box-shadow: 0 0 3px 1px #2E9AFE;
+  box-shadow: 0 0 3px 1px #2E9AFE;
+
+}
+
+select:focus {
+  border:1px solid #0F056B;
+  border-radius: 5px;
+}
+
+select#soflow {
+  -webkit-appearance: button;
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-padding-end: 20px;
+  -webkit-padding-start: 2px;
+  -webkit-user-select: none;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  border: 1px solid #AAA;
+  color: #555;
+  font-size: inherit;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 300px;
+}
+
+
+

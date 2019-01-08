@@ -1,0 +1,91 @@
+<ng-progress></ng-progress>
+<div class="materialContainer">
+
+
+
+
+  <div class="boxx">
+    <form #f="ngForm" [formGroup]="formgroupLG" (ngSubmit)="loginn(f.value)">
+
+    <div class="title" style="color:#ccccff;">Connexion</div>
+
+    <div class="input">
+
+      <label for="name">Username</label>
+
+      <input  type="text" name="username" id="name" formControlName="username" required>
+      <span class="spin"></span>
+    </div>
+
+      <div *ngIf="formgroupLG.controls.username.invalid && f.submitted">
+        <div  *ngIf="formgroupLG.controls.username.errors.required" style="color:#ED2553;" class="pull-right animate">
+          <b>Username manquant</b>
+        </div>
+      </div>
+
+    <div class="input">
+      <label for="pass">Password</label>
+
+      <input type="password" name="password" id="pass" formControlName="password" required>
+      <span class="spin"></span>
+
+    </div>
+      <div *ngIf="formgroupLG.controls.password.invalid && f.submitted">
+        <div  *ngIf="formgroupLG.controls.password.errors.required" style="color: #ED2553;" class="pull-right animate">
+          <b>Password manquant</b>
+        </div>
+      </div>
+
+
+      <div>
+
+        <button style="color: #2A3F54;margin-top: 30px;" class="btn" type="submit" value="Sign In">Log In &nbsp;  <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /></button>
+
+
+      </div>
+    </form>
+
+
+
+    <a  class="pass-forgot">Banque en ligne</a>
+
+  </div>
+
+  <div class="overbox">
+    <div class="material-button alt-2"><span class="shape"></span></div>
+
+    <div class="title">REGISTER</div>
+
+    <div class="input">
+      <label for="regname">Username</label>
+      <input type="text" name="regname" id="regname">
+      <span class="spin"></span>
+    </div>
+
+    <div class="input">
+      <label for="regpass">Password</label>
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <input type="password" name="regpass" id="regpass">
+      <span class="spin"></span>
+    </div>
+
+    <div class="input">
+      <label for="reregpass">Repeat Password</label>
+      <i class="fa fa-lock" aria-hidden="true"></i>
+      <input type="password" name="reregpass" id="reregpass">
+      <span class="spin"></span>
+    </div>
+
+    <div class="button">
+      <button><span>NEXT</span></button>
+    </div>
+
+
+  </div>
+
+
+
+
+
+  </div>
+

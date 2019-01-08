@@ -1,0 +1,51 @@
+.clickable{
+  cursor:pointer;
+
+}
+
+
+input:focus {
+  border:1px solid #1ABB9C;
+  border-radius: 5px;
+}
+
+select:focus {
+  border:1px solid #1ABB9C;
+}
+
+
+
+
+.alertt{
+  background: #be2626;
+  border-radius: 5px;
+  padding:7px;
+  color: white;
+  font-size: .9em;
+  margin-bottom:2px;
+  margin-right: 25px;
+  display: inline-block;
+  animation: 2s alertAnim forwards;
+
+}
+
+
+.alertform{
+  padding: 0px;
+
+  animation: 1s alertAnim forwards;
+
+}
+
+@keyframes alertAnim {
+  from{
+    opacity:0;
+    transform: translateY(0);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+

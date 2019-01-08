@@ -1,0 +1,125 @@
+.effetmenu {
+  border-right: #04B4AE solid 5px;
+}
+
+.black{
+  border-style:  solid 2px;
+  border-color: #5A738E ;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+  border-bottom: #1ABB9C solid 2px;
+
+
+
+}
+
+
+.push_button{
+  position:relative;
+  width:inherit;
+  color:#58FAD0;
+  display:block;
+  text-decoration:none;
+
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+  box-shadow: 0px 0px 0px 0px #000, 0 0 4px rgba(0, 0, 0, .5) inset;
+  border-top: #5d7b87 solid 1px ;
+
+
+}
+
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 2s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+.rd{
+  color:#1ABB9C;
+}
+
+.onglet:hover{
+  background-color: #04B4AE;
+  color: white;
+}
+
+.onglet:focus{
+  background-color: #04B4AE;
+  color: #2A3F54;
+}
+
+.ongl{
+  background-color: #04B4AE;
+  color: #2A3F54;
+}
+
+
+#panel {
+  padding: 50px;
+  display: none;
+}
+
+
+
+
+#snack {
+  visibility: hidden;
+  min-width: 350px;
+  max-height:130px;
+  margin-left: -125px;
+  margin-bottom: 35px;
+  background-color: lightblue;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 36px;
+
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 30px;
+  font-size: 17px;
+}
+
+
+#snack.shw {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fi 0.5s, fo 0.5s 2.5s;
+}
+
+
+#profileAdmin1 {
+  visibility: visible;
+  min-width: 250px;
+  margin-left: -125px;
+  margin-top: 35px;
+  background-color: #070719;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 36px;
+
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 30px;
+  font-size: 17px;
+}
+
+
+.laterals {
+	top: 15px;
+	left: 0;
+	width: 100%;
+	height: 60px;
+
+	border-radius: 12px / 65px;
+	box-shadow: 0 0 10px #555;
+}
+

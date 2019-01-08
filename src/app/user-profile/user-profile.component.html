@@ -1,0 +1,128 @@
+
+<div class="nav-md">
+  <div style="height: 920px;" class="container body">
+    <div class="main_container fixed_footer">
+
+      <ng-progress></ng-progress>
+
+
+
+
+
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main" style="height: 1000px;">
+        <div class="">
+          <div class="page-title">
+            <br/>
+            <br/>
+            <br/>
+            <div class="title_left">
+              <h3>Profile utilisateur </h3>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Mon profile <small>Données</small></h2>
+
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <div>
+                    <div style="text-align: center" *ngIf="!(adminTrouve && image)">
+                      <img src="../../assets/images/ajax-loader%20(1).gif">
+                      </div>
+                  <div class="x_panel" *ngIf="adminTrouve && image">
+                  <div  class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                    <blockquote class="blockquote-reverse">
+                    <div class="profile_img">
+
+                      <div  *ngIf="image" id="crop-avatar">
+                        <!-- Current avatar -->
+
+                        <img style="border-color: #2A3F54 solid 1 px;"  width="200" class="img-responsive avatar-view"  [src]='image' />
+                    </div>
+                    <h3 style="color: #2A3F54;">{{adminTrouve.nom}}</h3>
+                      <h3 style="color: #2A3F54;">{{adminTrouve.prenom}}</h3>
+
+
+
+
+
+                    <br />
+
+
+                    <!-- end of skills -->
+
+                  </div>
+                    </blockquote>
+
+
+                </div>
+                  <div class="col-md-9 col-sm-9 col-xs-12">
+
+
+                    <div class="profile_title">
+                      <div class="col-md-6">
+                        <h2>Mes coordonnées</h2>
+                      </div>
+                    </div>
+                    <br/>
+                    <br/>
+
+                  <div class="x_panel">
+
+                    <h2 style="color: #1ABB9C;">{{adminTrouve.nom}}&nbsp;{{adminTrouve.prenom}}</h2>
+
+
+
+                    <ul class="list-unstyled user_data">
+                      <li><i class="fa fa-map-marker user-profile-icon"></i> {{adminTrouve.addresse}}
+                      </li>
+                      <li>
+                        <i class="fa fa-briefcase user-profile-icon"></i> {{adminTrouve.poste}}
+                      </li>
+                      <li>
+                        <i class="fa fa-user" tooltip="username"></i> {{adminTrouve.username}}
+                      </li>
+                      <li class="m-top-xs">
+                        <i class="fa fa-external-link user-profile-icon"></i>
+                        <a href="http://www.kimlabs.com/profile/" target="_blank">{{adminTrouve.email}}</a>
+                      </li>
+                    </ul>
+                    <br/>
+                    </div>
+                  </div>
+                    </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+

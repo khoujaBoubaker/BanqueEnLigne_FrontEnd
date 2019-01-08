@@ -1,0 +1,267 @@
+
+<div class="nav-md" >
+  <div  class="container body" style="height: 820px;">
+    <div class="main_container fixed_footer">
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="right_col" role="main" style="color: #4CAF50;height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div style="color:#2A3F54;" class="col-md-12 col-sm-12 col-xs-12" >
+            <div  class="x_panel">
+              <div class="x_title">
+                <h2>Agences<small>Modification	<i class="fa fa-refresh fa-spin"></i></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a (click)="hideList()" class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul id="mns" class="dropdown-menu" role="menu">
+                      <li [ngClass]="{'activ': size==5}"><a (click)="tofive()">5 lignes</a>
+                      </li>
+                      <li [ngClass]="{'activ': size==10}" ><a (click)="toten()">10 lignes</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div id="s"  class="x_content">
+                <div  class="form-group"></div>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb menuperso ">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Agences</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editer</li>
+
+
+
+
+
+
+                  </ol>
+                </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- The Modal -->
+
+
+
+
+                <br/>
+
+
+
+                <p class="text-muted font-13 m-b-30"></p>
+                <div class="alertDIV" *ngIf="agence">
+                  <form  class="form-horizontal form-label-left" [formGroup]="agencegroup" (submit)="updateagence()">
+                    <div class="alertform">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Addresse <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control col-md-7 col-xs-12" formControlName="addresse"   placeholder="Michel" [ngModel]="agence.addresse" required>
+                          <div *ngIf="agencegroup.controls.addresse.valid">
+                            <span
+                              class="label label-success pull-right">valide</span></div>
+                        </div>
+                        <div *ngIf="agencegroup.controls.addresse.invalid && (agencegroup.controls.addresse.dirty || agencegroup.controls.addresse.touched)"
+                             class=" error">
+
+                          <div class="alertt" *ngIf="agencegroup.controls.addresse.errors.required"><i style="color: white;">Adresse manquante</i></div>
+                          <!-- other errors validations  -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Commune <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text"  class="form-control col-md-7 col-xs-12"
+                                 formControlName="commune" placeholder="Michel" [(ngModel)]="agence.commune"
+                                 required >
+                          <div *ngIf="agencegroup.controls.commune.valid">
+                             <span
+                               class="label label-success pull-right">valide</span></div>
+                        </div>
+                        <div *ngIf="agencegroup.controls.commune.invalid && (agencegroup.controls.commune.dirty || agencegroup.controls.commune.touched)"
+                        >
+                          <div class="alertt" *ngIf="agencegroup.controls.commune.errors.required"><i style="color: white;">commune manquante</i></div>
+                          <div class="alertwarning" *ngIf="agencegroup.controls.commune.errors.minlength"><i style="color: #2A3F54;">le nom doit comporter au moins 3 lettres</i></div>
+                          <!-- other errors validations  -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Tel<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="tel" name="prenom" class="form-control col-md-7 col-xs-12" [(ngModel)]="agence.telephone"
+                                 formControlName="telephone"
+                                 required>
+
+                          <div *ngIf="agencegroup.controls.telephone.valid">
+                             <span
+                               class="label label-success pull-right">valide</span></div>
+
+
+                        </div>
+                        <div *ngIf="agencegroup.controls.telephone.invalid && (agencegroup.controls.telephone.dirty || agencegroup.controls.telephone.touched)">
+
+                          <div class="alertt" *ngIf="agencegroup.controls.telephone.errors.required"><i style="color: white;">Tel manquant</i></div>
+
+                          <!-- other errors validations  -->
+                        </div>
+
+                      </div>
+
+
+
+
+
+
+                      {{agencegroup.value|json}}{{agencegroup.status}}
+                    </div>
+
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="annuler()">Annuler</button>
+                      <button [disabled]="!agencegroup.valid"  type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+
+
+
+                  </form>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <br/>
+
+                <!-- Modal pour confirmation de suppression. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Modal section modal  modal-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+

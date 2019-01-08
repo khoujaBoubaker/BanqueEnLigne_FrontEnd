@@ -1,0 +1,166 @@
+
+<div class="nav-md" >
+  <div  class="container body" style="height: 940px;">
+    <div class="main_container fixed_footer">
+
+
+      <div class="right_col" role="main" style="color: #4CAF50;height: 1000px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3 style="color:#2A3F54;">Dashboard </h3>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div style="color:#2A3F54;" class="col-md-12 col-sm-12 col-xs-12">
+            <div  class="x_panel">
+              <div class="x_title">
+                <h2>Statistiques<small>Données	<i class="fa fa-refresh fa-spin"></i></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a (click)="hideDiv()"  class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul id="mns" class="dropdown-menu" role="menu">
+                      <li [ngClass]="{'activ': size==5}"><a (click)="tofive()">5 lignes</a>
+                      </li>
+                      <li [ngClass]="{'activ': size==10}" ><a (click)="toten()">10 lignes</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div id="sc1" class="x_content image">
+                <div class="row">
+
+
+                    <div class="col-lg-12">
+                      <h1 class="page-header">Dashboard</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+
+                  <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary s3">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <i class="fa fa-user fa-5x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                            <div  class="huge">26</div>
+                            <div>Clients</div>
+                          </div>
+                        </div>
+                      </div>
+                      <a>
+                        <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i routerLink="/home/clients" class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+
+                  <div class="col-lg-3 col-md-6">
+                    <div style="background-color: #1ABB9C;" class="panel panel-green s3">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>New Tasks!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <a href="#">
+                        <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6">
+                    <div style="background-color: #E3C852;" class="panel panel-yellow s1 s3">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>New Orders!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <a href="#">
+                        <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6  ">
+                    <div style="background-color: Tomato;" class="panel panel-red s s3">
+                      <div class="panel-heading">
+                        <div class="row">
+                          <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                          </div>
+                          <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Support Tickets!</div>
+                          </div>
+                        </div>
+                      </div>
+                      <a href="#">
+                        <div class="panel-footer">
+                          <span class="pull-left">View Details</span>
+                          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                          <div class="clearfix"></div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+
+
+
+
+
+
+                </div>
+
+
+              </div><!-- /.modal-dialog -->
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+

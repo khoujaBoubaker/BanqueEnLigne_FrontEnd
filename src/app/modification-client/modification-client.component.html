@@ -1,0 +1,610 @@
+
+<div class="nav-md" >
+  <div  class="container body" style="height: 820px;">
+    <div class="main_container fixed_footer">
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="right_col" role="main" style="color: #4CAF50;height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+          <div style="color:#2A3F54;" class="col-md-12 col-sm-12 col-xs-12" >
+            <div  class="x_panel">
+              <div class="x_title">
+                <h2>Modification<small>Clients	<i class="fa fa-refresh fa-spin"></i></small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a  class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul id="mns" class="dropdown-menu" role="menu">
+                      <li [ngClass]="{'activ': size==5}"><a (click)="tofive()">5 lignes</a>
+                      </li>
+                      <li [ngClass]="{'activ': size==10}" ><a (click)="toten()">10 lignes</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div id="scl"  class="x_content">
+                <div  class="form-group"></div>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb menuperso ">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Clients</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Editer</li>
+                    <div class="pull-right"><span style="background-color: white;color:#2A3F54;border: solid 1px;" class="clickable badge badge-light" tooltip="nombre de clients">7</span></div>
+
+
+
+
+
+                  </ol>
+                </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- The Modal -->
+
+
+
+
+                <br/>
+
+
+
+                <p class="text-muted font-13 m-b-30"></p>
+              <div>
+                <form  class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="updateClient()">
+                <div class="animate">
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input  type="text" class="form-control col-md-7 col-xs-12" formControlName="nomClient" [(ngModel)]="client.nom"
+                              placeholder="Michel"  required>
+                      <div  *ngIf="formgroupClient.controls.nomClient.valid">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                      <div *ngIf="!formgroupClient.controls.nomClient.valid"> <span style="color: #b03535;padding-right: 5px;padding-top: 0px;" class="glyphicon glyphicon-remove form-control-feedback"></span></div>
+                    </div>
+                    <div *ngIf="formgroupClient.controls.nomClient.invalid && (formgroupClient.controls.nomClient.dirty ||formgroupClient.controls.nomClient.touched)"
+                         class="alertt" >
+                      <i >nom manquant</i>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Prenom <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="text"  class="form-control col-md-7 col-xs-12"
+                             formControlName="prenomClient" placeholder="Michel" [(ngModel)]="client.prenom"
+                             required>
+                      <div *ngIf="formgroupClient.controls.prenomClient.valid">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                      <div *ngIf="!formgroupClient.controls.prenomClient.valid"> <span style="color: #b03535;padding-right: 5px;padding-top: 0px;" class="glyphicon glyphicon-remove form-control-feedback"></span></div>
+                    </div>
+                    <div
+                      *ngIf="formgroupClient.controls.prenomClient.invalid && (formgroupClient.controls.prenomClient.dirty || formgroupClient.controls.prenomClient.touched)"
+                      class="" >
+                      <div class="alertt" *ngIf="formgroupClient.controls.prenomClient.errors.required"><i>prenom manquant</i></div>
+
+                      <!-- other errors validations  -->
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Salaire <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="number" name="prenom" class="form-control col-md-7 col-xs-12" [(ngModel)]="client.salaire"
+                             formControlName="salaireClient" placeholder="Michel"
+                             required>
+                      <div *ngIf="formgroupClient.controls.salaireClient.valid">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                      <div *ngIf="!formgroupClient.controls.salaireClient.valid"> <span style="color: #b03535;padding-right: 5px;padding-top: 0px;" class="glyphicon glyphicon-remove form-control-feedback"></span></div>
+                    </div>
+
+                    <div
+                      *ngIf="formgroupClient.controls.salaireClient.invalid && (formgroupClient.controls.salaireClient.dirty || formgroupClient.controls.salaireClient.touched)"
+                      class="alertt" >
+                      <div *ngIf="formgroupClient.controls.salaireClient.errors.required"><i>salaire manquant</i></div>
+
+                      <!-- other errors validations  -->
+                    </div>
+
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="email" name="prenom" class="form-control col-md-7 col-xs-12" [(ngModel)]="client.email"
+                             formControlName="emailClient" placeholder="Michel"
+                             required valid>
+                      <div *ngIf="formgroupClient.controls.emailClient.valid">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+
+                     <div *ngIf="!formgroupClient.controls.emailClient.valid"> <span style="color: #b03535;padding-right: 5px;padding-top: 0px;" class="glyphicon glyphicon-remove form-control-feedback"></span></div>
+
+                    </div>
+                    <div
+                      *ngIf="formgroupClient.controls.emailClient.invalid && (formgroupClient.controls.emailClient.dirty || formgroupClient.controls.emailClient.touched)"
+                      class="">
+                      <div class="alertt" *ngIf="formgroupClient.controls.emailClient.errors.required"><i>email manquant</i></div>
+                      <div class="alertwarning" *ngIf="formgroupClient.controls.emailClient.errors.pattern"><i style="color:#2A3F54;">email non valide</i></div>
+
+                      <!-- other errors validations  -->
+                    </div>
+
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12"> Naissance <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <input type="date" class="form-control col-md-7 col-xs-12" formControlName="datedenaissance"
+                             placeholder="Michel" [(ngModel)]="client.datedenaissance" required>
+                      <div *ngIf="formgroupClient.controls.datedenaissance.valid">
+                        <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                      <div *ngIf="!formgroupClient.controls.datedenaissance.valid"> <span style="color: #b03535;padding-right: 5px;padding-top: 0px;" class="glyphicon glyphicon-remove form-control-feedback"></span></div>
+
+                    </div>
+
+
+                    <div *ngIf="formgroupClient.controls.datedenaissance.invalid && (formgroupClient.controls.datedenaissance.dirty || formgroupClient.controls.datedenaissance.touched)"
+                         class="alertt error">
+                      <i>date de naissance manquante</i>
+                      <!-- other errors validations  -->
+                    </div>
+                  </div>
+
+                </div>
+
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" routerLink="/home/clients">Annuler</button>
+                    <button [disabled]="formgroupClient.invalid || changed"  type="submit" class="btn btn-primary">Modifier</button>
+                  </div>
+
+
+
+
+                </form>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <br/>
+
+                <!-- Modal pour confirmation de suppression. -->
+                <div>
+
+
+
+
+
+
+
+
+
+                  <!-- modification ou détail-->
+                  <ng-template #tempModification>
+                    <div style="background-color: #2A3F54;color: white;" class="modal-header">
+                      <h4 class="modal-title pull-left">{{selectedClient.nom}}&nbsp;{{selectedClient.prenom}}</h4>
+                      <button type="button" class="close pull-right"
+                              aria-label="Close" (click)="modalRef.hide()">
+                        <span style="color: #FFFFFF;" aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                      <form class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="updateClient()">
+                        <div class="modal-body">
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input  type="text" class="form-control col-md-7 col-xs-12" formControlName="nomClient"
+                                      placeholder="Michel" [ngModel]="selectedClient.nom" required>
+                              <div  *ngIf="formgroupClient.controls.nomClient.valid">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                            </div>
+
+                            <div *ngIf="formgroupClient.controls.nomClient.invalid && (formgroupClient.controls.nomClient.dirty ||formgroupClient.controls.nomClient.touched)"
+                                 class=" alertt" style="color: #2A3F54;">
+                              <i >nom manquant</i>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+
+                          </div>
+
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Prenom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" name="prenom" class="form-control col-md-7 col-xs-12"
+                                     formControlName="prenomClient" placeholder="Michel" [ngModel]="selectedClient.prenom"
+                                     required>
+                              <div *ngIf="formgroupClient.controls.prenomClient.valid">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                            </div>
+                            <div
+                              *ngIf="formgroupClient.controls.prenomClient.invalid && (formgroupClient.controls.prenomClient.dirty || formgroupClient.controls.prenomClient.touched)"
+                              class="alertt" style="color: #2A3F54;">
+                              <div *ngIf="formgroupClient.controls.prenomClient.errors.required"><i>prenom manquant</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Salaire <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="number" name="prenom" class="form-control col-md-7 col-xs-12"
+                                     formControlName="salaireClient" placeholder="Michel" [ngModel]="selectedClient.salaire"
+                                     required>
+                              <div *ngIf="formgroupClient.controls.salaireClient.valid">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                            </div>
+                            <div
+                              *ngIf="formgroupClient.controls.salaireClient.invalid && (formgroupClient.controls.salaireClient.dirty || formgroupClient.controls.salaireClient.touched)"
+                              class="alertt" >
+                              <div *ngIf="formgroupClient.controls.salaireClient.errors.required"><i>salaire mant</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="email" name="prenom" class="form-control col-md-7 col-xs-12"
+                                     formControlName="emailClient" placeholder="Michel" [ngModel]="selectedClient.email"
+                                     required >
+                              <div *ngIf="formgroupClient.controls.emailClient.valid">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                            </div>
+                            <div
+                              *ngIf="formgroupClient.controls.emailClient.invalid && (formgroupClient.controls.emailClient.dirty || formgroupClient.controls.emailClient.touched)"
+                              class="error">
+                              <div class="alertt" *ngIf="formgroupClient.controls.emailClient.errors.required"><i>email manquant</i></div>
+
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Naissance <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="date" class="form-control col-md-7 col-xs-12" formControlName="datedenaissance"
+                                     placeholder="Michel" [ngModel]="selectedClient.datedenaissance" required></div>
+
+                            <div *ngIf="formgroupClient.controls.datedenaissance.invalid && (formgroupClient.controls.datedenaissance.dirty || formgroupClient.controls.datedenaissance.touched)"
+                                 class="error">
+                              <i>date de naissance manquante</i>
+                              <!-- other errors validations  -->
+                            </div>
+                          </div>
+
+                          {{formgroupClient.value|json}}{{formgroupClient.status}}
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                          <button [disabled]="formgroupClient.invalid"  type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                      </form>
+
+
+                    </div>
+                  </ng-template>
+
+
+
+                  <ng-template #nouveauclient>
+                    <div class="modal-header">
+                      <h4 class="modal-title pull-left">Nouveau client</h4>
+                      <button type="button" class="close pull-right"
+                              aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+
+                      <form class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="nv1()">
+                        <div class="modal-body" >
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" class="form-control col-md-7 col-xs-12" formControlName="nomClient"
+                                     placeholder="Michel"  required>
+                              <div *ngIf="formgroupClient.controls.nomClient.valid">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                            </div>
+                            <div
+                              *ngIf="formgroupClient.controls.nomClient.invalid && (formgroupClient.controls.nomClient.dirty ||formgroupClient.controls.nomClient.touched)"
+                              class="error">
+                              <i>nom manquant</i>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+                          {{formgroupClient.value|json}}
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+                          <button  type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                      </form>
+
+
+                    </div>
+                  </ng-template>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Modal section modal  modal-->
+
+
+
+
+
+              </div><!-- /.modal-dialog -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div>
+
+
+
+                <ng-template #nvcpteparne>
+                  <div id="modalNVcpteEpargne" class="" >
+                    <div class="modal-header">
+                      <div class="pull-left"> <h2>Nouveau compte epargne </h2></div>
+                      <button type="button" class="close pull-right"
+                              aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-horizontal form-label-left" [formGroup]="formCompteEpargne" (submit)="nouveauCompteEpargne()">
+                        <div class="modal-body">
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Solde initial</label>
+                            <div class="col-md-6 col-sm-9 col-xs-9">
+                              <input type="number" class="form-control" formControlName="soldeepargneInitial" required>
+                            </div>
+
+                            <div
+                              *ngIf="formCompteEpargne.controls.soldeepargneInitial.invalid && (formCompteEpargne.controls.soldeepargneInitial.dirty || formCompteEpargne.controls.soldeepargneInitial.touched)"
+                              class=" error">
+                              <div *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.required"><i>solde manquant</i></div>
+                              <div *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.min"><i>Le solde doit etre non nul</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Taux</label>
+                            <div class="col-md-6 col-sm-9 col-xs-9">
+                              <input type="number" class="form-control" id="jcf" aria-describedby="emailHelp" formControlName="taux" required>
+                            </div>
+                            <div
+                              *ngIf="formCompteEpargne.controls.taux.invalid && (formCompteEpargne.controls.taux.dirty || formCompteEpargne.controls.taux.touched)"
+                              class=" error">
+                              <div *ngIf="formCompteEpargne.controls.taux.errors.required"><i>taux manquant</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+
+                          </div>
+
+                          {{formCompteEpargne.value|json}} {{formCompteEpargne.status}}
+
+
+
+                          <div class="modal-footer">
+                            <button type="button" (click)="fermerModalnvcompteEpargne()" class="center btn btn-default">Fermer</button>
+                            <button [disabled]="!formCompteEpargne.valid" type="submit" class="btn btn-default">ajouterCompte</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+
+                  </div>
+                </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+                <ng-template #nvcpt>
+                  <div id="modalNVcpte" class="" >
+                    <div class="modal-header">
+                      <div class="pull-left"> <h2>Nouveau compte courant </h2></div>
+                      <button type="button" class="close pull-right"
+                              aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-horizontal form-label-left" [formGroup]="formCompte" (submit)="nv2()">
+                        <div class="modal-body">
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"  >Solde initial</label>
+                            <div class="col-md-6 col-sm-9 col-xs-9">
+                              <input type="number" class="form-control" formControlName="soldeinitial" required>
+                            </div>
+                            <div
+                              *ngIf="formCompte.controls.soldeinitial.invalid && (formCompte.controls.soldeinitial.dirty || formCompte.controls.soldeinitial.touched)"
+                              class=" error">
+                              <div *ngIf="formCompte.controls.soldeinitial.errors.required"><i>solde manquant*</i></div>
+                              <div *ngIf="formCompte.controls.soldeinitial.errors.min"><i>montant doit etre non nul*</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Decouvert</label>
+                            <div class="col-md-6 col-sm-9 col-xs-9">
+                              <input type="number" class="form-control" id="j" aria-describedby="emailHelp" formControlName="decouvertinitial" required>
+                            </div>
+                            <div
+                              *ngIf="formCompte.controls.decouvertinitial.invalid && (formCompte.controls.decouvertinitial.dirty || formCompte.controls.decouvertinitial.touched)"
+                              class=" error">
+                              <div *ngIf="formCompte.controls.decouvertinitial.errors.required"><i>découvert manquant</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+                          {{formCompte.value|json}} {{formCompte.status}}
+
+
+
+                          <div class="modal-footer">
+                            <button type="button" (click)="fermerModalNvCpte()" class="center btn btn-default">Fermer</button>
+                            <button [disabled]="!formCompte.valid" type="submit" class="btn btn-default">ajouterCompte</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+

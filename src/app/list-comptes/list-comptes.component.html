@@ -1,0 +1,1651 @@
+
+<div class="nav-md" >
+  <div  class="container body" style="height: 820px;">
+    <div class="main_container fixed_footer">
+
+
+
+      <div class="right_col" role="main" style="color: #4CAF50;height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <br/>
+              <br/>
+              <br/>
+              <h3 style="color:#2A3F54;"></h3>
+              <br/>
+              <br/>
+            </div>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+
+
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <!-- Debut menu-->
+
+          <!-- -->
+
+          <div class="clearfix"></div>
+          <div style="color:#2A3F54;" class="col-md-12 col-sm-12 col-xs-12">
+            <div  class="x_panel">
+              <div class="x_title">
+                <h2>Gestion comptes<small>{{client.nom}}&nbsp;{{client.prenom}}	<i class="fa fa-refresh fa-spin"></i></small></h2>
+
+                <div class="clearfix"></div>
+              </div>
+              <br/>
+
+
+
+
+
+
+
+
+
+              <div id="divcoptees" class="x_content">
+
+                <div  class="form-group"></div>
+
+                <nav  aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a><span class="glyphicon glyphicon-home"></span></a>&nbsp;Home</li>
+                    <li class="breadcrumb-item"><a><span class="glyphicon glyphicon-user"></span></a>&nbsp;{{client.nom}}&nbsp;{{client.prenom}}</li>
+                    <li class="breadcrumb-item active click" aria-current="page"><a><span class="glyphicon glyphicon-edit"></span></a>&nbsp; comptes</li>
+                    <li *ngIf="y==2" class="breadcrumb-item active click" aria-current="page">Opérations</li>
+                  </ol>
+                </nav>
+
+
+
+                <div *ngIf="y==0">
+                  <br/>
+                  <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                  <ul  id="myTab" class="nav nav-tabs bar_tabs right" role="tablist">
+                    <li  role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Compotes courants</a>
+                    </li>
+                    <li role="presentation" ><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Comptes épargne</a>
+                    </li>
+                  </ul>
+                  <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                      <!-- comptes courants ..-->
+                      <br/>
+                      <div style="text-align: center;" *ngIf="!pagesComptesCourants">
+                        <img src="../../assets/images/ajax-loader%20(1).gif">
+                      </div>
+
+                      <div *ngIf="pagesComptesCourants" >  <!-- comptes courants-->
+                        <div *ngIf="comptesCourantsPart?.totalElements==0">
+                          <br/>
+                          <br/>
+                          <br/>
+
+                          <h4>Pas de compte courant trouvé! Besoin d'un <a (click)="NouveaucCompteCourant(nvcpt)" class="styleLink">nouvel compte</a></h4>
+                        </div>
+                        <div  *ngIf="comptesCourantsPart?.totalElements>0">
+
+                          <table  id="content" #content class="table table-striped projects">
+
+                            <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Solde<small></small><span [ngClass]="{'tricpt':tricpt==2}" class="glyphicon glyphicon-sort-by-attributes-alt pull-right" (click)="triParSolde()" tooltip="solde decroissant"></span></th>
+                              <th>Decouvert<small></small><span [ngClass]="{'tricpt':tricpt==1}" class="glyphicon glyphicon-sort-by-attributes-alt pull-right" (click)="triParDecouvert()" tooltip="decouvert decroissant"></span></th>
+                              <th>Date de Création</th>
+                              <th>Numero compte</th>
+                              <th>Propriétaire</th>
+                              <th>Action<span style="cursor: pointer;" class="glyphicon glyphicon-link pull-right" *ngIf="tricpt!=0" (click)="enleverTri()" data-placement="right" tooltip="désactiver tri"></span></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                        <tr  *ngFor="let compte of comptesCourantsPart?.content">
+                          <td>{{compte.idcpt}}</td>
+                          <td>{{compte.solde}}</td>
+                          <td>{{compte.decouvert}}  </td>
+                          <td>{{compte.datedecreation}}</td>
+                          <td>{{compte.numeroCompte}}</td>
+
+                          <td>{{client.nom}}&nbsp;{{client.prenom}}</td>
+
+                          <td>
+                            <div>
+                              <a (click)="afficherDetail(compte,tempDetailCompteCourant)" tooltip="détail compte" style="height: 20px;" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> view </a>
+                              <a (click)="ouvrirModalModifCompteCourant(compte,tempModificationCompteCourant)" style="height: 20px;" tooltip="Modifier compte" class="btn btn-info btn-xs"><i class="fa fa-balance-scale"></i> Edit </a>
+                              <a (click)="ouvrModalSuppression(tempSuppressionCompte,compte)" style="height: 20px;" tooltip="supprimer compte" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                              <a (click)="getOperations(compte)" style="height: 20px;" tooltip="chercher opérations" class="btn btn-warning btn-xs pull-left"><i class="fa fa-cogs"></i>Opérations</a>
+
+
+                            </div>
+                          </td>
+
+                        </tr>
+                        </tbody>
+
+
+                          </table>
+                          <ng-template #nvcpt>
+                            <div id="modalNVcpt" class="" >
+                              <div style="height: 60px;" class="modal-header">
+                                <nav  aria-label="breadcrumb">
+                                  <ol class="breadcrumb ">
+                                    <li class="breadcrumb-item"><a href="#">Nouveau compte courant</a></li>
+
+
+
+                                    <button type="button" class="close pull-right"
+                                            aria-label="Close" (click)="modalRef.hide()">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </ol>
+                                </nav>
+                              </div>
+                              <div class="modal-body">
+                                <form class="form-horizontal form-label-left" [formGroup]="formCompte" (submit)="nv2()">
+                                  <div class="modal-body">
+
+                                    <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12"  >Solde initial</label>
+                                      <div class="col-md-6 col-sm-9 col-xs-9">
+                                        <input type="number" class="form-control-plaintext" formControlName="soldeinitial" required>
+                                      </div>
+                                      <div
+                                        *ngIf="formCompte.controls.soldeinitial.invalid && (formCompte.controls.soldeinitial.dirty || formCompte.controls.soldeinitial.touched)"
+                                        class=" error">
+                                        <div class="alertt" *ngIf="formCompte.controls.soldeinitial.errors.required"><i style="color: white;">solde manquant</i></div>
+                                        <div class="alertwarning" *ngIf="formCompte.controls.soldeinitial.errors.min"><i style="color: #2A3F54;">montant inferieur a 10</i></div>
+
+                                        <!-- other errors validations  -->
+                                      </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Decouvert</label>
+                                      <div class="col-md-6 col-sm-9 col-xs-9">
+                                        <input type="number" class="form-control" id="j" aria-describedby="emailHelp" formControlName="decouvertinitial" required>
+                                      </div>
+                                      <div
+                                        *ngIf="formCompte.controls.decouvertinitial.invalid && (formCompte.controls.decouvertinitial.dirty || formCompte.controls.decouvertinitial.touched)"
+                                        class=" error">
+                                        <div class="alertt" *ngIf="formCompte.controls.decouvertinitial.errors.required"><i style="color: white;">découvert manquant</i></div>
+                                        <div class="alertwarning" *ngIf="formCompte.controls.decouvertinitial.errors.min"><i style="color: #2A3F54;">découvert négatif</i></div>
+
+                                        <!-- other errors validations  -->
+                                      </div>
+
+                                    </div>
+
+                                    {{formCompte.value|json}} {{formCompte.status}}
+
+
+
+                                    <div class="modal-footer">
+                                      <button type="button" (click)="fermerModalNvCpte()" class="center btn btn-default">Fermer</button>
+                                      <button [disabled]="!formCompte.valid" type="submit" class="btn btn-default">ajouterCompte</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+
+
+                            </div>
+                          </ng-template>
+
+
+
+
+
+                          <ng-template #tempModificationCompteCourant>
+                            <div style="height: 60px;" class="modal-header">
+                              <nav  aria-label="breadcrumb">
+
+
+
+                                <ol class="breadcrumb ">
+                                  <li class="breadcrumb-item"><a href="#">Modification&nbsp;</a><small>compte courant</small></li>
+
+
+
+
+
+                                  <button type="button" class="close pull-right"
+                                          aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </ol>
+                              </nav>
+                            </div>
+                            <div class="modal-body">
+
+
+                              <form class="form-horizontal form-label-left" [formGroup]="formCompte" (submit)="updateCompteCourant()">
+                                <div class="modal-body">
+
+                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Solde <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                      <input type="number" class="form-control col-md-7 col-xs-12" formControlName="soldeinitial"
+                                             placeholder="Michel" [ngModel]="compteAmodifier.solde" required>
+                                      <div  *ngIf="formCompte.controls.soldeinitial.valid">
+                                        <span class="label label-success pull-right" >valide</span></div>
+                                    </div>
+                                    <div *ngIf="formCompte.controls.soldeinitial.invalid && (formCompte.controls.soldeinitial.dirty ||formCompte.controls.soldeinitial.touched)"
+                                    >
+                                      <div class="alertt" *ngIf="formCompte.controls.soldeinitial.errors.required"><i style="color: white;">solde manquant</i></div>
+                                      <div class="alertwarning" *ngIf="formCompte.controls.soldeinitial.errors.min"><i style="color: #2A3F54;">montant inferieur a 10</i></div>
+
+                                      <!-- other errors validations  -->
+                                    </div>
+
+                                  </div>
+
+
+                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Découvert <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                      <input type="number" class="form-control col-md-7 col-xs-12" formControlName="decouvertinitial"
+                                             placeholder="Michel" [ngModel]="compteAmodifier.decouvert" required>
+                                      <div *ngIf="formCompte.controls.decouvertinitial.valid">
+                                        <span class="label label-success pull-right">valide</span></div>
+                                    </div>
+                                    <div
+                                      *ngIf="formCompte.controls.decouvertinitial.invalid && (formCompte.controls.decouvertinitial.dirty ||formCompte.controls.decouvertinitial.touched)"
+                                      class="error">
+                                      <div class="alertt" *ngIf="formCompte.controls.decouvertinitial.errors.required"><i style="color: white;">découvert manquant</i></div>
+                                      <div class="alertwarning" *ngIf="formCompte.controls.decouvertinitial.errors.min"><i style="color: #2A3F54;">découvert négatif</i></div>
+
+                                      <!-- other errors validations  -->
+                                    </div>
+
+                                  </div>
+
+
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" (click)="closeModalMCC()">Close</button>
+                                  <button [disabled]="formCompte.invalid"  type="submit" class="btn btn-primary">Enregistrer</button>
+                                </div>
+                              </form>
+
+
+                            </div>
+                          </ng-template>
+
+
+                          <ng-template #tempDetailCompteCourant>
+                            <div style="height: 60px;" class="modal-header">
+                              <nav  aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                  <li class="breadcrumb-item"><a href="#">Détail&nbsp;</a><small>compte courant</small></li>
+
+
+
+                                  <button type="button" class="close pull-right"
+                                          aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </ol>
+                              </nav>
+                            </div>
+                            <div class=" modal-body form-horizontal form-label-left">
+                              <div class="alertbody">
+                                <br/><br/>
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" >Solde &nbsp; <span class="required">:</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{cptDetail.solde}}&nbsp;(dt)</i></p>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" >Decouvert&nbsp; <span class="required">:</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p class="form-control-static"><i style="color: #2A3F54;font-size: 15px;">{{cptDetail.decouvert}}&nbsp;(dt)</i></p>
+                                  </div>
+
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-12 col-xs-12">Crée le&nbsp;<span class="glyphicon glyphicon-calendar"></span> <span class="required">:</span> </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{cptDetail.datedecreation}}</i></p>
+                                  </div>
+
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12" >client &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{client.nom}}&nbsp;{{client.prenom}}</i></p>
+                                  </div>
+
+                                </div>
+                                <br/>
+                              </div>
+
+
+                              <div  class="modal-footer">
+                                <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="closeModalDetail()">Close</button>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </div>
+
+
+                        <ng-template #tempSuppressionCompte>
+                          <div id="costumModal" class="" >
+                            <div style="height:60px; " class="modal-header">
+                              <nav  aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                  <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
+
+
+
+                                  <button type="button" class="close pull-right"
+                                          aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </ol>
+                              </nav>
+                            </div>
+                            <div class="modal-body animate">
+                              <h2 style="color: #2A3F54;text-align: center;">Etes vous sur de supprimer ce compte.</h2>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" (click)="fermeModalSuppression()" tooltip="annuler" data-placement="top">Annuler</button>
+                              <button  type="submit" class="btn btn-danger" (click)="supprimerCompte()" tooltip="Supprimer ce client ?" data-placement="right">Confirmer</button>
+                            </div>
+
+                          </div>
+                        </ng-template>
+
+                        <ng-template #tempDetailCompte> <!--  pas utile dans le code-->
+                          <div style="height: 20px;" class="modal-header">
+                            <nav  aria-label="breadcrumb">
+                              <ol class="breadcrumb ">
+                                <li class="breadcrumb-item"><a href="#">Détail</a><small style="color: white;">compte</small></li>
+
+
+
+                                <button type="button" class="close pull-right"
+                                        aria-label="Close" (click)="modalRef.hide()">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </ol>
+                            </nav>
+                          </div>
+                          <div class="bond modal-body form-horizontal form-label-left">
+
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Solde &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static"><i style="color:black;font-size: 15px;">{{cptDetail.solde}}</i><small>(dt)</small></p>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Decouvert&nbsp;<span class="glyphicon glyphicon-envelope"></span> <span class="required">:</span></label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static"><i style="color: black;font-size: 15px;">{{cptDetail.decouvert}}</i><small>(dt)</small></p>
+                              </div>
+
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-12 col-xs-12">Crée le&nbsp;<span class="glyphicon glyphicon-calendar"></span> <span class="required">:</span> </label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static"><i style="color:black;font-size: 15px;">{{cptDetail.dateDeCreation}}</i></p>
+                              </div>
+
+                            </div>
+                            <div class="form-group">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" >client &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+                              <div class="col-md-6 col-sm-6 col-xs-12">
+                                <p class="form-control-static"><i style="color:black;font-size: 15px;">{{client.nom}}&nbsp;{{client.prenom}}</i></p>
+                              </div>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+                              <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="closeModal()">Close</button>
+
+                            </div>
+                          </div>
+                        </ng-template>
+
+                        <div  *ngIf="comptesCourantsPart?.totalElements>0">
+
+                          <ul class="pager">
+                            <li [ngClass]="{'disabled':pageCC==0}" ><a class="clickable" (click)="previousCompteCourant()">Previous</a></li>
+                            <li  *ngFor="let p of pagesComptesCourants;let i=index">
+                              <a [ngClass]="{'med':i==pageCC}" class="clickable" (click)="gotopageCourant(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                            </li>
+                            <li [ngClass]="{'disabled':pageCC==pagesComptesCourants?.length-1}"  class="clickable" ><a (click)="nextCompteCourant()" >Next</a></li>
+                            <hr style="background-color: #1ABB9C;"/>
+                            <button type="button" class="btn btn-primary pull-right" tooltip="Total Comptes courants" (click)="solde()">Total Courant</button>
+                            <div class="pull-left">
+                              <button routerLink="/home/clients" tooltip="Retour clients" type="button" class="btn btn-danger pull-right" > <span aria-hidden="true">&times;</span></button>
+                              <button (click)="NouveaucCompteCourant(nvcpt)" tooltip="Nouveau Compte Courant" type="button" class="btn btn-primary pull-right" >Nouveau</button>
+                            </div>
+                          </ul>
+
+                        </div>
+
+
+
+
+                      </div>
+
+
+
+
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                     <!-- afficher div comptes épargnes -->
+
+                      <div *ngIf="comptesEpargnesPart"> <!-- comptes epargnes-->
+
+                        <div *ngIf="comptesEpargnesPart.totalElements>0">
+
+                          <table  id="datatableEpargnes" class="table table-striped projects">
+
+
+                            <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Solde<small>(dinars)</small></th>
+                              <th>Taux<small>(dinars)</small></th>
+                              <th>Date de Création</th>
+                              <th>Propriétaire</th>
+                              <th>Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr *ngFor="let compte of comptesEpargnesPart.content">
+                              <td>{{compte.idcpt}}</td>
+                              <td>{{compte.solde}}</td>
+                              <td>{{compte.taux}}</td>
+                              <td>{{compte.datedecreation}}</td>
+                              <td>{{client.nom}}&nbsp;{{client.prenom}}</td>
+                              <td>
+                                <a class="sed" tooltip="supprimer compte épargne" data-placement="top"  (click)="supprimerCompteEpargne(compte,tempSuppressionCompteEpargne)"><span class="clickable glyphicon glyphicon-trash"></span></a>
+                                <a class="sed clickable" tooltip="détail compte épargne" data-placement="top"  (click)="detailCompteEpargne(compte,t)"><span class="glyphicon glyphicon-search"></span></a>
+                                <a class="sed" tooltip="modifier" data-placement="top" (click)="ouvrirModalModifCompteEpargne(compte,tempModificationCompteEp)"> <span class="clickable glyphicon glyphicon-flash"></span></a>
+                              </td>
+                            </tr>
+
+
+                            </tbody>
+
+
+                          </table>
+
+
+                        </div>
+
+                        <ng-template #nvcpteparne>
+                          <div id="modalNVcpteEpargne" class="" >
+                            <div class="modal-header">
+                              <nav  aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                  <li class="breadcrumb-item"><a href="#">Nouveau compte épargne</a></li>
+
+
+
+                                  <button type="button" class="close pull-right"
+                                          aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </ol>
+                              </nav>
+                            </div>
+                            <div class="modal-body">
+                              <form class="form-horizontal form-label-left" [formGroup]="formCompteEpargne" (submit)="nouveauCompteEpargne()">
+                                <div class="modal-body">
+
+                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Solde initial</label>
+                                    <div class="col-md-6 col-sm-9 col-xs-9">
+                                      <input type="number" class="form-control-plaintext" formControlName="soldeepargneInitial" required>
+                                    </div>
+
+                                    <div
+                                      *ngIf="formCompteEpargne.controls.soldeepargneInitial.invalid && (formCompteEpargne.controls.soldeepargneInitial.dirty || formCompteEpargne.controls.soldeepargneInitial.touched)"
+                                    >
+                                      <div class="alertt" *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.required"><i style="color: white">solde manquant</i></div>
+                                      <div class="alertwarning" *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.min"><i style="color: #2A3F54;">Le solde doit etre non nul</i></div>
+
+                                      <!-- other errors validations  -->
+                                    </div>
+
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Taux</label>
+                                    <div class="col-md-6 col-sm-9 col-xs-9">
+                                      <input type="number" class="form-control-plaintext" id="jcoip" aria-describedby="emailHelp" formControlName="taux" required>
+                                    </div>
+                                    <div
+                                      *ngIf="formCompteEpargne.controls.taux.invalid && (formCompteEpargne.controls.taux.dirty || formCompteEpargne.controls.taux.touched)"
+                                      class=" ">
+                                      <div class="alertt" *ngIf="formCompteEpargne.controls.taux.errors.required"><i style="color: white;">taux manquant</i></div>
+                                      <div class="alertwarning" *ngIf="formCompteEpargne.controls.taux.errors.min"><i style="color: #2A3F54;">taux nul</i></div>
+
+                                      <!-- other errors validations  -->
+                                    </div>
+
+
+                                  </div>
+
+                                  {{formCompteEpargne.value|json}} {{formCompteEpargne.status}}
+
+
+
+                                  <div class="modal-footer">
+                                    <button type="button" (click)="fermerModalnvcompteEpargne()" class="center btn btn-default">Fermer</button>
+                                    <button [disabled]="!formCompteEpargne.valid" type="submit" class="btn btn-default">ajouterCompte</button>
+                                  </div>
+                                </div>
+                              </form>
+
+                            </div>
+
+
+                          </div>
+                        </ng-template>
+                        <ng-template #tempModificationCompteEp>
+                          <div style="height: 60px;" class="modal-header">
+                            <nav  aria-label="breadcrumb">
+                              <ol class="breadcrumb ">
+                                <li class="breadcrumb-item"><a href="#">Modification</a></li>
+
+
+
+                                <button type="button" class="close pull-right"
+                                        aria-label="Close" (click)="modalRef.hide()">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </ol>
+                            </nav>
+                          </div>
+                          <div class=" modal-body">
+
+
+                            <form class="form-horizontal form-label-left" [formGroup]="formCompteEpargne" (submit)="updateCompteEpargne()">
+                              <div class="alertDIV modal-body">
+                                <br/>
+
+
+
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Solde <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input  type="number" class="effetBord form-control col-md-7 col-xs-12" formControlName="soldeepargneInitial"
+                                            placeholder="Michel" [ngModel]=" cptamodifier.solde" required>
+                                    <div *ngIf="formCompteEpargne.controls.soldeepargneInitial.valid">
+                                      <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                                  </div>
+                                  <div
+                                    *ngIf="formCompteEpargne.controls.soldeepargneInitial.invalid && (formCompteEpargne.controls.soldeepargneInitial.dirty ||formCompteEpargne.controls.soldeepargneInitial.touched)"
+                                    class="error">
+                                    <div class="alertt" *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.required"><i style="color: white">solde manquant</i></div>
+                                    <div class="alertwarning" *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.min"><i style="color: #2A3F54;">Le solde doit etre non nul</i></div>
+
+                                    <!-- other errors validations  -->
+                                  </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Taux <span class="required">*</span>
+                                  </label>
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="number" class="effetBord form-control col-md-7 col-xs-12" formControlName="taux"
+                                           placeholder="Michel" [ngModel]=" cptamodifier.taux" required>
+                                    <div *ngIf="formCompteEpargne.controls.taux.valid">
+                                      <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
+                                  </div>
+                                  <div
+                                    *ngIf="formCompteEpargne.controls.taux.invalid && (formCompteEpargne.controls.taux.dirty ||formCompteEpargne.controls.taux.touched)"
+                                  >
+                                    <div class="alertt" *ngIf="formCompteEpargne.controls.taux.errors.required"><i style="color: white;">taux manquant</i></div>
+                                    <div class="alertwarning" *ngIf="formCompteEpargne.controls.taux.errors.min"><i style="color: #2A3F54;">taux nul</i></div>
+
+                                    <!-- other errors validations  -->
+                                  </div>
+
+                                </div>
+                                <br/>
+
+
+
+
+
+                              </div>
+
+                              <div  class="modal-footer">
+                                <button type="button" class="btn btn-default" (click)="closeModalModificationCE()">Close</button>
+                                <button [disabled]="!formCompteEpargne.valid"  type="submit" class="btn btn-primary">Enregistrer</button>
+                              </div>
+                            </form>
+
+
+                          </div>
+                        </ng-template>
+                        <ng-template #t>
+                          <div style="height:60px;" class="modal-header">
+                            <nav  aria-label="breadcrumb">
+                              <ol class="breadcrumb ">
+                                <li class="breadcrumb-item"><a >Détails</a></li>
+
+
+
+                                <button type="button" class="close pull-right"
+                                        aria-label="Close" (click)="modalRef.hide()">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </ol>
+                            </nav>
+                          </div>
+                          <div class=" modal-body form-horizontal form-label-left">
+                            <div class="alertDIV">
+                              <br/>
+
+                              <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Solde &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{compteEpa.solde}}</i></p>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Taux&nbsp;<span class="glyphicon glyphicon-envelope"></span> <span class="required">:</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <p class="form-control-static"><i style="color: #2A3F54;font-size: 15px;">{{compteEpa.taux}}</i></p>
+                                </div>
+
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-12 col-xs-12">Crée le&nbsp;<span class="glyphicon glyphicon-calendar"></span> <span class="required">:</span> </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{compteEpa.datedecreation}}</i></p>
+                                </div>
+
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >client &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{client.nom}}&nbsp;{{client.prenom}}</i></p>
+                                </div>
+
+                              </div>
+                              <br/>
+
+                            </div>
+
+
+                            <div  class="modal-footer">
+                              <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="closeModalDetail()">Close</button>
+                              <span tooltip="détail" style="color: #2A3F54;" (click)="detailEpargne()" class="clickable glyphicon glyphicon-question-sign"></span>
+                            </div>
+                          </div>
+                        </ng-template>
+
+                        <ng-template #tempSuppressionCompteEpargne>
+                          <div id="costum" class="" >
+                            <div style="height: 60px;" class="modal-header">
+
+                              <nav  aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                  <li class="breadcrumb-item"><a>Confirmation</a></li>
+
+
+
+                                  <button type="button" class="close pull-right"
+                                          aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </ol>
+                              </nav>
+
+
+                            </div>
+                            <div class="modal-body">
+                              <h2 style="text-align: center" class="alertDIV"> Etes vous sur de supprimer ce compte</h2>
+                              <h1></h1>
+                            </div>
+                            <div  class="modal-footer">
+                              <button type="button" class="btn btn-default" (click)="closeModalsuppression()" tooltip="annuler" data-placement="top">Annuler</button>
+                              <button  type="submit" class="btn btn-danger" (click)="supprimerCompteEpargneAC()" tooltip="Supprimer ce compte ?" data-placement="right">Confirmer</button>
+                              <span (click)="cptEpargne()" class="clickable glyphicon glyphicon-question-sign"></span>
+                            </div>
+
+                          </div>
+                        </ng-template>
+
+                        <!-- confirmation de suppression de compte passé en paramtére -->
+
+
+
+
+                        <div  *ngIf="comptesEpargnesPart.totalElements>0">
+                          <ul class="pager">
+                            <li [ngClass]="{'disabled':pageCE==0}" ><a class="clickable"(click)="previousEpargne()">Previous</a></li>
+                            <li  *ngFor="let p of pagesComptesEpargnes;let i=index">
+                              <a [ngClass]="{'med':i==pageCE}" class="clickable" (click)="goToPageEpargne(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                            </li>
+                            <li [ngClass]="{'disabled':pageCE==pagesComptesEpargnes.length-1}"  class="clickable" ><a (click)="nextEpargne()">Next</a></li>
+                            <hr/>
+                            <button type="button" class="btn btn-primary pull-right" (click)="soldeEp()">Total Epargne</button>
+                            <div class="pull-left">
+                              <button (click)="NouveaucCompteEpargne(nvcpteparne)" type="button" class="btn btn-primary pull-right" >Nouveau</button>
+                            </div>
+                          </ul>
+                        </div>
+
+                        <ng-template #nvcpteparne>
+                          <div id="modalNVcpteEparge" class="" >
+                            <div style="height: 60px;" class="modal-header">
+                              <nav  aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                  <li class="breadcrumb-item"><a href="#">Nouveau compte épargne</a></li>
+                                  <button type="button" class="close pull-right"
+                                          aria-label="Close" (click)="modalRef.hide()">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </ol>
+                              </nav>
+                            </div>
+                            <div class="modal-body">
+                              <form class="form-horizontal form-label-left" [formGroup]="formCompteEpargne" (submit)="nouveauCompteEpargne()">
+                                <div class="modal-body">
+
+                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Solde initial</label>
+                                    <div class="col-md-6 col-sm-9 col-xs-9">
+                                      <input type="number" class="form-control" formControlName="soldeepargneInitial" required>
+                                    </div>
+
+                                    <div
+                                      *ngIf="formCompteEpargne.controls.soldeepargneInitial.invalid && (formCompteEpargne.controls.soldeepargneInitial.dirty || formCompteEpargne.controls.soldeepargneInitial.touched)"
+                                    >
+                                      <div class="alertt" *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.required"><i style="color: white">solde manquant</i></div>
+                                      <div class="alertwarning" *ngIf="formCompteEpargne.controls.soldeepargneInitial.errors.min"><i style="color: #2A3F54;">Le solde doit etre non nul</i></div>
+
+                                      <!-- other errors validations  -->
+                                    </div>
+
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Taux</label>
+                                    <div class="col-md-6 col-sm-9 col-xs-9">
+                                      <input type="number" class="form-control" id="jcf" aria-describedby="emailHelp" formControlName="taux" required>
+                                    </div>
+                                    <div
+                                      *ngIf="formCompteEpargne.controls.taux.invalid && (formCompteEpargne.controls.taux.dirty || formCompteEpargne.controls.taux.touched)"
+                                      class=" ">
+                                      <div class="alertt" *ngIf="formCompteEpargne.controls.taux.errors.required"><i style="color: white;">taux manquant</i></div>
+                                      <div class="alertwarning" *ngIf="formCompteEpargne.controls.taux.errors.min"><i style="color: #2A3F54;">taux nul</i></div>
+
+                                      <!-- other errors validations  -->
+                                    </div>
+
+
+                                  </div>
+
+
+
+
+
+                                  <div class="modal-footer">
+                                    <button type="button" (click)="fermerModalnvcompteEpargne()" class="center btn btn-default">Fermer</button>
+                                    <button [disabled]="!formCompteEpargne.valid" type="submit" class="btn btn-default">ajouterCompte</button>
+                                  </div>
+                                </div>
+                              </form>
+
+                            </div>
+
+
+                          </div>
+                        </ng-template>
+
+
+
+
+
+                        <div *ngIf="comptesEpargnesPart.totalElements==0">
+                          <br/>
+                          <br/>
+                          <br/>
+                          <h4>Pas de compte épargne trouvé! Besoin d'un <a (click)="nouveaucptEpargne(nvcpteparne)" class="styleLink">nouvel compte</a></h4>
+                        </div>
+
+
+
+
+
+
+                      </div>
+
+
+                    </div></div>
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+                <div  id="pagedecomptes">
+                  <div *ngIf="y==2">
+
+
+                    <div class="col-xs-3">
+                      <!-- required for floating -->
+                      <!-- Nav tabs -->
+                      <blockquote class="blockquote-reverse">
+                      <ul class="nav nav-tabs tabs-left">
+                        <li class="active"><a href="#h" data-toggle="tab">Toutes les opérations</a></li>
+                        <li><a href="#profile" data-toggle="tab">Retraits</a></li>
+                        <li><a href="#messages" data-toggle="tab">Versements</a></li>
+                      </ul>
+                        <hr/>
+                        <br/>
+                        <br/>
+                        <p><button (click)="nouvelle(templateOperation)" class="w3-button w3-teal"><span class="glyphicon glyphicon-check"></span>Nouvelle opération</button></p>
+                        <button style="border-color: #1ABB9C solid 1 px;" tooltip="Retour" (click)="retourComptes()"  type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-chevron-left"></span>Retour aux comptes</button>
+
+                      </blockquote>
+                    </div>
+
+                    <div class="col-xs-9">
+                      <!-- Tab panes -->
+
+
+                      <div class="tab-content">
+
+                        <div style="text-align: center;" *ngIf="!operations">
+                          <img src="../../assets/images/ajax-loader%20(1).gif">
+                        </div>
+                        <div class="tab-pane active" id="h">
+                          <p style="color: #00aeef;" class="lead">Opérations</p>
+                          <!-- TOUTES LES OPERATIONS ICI-->
+
+                          <nav class="navbar navbar-light bg-faded">
+                            <form class="form-inline">
+                              <div *ngIf="operations?.totalElements>0"  class="input-group">
+                                <span  class="clickable input-group-addon " id="basi" (click)="findAfterSearching()">Chercher</span>
+                                <input id="t" name="f" type="date" class="form-control" placeholder="date opération" aria-describedby="basic-addon1" [(ngModel)]="dateOperation" (change)="FindOperationByDate()" >
+                              </div>
+
+                              <button tooltip="Raffraichir" (click)="getOperationsSimple()" type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+                            </form>
+                          </nav>
+
+
+                          <div *ngIf="operations?.totalElements==0">
+                            <br/>
+                            <hr style="text-align: center"/>
+                            <h2 style="text-align: center" class="alertDIV"> Aucune opération trouvée,vous pouvez effectuer des opérations en cliquant <a (click)="nouvelle(templateOperation)" class="styleLink">ici</a></h2>
+                            <hr/>
+                            <br/>
+                          </div>
+
+
+
+                          <div id="#ii" *ngIf="operations?.totalElements>0">
+
+
+                            <div id="customers">
+                              <table  id="datatable-buttons"  class="table table-hover">
+
+                                <thead>
+                                <tr>
+                                  <th>Solde du jour</th>
+                                  <th>Date operation</th>
+                                  <th>Montant crédit/debit</th>
+                                  <th>Type operation</th>
+                                  <th>Libelle Mouvement</th>
+                                  <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+
+                                <tr *ngFor="let operation of operations?.content">
+
+
+                                  <td>{{operation.soldeDuJour}}</td>
+                                  <td class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{operation.deateoperation}}</td>
+                                  <td >{{operation.montant}}&nbsp;<i>(dt)</i></td>
+                                  <td>{{operation.op}}</td>
+                                  <td class="w3-text-teal clickmoi"><i></i>{{operation.libelle}}</td>
+                                  <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                      <span (click)="supprimerOperationModal(tempSO,operation)" class="glyphicon glyphicon-trash"></span>
+                                      <span (click)="w(operation)" class="glyphicon glyphicon-zoom-in"></span>
+                                    </div>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                                    </div>
+                                    <a class="pull-right" *ngIf="operationDetail==operation">
+                                      <span style="color:#3a87ad;" tooltip="opération selectionnée" class="glyphicon glyphicon-flag"></span>
+                                    </a>
+                                  </td>
+
+                                </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                            <div class="container" *ngIf="operations?.totalElements>0">
+                              <ul class="pagination">
+                                <li [ngClass]="{'disabled':pageoperation==0}" ><a class="clickable" (click)="previousOp()">Previous</a></li>
+                                <li [ngClass]="{'active':i==pageoperation}"  *ngFor="let p of  pagesOperation;let i=index">
+                                  <a class="clickmoi"  (click)=gotoPageOperation(i)>{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                                </li>
+                                <li [ngClass]="{'disabled':pageoperation== pagesOperation?.length-1}"  class="clickable" ><a (click)="nextOp()" >Next</a></li>
+                                <button *ngIf="y==1" type="button" class="btn btn-primary pull-right" (click)="solde()">Total Courant</button>
+                              </ul>
+                            </div>
+                            <!-- modal pour informations opérations-->
+                          </div>
+
+                        </div>
+                        <div class="tab-pane" id="profile">
+                          <!-- LISTE DES RETRAITS -->
+                          <p style="color: #00aeef;" class="lead">Retraits</p>
+
+
+
+                          <div>
+                            <div *ngIf="retraits?.totalElements==0" style="text-align: center;">
+                              <br/>
+                              <hr style="text-align: center"/>
+                              <h2 style="text-align: center" class="alertDIV"> Aucun retrait effectué </h2>
+                              <hr/>
+                              <br/>
+                            </div>
+
+                            <div  *ngIf="retraits?.totalElements>0">
+                              <table  id="dtgre"  class="table table-hover">
+                                <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Date operation</th>
+                                  <th>Montant crédit/debit</th>
+                                  <th>Type operation</th>
+                                  <th>Libelle Mouvement</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let operation of retraits?.content">
+                                  <td>{{operation.numero}}</td>
+                                  <td class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{operation.deateoperation}}</td>
+                                  <td >{{operation.montant}}&nbsp;<i>(dt)</i></td>
+                                  <td>{{operation.op}}</td>
+                                  <td  class="clickmoi" >{{operation.libelle}}
+                                    <span  data-placement="right" (click)="affichageLibelleMvt(operation)" [ngClass]="{'cl':opt==operation}" class="pull-right glyphicon glyphicon-info-sign"></span>
+                                  </td>
+                                </tr>
+
+                                </tbody>
+
+                              </table>
+                              <div  style="padding-left: 200px">
+
+                              </div>
+                            </div>
+
+                            <div  class="container">
+                              <ul *ngIf="retraits?.numberOfElements>0" class="pagination">
+                                <li class="clickableoperations"[ngClass]="{'disabled':pageRetrait==0}"><a class="clickmoi" (click)="previousPageRetrait()">Previous</a></li>
+                                <li [ngClass]="{'active':i==pageRetrait}" *ngFor="let p of pagesRetraits;let i=index">
+                                  <a  class="clickmoi" (click)="gotoPageRetrait(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                                </li>
+                                <li class="clickableoperations" [ngClass]="{'disabled':pageRetrait==pagesRetraits.length-1}"><a class="clickmoi" (click)="nextPageRetrait()">Next</a></li>
+                              </ul>
+                            </div>
+
+
+                          </div>
+
+
+
+
+                          <!-- Fin des retraits-->
+                        </div>
+                        <div class="tab-pane" id="messages">
+                          <!-- TABLE DES VERSEMENTS -->
+                          <p style="color: #00aeef;" class="lead">Versements</p>
+
+                          <div class="modal-body" style="color: #2A3F54;">
+
+                            <div *ngIf="versements.totalElements==0"  style="text-align: center;">
+                              <br/>
+                              <hr style="text-align: center"/>
+                              <h2 style="text-align: center" class="alertDIV"> Aucun retrait effectué </h2>
+                              <hr/>
+                              <br/>
+                            </div>
+                            <div  *ngIf="versements?.totalElements>0">
+
+                              <table  id="datatable-butt"  class="table table-hover">
+                                <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Date operation</th>
+                                  <th>Montant crédit/debit</th>
+                                  <th>Type operation</th>
+                                  <th>Libelle Mouvement</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr *ngFor="let operation of versements?.content">
+                                  <td>{{operation.numero}}</td>
+                                  <td class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{operation.deateoperation}}</td>
+                                  <td >{{operation.montant}}&nbsp;<i>(dt)</i></td>
+                                  <td>{{operation.op}}</td>
+                                  <td tooltip="détail" (click)="affichageLibelleMvt(operation)" style="color: #4CAF50;text-decoration: underline;" class="clickmoi">{{operation.libelle}}</td>
+                                </tr>
+                                </tbody>
+                              </table>
+
+                              <div  class="container">
+                                <ul *ngIf="versements.totalElements>0" class="pagination">
+                                  <li class="clickableoperations"[ngClass]="{'disabled':pageVersement==0}"><a class="clickmoi" (click)="previousVersementPage()">Previous</a></li>
+                                  <li [ngClass]="{'active':i==pageVersement}" *ngFor="let p of pagesVersements;let i=index">
+                                    <a  class="clickmoi" (click)="gotoPageVersements(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                                  </li>
+                                  <li class="clickableoperations" [ngClass]="{'disabled':pageVersement==pagesVersements.length-1}"><a class="clickmoi" (click)="nextPageVersement()">Next</a></li>
+                                </ul>
+                              </div>
+
+                            </div>
+                          </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+                  <!--
+                    <button style="border-radius: 20px" class="h btn btn-primary btn-retour" (click)="retournerVersComptes()">Retour</button>
+                    -->
+
+
+                    <ng-template #tempSO>
+                      <div id="operationdelete" class="" >
+                        <div class="modal-header">
+                          <h4 class="modal-title pull-left">Suppression opération</h4>
+                          <button type="button" class="close pull-right"
+                                  aria-label="Close" (click)="modalRef.hide()" tooltip="fermer">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="color: #2A3F54;" >
+                          <h2 style="text-align: center" class="alertDIV"> Etes vous sur de supprimer cette opération</h2>
+                          <h1></h1>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" (click)="closeModalsuppression()" tooltip="annuler" data-placement="top">Annuler</button>
+                          <button  type="submit" class="btn btn-danger" (click)="suppressionOp()" tooltip="Supprimer cette opération ?" data-placement="right">Confirmer</button>
+                        </div>
+
+                      </div>
+                    </ng-template>
+                    <ng-template #tempVersements>
+
+                      <div id="costumModalVersements" class="" >
+                        <div style="height: 60px;" class="modal-header">
+                        <nav  aria-label="breadcrumb">
+                          <ol class="breadcrumb ">
+                            <li class="breadcrumb-item" data-toggle="collapse" data-target="#versements"><a>Versements</a><i class="fa fa-bars"></i></li>
+
+
+
+                            <button type="button" class="close pull-right"
+                                    aria-label="Close" (click)="modalRef.hide()">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </ol>
+                        </nav>
+                        </div>
+                        <div class="modal-body" style="color: #2A3F54;">
+                          <div id="versements" class="collapse">
+                            Nombre de versements :{{versements.totalElements}}
+                            <h1></h1>
+                          </div>
+                          <div *ngIf="versements.totalElements==0"  style="text-align: center;">
+                            Aucun versement effectué
+                          </div>
+                          <div class="alertDIV" *ngIf="versements?.totalElements>0">
+                            <img class="alertLoading"  style="padding-left: 450px;font-size: 1,9em;" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            <table  id="datatable-button"  class="table table-striped table-bordered">
+                              <thead>
+                              <tr>
+
+                                <th>ID</th>
+                                <th>Date operation</th>
+                                <th>Montant crédit/debit</th>
+                                <th>Type operation</th>
+                                <th>Libelle Mouvement</th>
+
+
+                              </tr>
+                              </thead>
+
+                              <tbody>
+
+                              <tr *ngFor="let operation of versements?.content">
+
+                                <td>{{operation.numero}}</td>
+                                <td class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>{{operation.deateoperation}}</td>
+                                <td >{{operation.montant}}</td>
+                                <td>{{operation.op}}</td>
+                                <td tooltip="détail" (click)="affichageLibelleMvt(operation)" style="color: #4CAF50;text-decoration: underline;" class="clickmoi">{{operation.libelle}}</td>
+
+
+                              </tr>
+                              </tbody>
+                            </table>
+
+                            <div  class="container">
+                            </div>
+
+
+                            <ul *ngIf="versements.totalElements>0" class="pagination">
+                              <li class="clickableoperations"[ngClass]="{'disabled':pageVersement==0}"><a class="clickmoi" (click)="previousVersementPage()">Previous</a></li>
+                              <li [ngClass]="{'active':i==pageVersement}" *ngFor="let p of pagesVersements;let i=index">
+                                <a  class="clickmoi" (click)="gotoPageVersements(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                              </li>
+                              <li class="clickableoperations" [ngClass]="{'disabled':pageVersement==pagesVersements.length-1}"><a class="clickmoi" (click)="nextPageVersement()">Next</a></li>
+                            </ul>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button  type="submit" class="btn btn-danger" (click)="fermerModalRetraits()" tooltip="Fermer" data-placement="right">Fermer</button>
+                      </div>
+
+                    </ng-template>
+                    <ng-template #templateOperation class="modal-dialog modal-lg">
+                    <div>
+                      <div id="costumMod "  >
+                        <div style="height: 60px;background-color: #2A3F54;" class="modal-header ">
+                          <nav style="background-color: #1ABB9C;color: #1ABB9C;"  aria-label="breadcrumb">
+                            <ol class="breadcrumb ">
+                              <li class="breadcrumb-item"><a >Nouvelle opération</a></li>
+
+                              <button type="button" class="close pull-right"
+                                      aria-label="Close" (click)="closeOperations()">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </ol>
+                          </nav>
+                        </div>
+                        <div class="modal-body">
+
+
+
+                          <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">
+                            <div class="panel">
+                              <a class="panel-heading" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="true" aria-controls="collapseOne">
+                                <h4 class="panel-title" style="text-align: center;">Nouveau retrait</h4>
+                              </a>
+                              <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                  <!-- DEBUT DE FORM DE RETRAIT -->
+
+                                <div class="x_panel">
+                                  <form  class=" form-horizontal" (submit)=" effectuerRetrait1()" [formGroup]="nvvirement">
+                                    <div class="modal-body">
+                                      <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Montant:</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                          <input style="height: 30px;width: 155px;" type="number" class="form-control-plaintext col-md-7 col-xs-12" formControlName="montant" placeholder="montant à retirer"  required min="10" (keyup)="effacer()">
+
+                                        </div>
+                                        <div *ngIf="nvvirement.controls.montant.invalid && (nvvirement.controls.montant.dirty || nvvirement.controls.montant.touched)">
+                                          <div  *ngIf="nvvirement.controls.montant.errors.required" class="alertt error pull-right">
+                                            <i style="color:white;">Montant obligatoire.</i>
+                                          </div>
+                                          <div class="alertwarning pull-right error"  *ngIf="nvvirement.controls.montant.errors.min">
+                                            <i style="color: #2A3F54;">montant inférieur a 10.</i>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Libelle: <span class="required"></span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                          <input style="height: 30px;width: 155px;"  type="text" class="form-control-plaintext col-md-7 col-xs-12" formControlName="libelle"
+                                                  placeholder="libelle"  required>
+                                        </div>
+                                        <div *ngIf="nvvirement.controls.libelle.invalid && (nvvirement.controls.libelle.dirty || nvvirement.controls.libelle.touched)">
+                                          <div  *ngIf="nvvirement.controls.libelle.errors.required" class="alertt error pull-right">
+                                            <i style="color:white;">Libelle manquant.</i>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Agence:</label>
+                                        <div class="row">
+                                          <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select id="soflow6" style="height: 30px;width: 155px;" [(ngModel)]="matched"  class="form-control-plaintext" formControlName="agenceRetrait" (change)="onchange()" required>
+                                              <optgroup label="Liste des agences">
+                                                <option *ngIf="agences.totalElements==0" style="font-size: 10px;">Aucune agence trouvée</option>
+                                                <option *ngFor="let agence of agences?.content" [ngValue]="agence" required>{{agence.addresse}}</option>
+                                              </optgroup>
+                                            </select>
+                                          </div>
+                                          <div *ngIf="nvvirement.controls.agenceRetrait.invalid && (nvvirement.controls.agenceRetrait.dirty || nvvirement.controls.agenceRetrait.touched)">
+                                            <div  *ngIf="nvvirement.controls.agenceRetrait.errors.required" class="alertt pull-right">
+                                              <i style="color:white;">Agence manquante.</i>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="pull-right">
+                                        <button [disabled]="nvvirement.invalid" style="text-align: center;" type="submit" class="btn btn-outline-primary">Retirer&nbsp;<img *ngIf="loadingRetrait" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /></button>
+                                      </div>
+
+
+
+                                      <br/>
+                                      <br/>
+
+
+
+                                    </div>
+                                  </form>
+                                </div>
+
+
+
+
+
+                                  <!-- FIN DE FORM RETRAIT -->
+                                </div>
+                              </div>
+                            </div>
+                            <div class="panel">
+                              <a class="panel-heading collapsed" role="tab" id="headingTwo1" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
+                                <h4 class="panel-title"  style="text-align: center;color: #2e6da4;">Nouveau versement</h4>
+                              </a>
+                              <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                  <!-- DEBUT DE VERSEMENTS -->
+
+                                <div class="x_panel">
+                                  <form  class=" form-horizontal" (submit)="effectuerVersement()" [formGroup]="nvversement">
+                                    <div class="alertOperation">
+                                      <div class="modal-body">
+                                        <div class="form-group">
+                                          <label class="control-label col-md-3 col-sm-3 col-xs-12" >Montant:</label>
+                                          <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input  style="height: 30px;width: 155px;" type="number" class="form-control-plaintext col-md-7 col-xs-12" formControlName="montantVersement" placeholder="Montant à verser"  required>
+                                          </div>
+                                          <div *ngIf="nvversement.controls.montantVersement.invalid && (nvversement.controls.montantVersement.dirty || nvversement.controls.montantVersement.touched)">
+                                            <div *ngIf="nvversement.controls.montantVersement.errors.required" class="alertt pull-right">
+                                              <i style="color: white;">Montant obligatoire</i>
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group">
+                                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Libelle <span class="required">*</span>
+                                          </label>
+                                          <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input  style="height: 30px;width: 155px;"  type="text" class="form-control-plaintext col-md-7 col-xs-12" formControlName="libelle"
+                                                    placeholder="libelle"  required>
+                                          </div>
+                                          <div *ngIf="nvversement.controls.libelle.invalid && (nvversement.controls.libelle.dirty || nvversement.controls.libelle.touched)">
+                                            <div  *ngIf="nvversement.controls.libelle.errors.required" class="alertt error pull-right">
+                                              <i style="color:white;">Libelle manquant.</i>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label class="control-label col-md-3 col-sm-3 col-xs-12" >Agence:</label>
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                              <select id="soflow5" style="height: 30px;width: 155px;" [(ngModel)]="matchedAgence"  class="form-control-plaintext" formControlName="agenceVersement" (change)="onChange()" required>
+                                                <optgroup label="Liste des agences">
+                                                  <option *ngIf="agences.totalElements==0" style="font-size: 10px;">Aucune agence trouvée</option>
+                                                  <option *ngFor="let agence of agences?.content" [ngValue]="agence" required>{{agence.addresse}}</option>
+                                                </optgroup>
+                                              </select>
+                                            </div>
+
+                                            <div *ngIf="nvversement.controls.agenceVersement.invalid && (nvversement.controls.agenceVersement.dirty || nvversement.controls.agenceVersement.touched)">
+                                              <div  *ngIf="nvversement.controls.agenceVersement.errors.required" class="alertt pull-right">
+                                                <i style="color:white;">Agence manquante.</i>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <br/>
+                                          <div class="pull-right">
+                                            <button [disabled]="nvversement.invalid" style="text-align: center;" type="submit" class="btn btn-outline-primary">Verser&nbsp;<img *ngIf="loadingVersement" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /></button>
+
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+
+
+                                   <!-- FIN DE VERSEMENTS-->
+                                </div>
+                              </div>
+                            </div>
+                            <div class="panel">
+                              <a class="panel-heading collapsed" role="tab" id="headingThree1" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree">
+                                <h4 class="panel-title" style="text-align: center;color: #ff4d4d;">Nouveau virement</h4>
+                              </a>
+                              <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                  <!-- effectuer virement de compte à compte -->
+                                 <div class="x_panel">
+
+                                   <form  class=" form-horizontal" (submit)="effectuerVirementDecompteAcompte()" [formGroup]="compteAcompte">
+                                     <div class="alertOperation">
+                                       <div class="modal-body">
+
+                                         <div class="form-group">
+                                           <label class="control-label col-md-3 col-sm-3 col-xs-12" >Montant:</label>
+                                           <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <input  style="height: 30px;width: 155px;" type="number" class="form-control-plaintext col-md-7 col-xs-12" formControlName="montant" placeholder="Montant à verser"  required>
+                                           </div>
+                                           <div *ngIf="compteAcompte.controls.montant.invalid && (compteAcompte.controls.montant.dirty || compteAcompte.controls.montant.touched)">
+                                             <div *ngIf="compteAcompte.controls.montant.errors.required" class="alertt pull-right">
+                                               <i style="color: white;">Montant obligatoire</i>
+                                             </div>
+                                           </div>
+                                         </div>
+
+                                         <div class="form-group">
+                                           <label class="control-label col-md-3 col-sm-3 col-xs-12">Libelle :
+                                           </label>
+                                           <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <input  style="height: 30px;width: 155px;"  type="text" class="form-control-plaintext col-md-7 col-xs-12" formControlName="libelle"
+                                                     placeholder="libelle"  required>
+                                           </div>
+                                           <div *ngIf="compteAcompte.controls.libelle.invalid && (compteAcompte.controls.libelle.dirty || compteAcompte.controls.libelle.touched)">
+                                             <div  *ngIf="compteAcompte.controls.libelle.errors.required" class="alertt error pull-right">
+                                               <i style="color:white;">Libelle manquant.</i>
+                                             </div>
+                                           </div>
+                                         </div>
+
+                                         <!--Clients et comptes -->
+
+                                         <div class="form-inline">
+                                           <div style="padding-left: 65px;" class="form-group">
+                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Client</label>
+                                             <div class="col-md-2 col-sm-6 col-xs-6 styled-select blue semi-square" >
+                                               <select id="soflow1" style="height: 30px;width: 125px;" [(ngModel)]="clientMatched"  class="form-control-plaintext" formControlName="clientBeneficiaire" (change)="onchangeClient()" required>
+                                                 <optgroup label="Liste des clients">
+                                                   <option *ngIf="clientsVirements?.totalElements==0" style="font-size: 10px;">Aucun client trouvé</option>
+                                                   <option *ngFor="let client of clientsVirements?.content" [ngValue]="client" required style="font-size: 10px;">{{client.nom}}&nbsp;{{client.prenom}}</option>
+                                                 </optgroup>
+                                               </select>
+                                             </div>
+
+                                             <div *ngIf="compteAcompte.controls.clientBeneficiaire.invalid && (compteAcompte.controls.clientBeneficiaire.dirty || compteAcompte.controls.clientBeneficiaire.touched)">
+                                               <div  *ngIf="compteAcompte.controls.clientBeneficiaire.errors.required" tooltip="champs obligatoire">
+                                                 <span style="padding-top: 90px;color: #be2626;" class="bg glyphicon glyphicon-remove form-control-feedback"></span>
+                                               </div>
+                                             </div>
+                                           </div>
+
+                                           <div *ngIf="clientMatched" class="form-group">
+
+                                             <label class="control-label col-md-4 col-sm-6 col-xs-12">compte</label>
+                                             <div class="col-md-2 col-sm-6 col-xs-6">
+                                             <select id="soflow3"  [(ngModel)]="compteMatched" class="form-control-plaintext" formControlName="compteDestinataire" (change)="onChange1()" required style="height: 30px;width: 100px;">
+
+                                               <optgroup label="Liste des comptes">
+
+                                                 <option *ngIf="listComptes.length==0" style="font-size: 10px;">Aucun compte trouvé</option>
+                                                 <option *ngFor="let compte of listComptes" [ngValue]="compte" required style="font-size: 7px;">{{compte.numeroCompte}}</option>
+
+
+                                               </optgroup>
+                                             </select>
+                                             </div>
+                                           </div>
+
+
+                                         </div>
+
+                                         <div style="padding-top: 7px;" class="form-group">
+                                           <label class="control-label col-md-3 col-sm-3 col-xs-12 custom-select" >Agence:</label>
+                                           <div class="row">
+                                             <div class="col-md-6 col-sm-6 col-xs-12 ">
+                                               <select id="soflow"  style="height: 30px;width: 155px;" [(ngModel)]="matchedAgenceV"  class="form-control-plaintext" formControlName="agenceRetrait" required>
+                                                 <optgroup label="Liste des agences">
+                                                   <option *ngIf="agences.totalElements==0" style="font-size: 10px;">Aucune agence trouvée</option>
+                                                   <option *ngFor="let agence of agences?.content" [ngValue]="agence" required>{{agence.addresse}}</option>
+                                                 </optgroup>
+                                               </select>
+                                             </div>
+
+                                             <div *ngIf="compteAcompte.controls.agenceRetrait.invalid && (compteAcompte.controls.agenceRetrait.dirty || compteAcompte.controls.agenceRetrait.touched)">
+                                               <div  *ngIf="compteAcompte.controls.agenceRetrait.errors.required" class="alertt pull-right">
+                                                 <i style="color:white;">Agence manquante.</i>
+                                               </div>
+                                             </div>
+                                           </div>
+
+                                           <br/>
+                                         </div>
+
+
+
+
+
+
+
+
+
+                                         <div class="pull-right">
+                                           <button [disabled]="compteAcompte.invalid" style="text-align: center;" type="submit" class="btn btn-outline-primary">Virement&nbsp;</button>
+                                         </div>
+
+
+                                       </div>
+                                     </div>
+                                   </form>
+                                 </div>
+                                  <!-- fin de virement de compte à compte -->
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        </div>
+
+                      </div>
+
+
+
+
+
+                    </div>
+                  </ng-template>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <ng-template #nvcpt>
+                  <div id="modalNVcpte" class="" >
+                    <div style="height: 60px;" class="modal-header">
+                      <nav  aria-label="breadcrumb">
+                        <ol class="breadcrumb ">
+                          <li class="breadcrumb-item"><a href="#">Nouveau compte courant</a></li>
+
+
+
+                          <button type="button" class="close pull-right"
+                                  aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </ol>
+                      </nav>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form-horizontal form-label-left" [formGroup]="formCompte" (submit)="nv2()">
+                        <div class="modal-body">
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"  >Solde initial</label>
+                            <div class="col-md-6 col-sm-9 col-xs-9">
+                              <input type="number" class="form-control-plaintext" formControlName="soldeinitial" required>
+                            </div>
+                            <div
+                              *ngIf="formCompte.controls.soldeinitial.invalid && (formCompte.controls.soldeinitial.dirty || formCompte.controls.soldeinitial.touched)"
+                              class=" error">
+                              <div class="alertt" *ngIf="formCompte.controls.soldeinitial.errors.required"><i style="color: white;">solde manquant</i></div>
+                              <div class="alertwarning" *ngIf="formCompte.controls.soldeinitial.errors.min"><i style="color: #2A3F54;">montant inferieur a 10</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Decouvert</label>
+                            <div class="col-md-6 col-sm-9 col-xs-9">
+                              <input type="number" class="form-control-plaintext" id="j" aria-describedby="emailHelp" formControlName="decouvertinitial" required>
+                            </div>
+                            <div
+                              *ngIf="formCompte.controls.decouvertinitial.invalid && (formCompte.controls.decouvertinitial.dirty || formCompte.controls.decouvertinitial.touched)"
+                              class=" error">
+                              <div class="alertt" *ngIf="formCompte.controls.decouvertinitial.errors.required"><i style="color: white;">découvert manquant</i></div>
+                              <div class="alertwarning" *ngIf="formCompte.controls.decouvertinitial.errors.min"><i style="color: #2A3F54;">découvert négatif</i></div>
+
+                              <!-- other errors validations  -->
+                            </div>
+
+                          </div>
+
+
+
+
+
+                          <div class="modal-footer">
+                            <button type="button" (click)="fermerModalNvCpte()" class="center btn btn-default">Fermer</button>
+                            <button [disabled]="!formCompte.valid" type="submit" class="btn btn-default">ajouterCompte</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+
+                  </div>
+                </ng-template>
+
+            </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+

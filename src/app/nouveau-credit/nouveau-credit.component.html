@@ -1,0 +1,595 @@
+
+<div class="nav-md">
+  <div class="container body" style="height: 820px;" >
+    <div class="main_container fixed_footer">
+      <div class="right_col" role="main" style="height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <br/>
+              <br/>
+              <br/>
+              <h3 style="color:#2A3F54;">Simulateur </h3>
+              <br/>
+            </div>
+            <ng-progress></ng-progress>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+
+            <div class="title_right">
+
+            </div>
+          </div>
+
+          <div class="pull-right">
+
+            <a class="btn btn-app">
+              <i (click)="refresh()" class="fa fa-repeat"></i> Raffraichir
+            </a>
+            <a class="btn btn-app">
+              <span class="badge bg-green">{{credits.totalElements}}</span>
+              <i class="fa fa-users"></i> Crédits
+            </a>
+
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12" >
+          <div  class="x_panel">
+            <div class="x_title">
+              <h2 style="color: #2A3F54;">Crédit en ligne <small>Users	<i class="fa fa-refresh fa-spin"></i></small></h2>
+
+              <div class="clearfix"></div>
+            </div>
+            <div id="s" class="x_content">
+              <div  class="form-group"></div>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb menuperso ">
+                  <li class="breadcrumb-item"><a href="#">Home5</a></li>
+                  <li class="breadcrumb-item" *ngIf="client"><a href="#">{{client.nom}}&nbsp;{{client.prenom}}</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Simulateur&nbsp;</li>
+                </ol>
+              </nav>
+
+
+              <div class="col-xs-3">
+                <!-- required for floating -->
+                <!-- Nav tabs -->
+                <blockquote class="blockquote-reverse">
+                <ul class="nav nav-tabs tabs-right">
+                  <li class="active"><a href="#simulateur" data-toggle="tab">Simuler Crédit</a>
+                  </li>
+                  <li><a href="#credits" data-toggle="tab">Mes crédits</a>
+                  </li>
+                </ul>
+                </blockquote>
+              </div>
+
+              <div class="col-xs-9">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane active" id="simulateur">
+                    <p class="lead">Simulateur</p>
+                    <div *ngIf="x==0" class="x_panel">
+                      <!-- Debut simulateur crédit-->
+
+                      <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" [formGroup]="creditgroup" (submit)="calculerMensualite()">
+                        <div class="form-group">
+                          <br/>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Apport personnel<span class="required">*</span>
+                          </label>
+                          <div class="col-md-4 col-sm-6 col-xs-12">
+                            <input type="number" id="first-name" class="form-control col-md-7 col-xs-12" formControlName="apportPersonnel" required>
+                          </div>
+                          <div *ngIf="creditgroup.controls.apportPersonnel.invalid && (creditgroup.controls.apportPersonnel.dirty || creditgroup.controls.apportPersonnel.touched)">
+                            <div *ngIf="creditgroup.controls.apportPersonnel.errors.required" class="alertt">
+                              <i style="color: #2C4257;"> Apport personnel manquant.</i>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Montant Crédit<span class="required">*</span>
+                          </label>
+                          <div class="col-md-4 col-sm-6 col-xs-12">
+                            <input type="number" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" formControlName="MontantTotalCredit" required>
+                          </div>
+                          <div *ngIf="creditgroup.controls.MontantTotalCredit.invalid && (creditgroup.controls.MontantTotalCredit.dirty || creditgroup.controls.MontantTotalCredit.touched)">
+                            <div *ngIf="creditgroup.controls.MontantTotalCredit.errors.required" class="alertt">
+                              <i style="color:#2C4257;"> Montant crédit manquant.</i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label  class="control-label col-md-3 col-sm-3 col-xs-12">Durée de remboursement</label>
+                          <div class="col-md-4 col-sm-6 col-xs-12">
+                            <select  class="form-control"  formControlName="dureeCredit" required>
+                              <optgroup label="Nombre d'années">
+                                <option class="option" value="12">1 année</option>
+                                <option class="option" value="24">2 années</option>
+                                <option class="option" value="36">3 années</option>
+                                <option class="option" value="48">4 années</option>
+                                <option class="option" value="60">5 années</option>
+                                <option class="option" value="72">6 années</option>
+                              </optgroup>
+                            </select>
+                          </div>
+                          <div *ngIf="creditgroup.controls.dureeCredit.invalid && (creditgroup.controls.dureeCredit.dirty || creditgroup.controls.dureeCredit.touched)">
+                            <div *ngIf="creditgroup.controls.dureeCredit.errors.required" class="alertt">
+                              <i style="color: #2C4257;"> Durée de remboursement manquante.</i>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button [disabled]="creditgroup.invalid" type="submit" class="btn btn-success">Simuler</button>
+                            <button (click)="ajouterCredit()" [disabled]="creditgroup.invalid" class="btn btn-default" >Confirmer</button>
+                          </div>
+                        </div>
+
+                      </form>
+
+
+                      <!-- Fin Simulateur crédit-->
+                    </div>
+
+                    <div *ngIf="x==1">
+                      <p style="color: #0404B4;"> Crédit ajouté avec succés au client :<i>{{client.nom}}&nbsp;{{client.prenom}}</i></p>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <button (click)="revenirAuSimulateur()" class="btn btn-default btn-lg btn-block">Retour </button>
+
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="credits">
+                    <!-- Début de crédits -->
+
+                    <div class="tab-pane" id="h">
+
+                      <p class="lead">Crédits</p>
+                      <div class="x_panel">
+                        <!-- Debut liste des crédits-->
+
+                        <div style="text-align: center;" *ngIf="!credits">
+                          <img src="../../assets/images/ajax-loader%20(1).gif">
+                        </div>
+
+                        <div *ngIf="credits" id="customers">
+
+
+
+                          <table  id="content" #content class="table table-striped projects">
+                            <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Date emprunt</th>
+                              <th>Montant emprunté</th>
+                              <th>Reste à payer</th>
+                              <th>Durée</th>
+                              <th>Action</th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr  *ngFor="let credit of credits?.content">
+                              <td class="tdc">{{credit.id}}</td>
+                              <td class="tdc">{{credit.dateEmprunt}}</td>
+                              <td class="tdc">{{credit.montantemprunte}}&nbsp;(dt)</td>
+                              <td class="tdc">{{credit.montantResteApayer}}&nbsp;(dt)</td>
+                              <td class="tdc">{{credit.duree/12}}&nbsp;<i>ans</i></td>
+                              <td>
+                                <div>
+                                  <a (click)="detailcredit(credit)" tooltip="détail crédit" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Détail </a>
+                                  <a  tooltip="supprimer crédit" (click)="ConfirmationSuppression(credit,temp)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                  <a (click)="ouvrirModalMensualites(credit)" class="btn btn-warning btn-xs" tooltip="Mensualités"><i class="fa fa-address-book" ></i>Mensualités</a>
+                                </div>
+                              </td>
+
+
+                            </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                        <div *ngIf="credits?.totalElements==0" style="text-align: center;color: #2C4257;"><label>Pas de crédits à afficher</label></div>
+
+                        <div *ngIf="pagination" class="container">
+                          <ul *ngIf="credits?.totalElements>0" class="pagination">
+                            <li [ngClass]="{'disabled':page==0}"><a class="clickable" (click)="previous()">Previous</a></li>
+                            <li [ngClass]="{'active':i==page}" *ngFor="let p of pages;let i=index">
+                              <a  class="clickable" (click)="gotoPage(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                            </li>
+                            <li [ngClass]="{'disabled':page==pages.length-1}"><a class="clickable" (click)="next()">Next</a></li>
+                          </ul>
+                        </div>
+
+
+
+
+                        <!-- Fin de liste crédits-->
+                      </div>
+
+
+
+                    </div>
+
+
+
+                    <!-- FIN DE CREDITS-->
+                  </div>
+
+                </div>
+              </div>
+
+
+
+
+
+              <div id="myModal" class="modal" >
+
+                <!-- Modal content -->
+                <div style="height: 500px;" class="modal-content animate">
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div>
+                      <div class="x_title">
+
+                        <nav  aria-label="breadcrumb">
+
+                          <h2 >Mensualités <small *ngIf="client" style="color: #2b542c;">{{client?.nom}}&nbsp;{{client?.prenom}}</small></h2>
+                          <ul class="nav navbar-right panel_toolbox">
+
+
+                            <li  class="pull-right">
+                              <span class="pull-right" (click)="closeModal()" class="close">&times;</span>
+                            </li>
+                          </ul>
+                        </nav>
+
+                        <div class="clearfix"></div>
+                      </div>
+                      <div class="x_content">
+                        <br />
+
+                        <div class="tab-pane" id="mens">
+                          <!-- Début de crédits -->
+
+                          <div class="tab-pane" id="hom">
+
+                            <div class="x_panel">
+                              <!-- Debut liste des crédits-->
+                            <div>
+
+                              <div style="text-align: center;" *ngIf="!mensualites">
+                                <img src="../../assets/images/ajax-loader%20(1).gif">
+                              </div>
+                              <div *ngIf="mensualites && x==0" id="cust" >
+
+
+
+                                <table  id="mensualites" #content class="table table-striped projects">
+                                  <thead>
+                                  <tr>
+                                    <th>ID</th>
+                                    <th>paiement prévu</th>
+                                    <th>Date de paiement</th>
+                                    <th>Mensulaité</th>
+                                    <th>Action</th>
+                                  </tr>
+                                  </thead>
+
+                                  <tbody style="overflow: scroll;height: 200px;">
+
+                                  <tr  *ngFor="let mensualite of mensualites?.content" >
+                                    <td class="tdc">{{mensualite.idmensulaite}}</td>
+                                    <td class="tdc">{{mensualite.dateDePaiementPrevue}}</td>
+                                    <td *ngIf="mensualite.dateDePaiementEffective" class="tdc" style="color: #2E8B57;">
+                                      <i style="color: #2A3F54;">payé le </i>{{mensualite.dateDePaiementEffective}}</td>
+                                    <td *ngIf="!mensualite.dateDePaiementEffective" class="tdc"><span style="color:#ff3300;" class="bg glyphicon glyphicon-remove"><i>Non reglé</i></span></td>
+
+                                    <td class="tdc">{{mensualite.mensualite}}&nbsp;<i>dt</i></td>
+                                    <td>
+                                      <div>
+                                        <a (click)="call(mensualite)"  tooltip="Régler mensualité"  class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Régler </a>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+
+                              <div *ngIf="mensualites && x==1">
+
+
+                                  <div class="pricing">
+                                    <div style="height: 60px;" class="title">
+                                      <h2>Payer mensualité</h2>
+                                      <h2>choisir compte courant</h2>
+                                    </div>
+                                    <div class="x_content">
+                                      <div style="height: 200px;" class="">
+                                        <div class="pricing_features">
+                                          <div *ngIf="Comptes.totalElements>0">
+                                          <ul *ngFor="let compte of Comptes?.content" class="w3-ul w3-border">
+                                            <li> <span *ngIf="compte==CompteChoisi" style="color:#204d74;" class="glyphicon glyphicon-ok"></span>&nbsp;<small>N°compte:</small>{{compte.numeroCompte}}<td class="pull-right">{{compte.solde}}&nbsp;(dt)</td>
+                                             <a (click)="choisirCompte(compte)"  style="color: #2E8B57;text-decoration: underline #2E8B57;cursor: pointer; ">poursuivre&nbsp;
+                                              </a>
+
+                                            </li>
+                                          </ul>
+                                            <!-- Pagination des comptes courants  ,la division qui va charger la liste des comptes courants-->
+
+                                            <div style="padding-bottom: 25px;font-size: .8em;" class="container">
+                                              <ul *ngIf="Comptes?.totalElements>0" class="pagination">
+                                                <li [ngClass]="{'disabled':pageC==0}"><a class="clickable" (click)="previousCompte()">
+                                                  <span class="glyphicon glyphicon-backward"></span></a></li>
+                                                <li [ngClass]="{'active':i==pageC}" *ngFor="let p of pagesComptes;let i=index">
+                                                  <a  class="clickable" (click)="goToPageCompte(i)">{{i}}</a>
+                                                </li>
+                                                <li [ngClass]="{'disabled':pageC==pagesComptes.length-1}"><a class="clickable" (click)="nextCompte()">
+                                                  <span class="glyphicon glyphicon-forward"></span></a></li>
+                                              </ul>
+                                            </div>
+
+
+
+                                            <!-- -->
+                                          </div>
+                                          <div *ngIf="Comptes.totalElements==0">
+                                            <p style="text-align: center;color: #204d74;font-size: 15px;"> Aucun compte courant trouvé.</p>
+                                          </div>
+
+
+                                        </div>
+                                      </div>
+                                      <div  class="pricing_footer">
+                                        <a (click)="annulerCompte()" class="btn btn-danger btn-block" role="button">Annuler</a>
+                                        <a *ngIf="CompteChoisi" (click)="effectuerRetraitMensualite()" class="btn btn-success btn-block" role="button">Poursuivre</a>
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+
+                              </div>
+                              <div *ngIf="x==2">
+
+                                <div class="pricing">
+                                  <div style="height: 60px;" class="title">
+                                    <h2>Payer mensualité</h2>
+                                    <h2>de la date {{mensualiteCalled.dateDePaiementPrevue}}</h2>
+                                  </div>
+                                  <div class="x_content">
+                                    <form [formGroup]="nvvirement" (submit)="payer()">
+                                    <div style="height: 180px;" class="">
+                                      <div class="pricing_features">
+                                        <div>
+                                         <!-- DEBUT DE FORMULAIRE -->
+                                          <div class=" form-horizontal">
+                                            <div class="modal-body">
+                                              <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Montant:</label>
+                                                <div  class="col-md-6 col-sm-6 col-xs-12">
+                                                  <input [(ngModel)]="mensualiteCalled.mensualite" disabled style="height: 30px;width: 155px;" type="number" class="form-control-plaintext col-md-7 col-xs-12" formControlName="montant" placeholder="montant à retirer"  required min="10">
+                                                </div>
+                                              </div>
+
+                                              <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Libelle: <span class="required"></span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                  <input disabled style="height: 30px;width: 155px;"  type="text" class="form-control-plaintext col-md-7 col-xs-12" formControlName="libelle" [(ngModel)]="libelle"
+                                                         placeholder="libelle"  required>
+                                                </div>
+                                              </div>
+
+                                              <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >Agence:</label>
+                                                <div class="row">
+                                                  <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <select  [(ngModel)]="matched"  class="form-control-plaintext" formControlName="agenceRetrait" (change)="onchange()" required style="height: 30px;">
+                                                      <optgroup label="Choisir agence">
+                                                        <option *ngFor="let agence of agences?.content" [ngValue]="agence" required>{{agence.addresse}}</option>
+                                                      </optgroup>
+                                                    </select>
+                                                  </div>
+                                                  <div *ngIf="nvvirement.controls.agenceRetrait.invalid && (nvvirement.controls.agenceRetrait.dirty || nvvirement.controls.agenceRetrait.touched)">
+                                                    <div  *ngIf="nvvirement.controls.agenceRetrait.errors.required" class="alertt pull-right">
+                                                      <i style="color:white;">Agence manquante.</i>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
+                                              {{nvvirement.valid | json}}
+
+
+
+
+
+                                            </div>
+                                          </div>
+
+
+                                          <!--FIN DE FORMULAIRE -->
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                    <div  class="pricing_footer">
+                                      <button [disabled]="!nvvirement.valid" class="btn btn-success btn-block" type="submit">Payer</button>
+                                      <button class="btn btn-danger btn-block" (click)="annulerPaiement()">Annuler</button>
+                                    </div>
+                                    </form>
+                                  </div>
+                                </div>
+
+
+
+                              </div>
+
+                              <div *ngIf="x==3">
+
+                                <div class="pricing">
+                                  <div style="height: 60px;" class="title">
+                                    <h2>Confirmation de paiement</h2>
+                                    <h2>de la date {{mensualiteCalled.dateDePaiementPrevue}}</h2>
+                                  </div>
+                                  <div class="x_content">
+
+                                      <div style="height: 180px;" class="">
+                                        <div class="pricing_features">
+                                          <div>
+                                            <!-- DEBUT DE FORMULAIRE -->
+                                            <div class=" form-horizontal">
+                                              <div class="modal-body">
+                                            <p style="text-align: center">Paiement fait avec succès.</p>
+                                              </div>
+                                            </div>
+
+
+                                            <!--FIN DE FORMULAIRE -->
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                      <div  class="pricing_footer">
+                                        <button (click)="retour()" class="btn btn-success btn-block" type="submit">Retour</button>
+                                      </div>
+
+                                  </div>
+                                </div>
+
+
+                              </div>
+
+                            </div>
+
+
+                              <div *ngIf="mensualites?.totalElements==0" style="text-align: center;color: #2C4257;"><label>Pas de Mensualités</label></div>
+
+                              <div *ngIf="x==0" class="container">
+                                <ul *ngIf="mensualites?.totalElements>0" class="pagination">
+                                  <li [ngClass]="{'disabled':pageM==0}"><a class="clickable" (click)="previousMensualite()">Previous</a></li>
+                                  <li [ngClass]="{'active':i==pageM}" *ngFor="let p of pagesMensualites;let i=index">
+                                    <a  class="clickable" (click)="gotoPageMensualite(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                                  </li>
+                                  <li [ngClass]="{'disabled':pageM==pagesMensualites.length-1}"><a class="clickable" (click)="nextMensualite()">Next</a></li>
+                                </ul>
+                              </div>
+                            </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+        <div id="sn">Crédit ajouté avec succès&nbsp;<span class="glyphicon glyphicon-ok"></span></div>
+
+        <ng-template #temp>
+          <div id="costumModal30" >
+            <div style="height: 60px;" class="modal-header">
+              <nav  aria-label="breadcrumb">
+                <ol class="breadcrumb ">
+                  <li class="breadcrumb-item"><a>Confirmation</a></li>
+
+
+
+                  <button type="button" class="close pull-right"
+                          aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </ol>
+              </nav>
+            </div>
+            <div class="modal-body animate">
+              <h2 style="text-align:center;color: #2A3F54;" class="alertDIV">  Etes vous sur d'annuler ce crédit</h2>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="closeModalsupression()" tooltip="annuler" data-placement="top">Annuler</button>
+              <button  type="submit" class="btn btn-danger" (click)="supprimerCredit()" tooltip="Supprimer ce crédit ?" data-placement="right">Confirmer</button>
+            </div>
+
+          </div>
+        </ng-template>
+
+
+
+
+        <div  id="snackbar">
+          <p >Mensualité : {{mensual}}&nbsp;(dt)</p>
+          <p>Cout total du crédit:{{totalCredit}}&nbsp;(dt)</p>
+
+        </div>
+
+
+        <div  id="snack">
+            <p style="text-align: center;">Détail</p>
+            <br/>
+            <p>Date emprunt:&nbsp;{{SelectedCredit.dateEmprunt}}</p>
+            <p>Montant Total:&nbsp;{{SelectedCredit.montantemprunte}}&nbsp;(dt)</p>
+            <p>Montant reste à payer:&nbsp;{{SelectedCredit.montantResteApayer}}&nbsp;(dt)</p>
+            <p>Durée:&nbsp;{{SelectedCredit.duree}}</p>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>

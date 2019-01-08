@@ -1,0 +1,239 @@
+
+<div class="nav-md">
+  <div class="container body" style="height: 820px;" >
+    <div class="main_container fixed_footer">
+      <div class="right_col" role="main" style="height: 900px;">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <br/>
+              <br/>
+              <br/>
+              <h3 style="color:#2A3F54;">Gestion conseillers </h3>
+            </div>
+            <ng-progress></ng-progress>
+
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+
+              </div>
+            </div>
+
+            <div class="title_right">
+
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12" >
+            <div  class="x_panel">
+              <div class="x_title">
+                <h2 style="color: #2A3F54;">Liste des conseillers <small>Users	<i class="fa fa-refresh fa-spin"></i></small></h2>
+
+                <div class="clearfix"></div>
+              </div>
+              <div id="s" class="x_content">
+                <div  class="form-group"></div>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb menuperso ">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Conseillers&nbsp;</li>
+
+                  </ol>
+
+                </nav>
+
+                <nav class="navbar navbar-light bg-faded">
+                  <form class="form-inline">
+                    <div class="input-group">
+                      <span  class="clickable input-group-addon " id="basic-addon1" (click)="chercher()">Chercher</span>
+                      <input id="r" name="u" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" [(ngModel)]="motCle" (keyup)="chercher()">
+                    </div>
+
+
+                  </form>
+                </nav>
+                <div>
+
+                  <div class="alertLoading" style="padding-left: 500px;">
+                    <img  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                  </div>
+
+
+
+
+                  <table   id="datatable" class="alertDIV table table-striped table-bordered bulk_action">
+                    <thead>
+                    <tr>
+                      <th style="color: #2A3F54">ID</th>
+                      <th style="color: #2A3F54">Nom</th>
+                      <th style="color: #2A3F54">Prenom</th>
+                      <th style="color: #2A3F54">Email</th>
+                      <th style="color: #2A3F54">Date de naissance</th>
+                      <th style="color: #2A3F54">Date d'embauche</th>
+                      <th style="color: #2A3F54">Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr *ngFor="let conseiller of conseillers?.content">
+
+                      <td class="tdc">{{conseiller.id}}</td>
+                      <td class="tdc">{{conseiller.nom}}</td>
+                      <td class="tdc">{{conseiller.prenom}}</td>
+                      <td class="tdc">{{conseiller.email}}</td>
+                      <td class="tdc">{{conseiller.datedenaissance}}</td>
+                      <td class="tdc">{{conseiller.dateEmbauche}}</td>
+
+                      <td>
+                       <span style="color: #2A3F54;" (click)="delete(conseiller,templatesuppression)" class="glyphicon glyphicon-trash"></span>
+                        <span style="color: #2A3F54;" class="glyphicon glyphicon-plus-sign" (click)="editConseiller(conseiller.id)"></span>
+                        <span style="color: #2A3F54;" class="glyphicon glyphicon-wrench" (click)="detail(conseiller,templateConseillerDetail)"></span>
+                      </td>
+                    </tr>
+
+
+
+                    </tbody>
+                  </table>
+
+                </div>
+                <div *ngIf="conseillers?.totalElements==0" style="text-align: center;color: #2A3F54"><label class="alertDIV">Aucun résultat trouvé.</label></div>
+                <div class="alertform" *ngIf="conseillers?.totalElements>0" >
+                  <ul  class="pager">
+                    <li [ngClass]="{'disabled':page==0}"><a class="clickable" (click)="previous()">Previous</a></li>
+                    <li  *ngFor="let p of pages;let i=index">
+                      <a  [ngClass]="{'med':i==page}" class="clickable" (click)="gotoPage(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
+                    </li>
+                    <li [ngClass]="{'disabled':page==pages.length-1}"><a class="clickable" (click)="next()">Next</a></li>
+                  </ul>
+                  <td class="pull-right"><button class=" btn btn-primary" (click)="new()" tooltip="Nouveau conseiller">Ajouter</button></td>
+
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+
+        <ng-template #templatesuppression>
+
+
+          <div id="costumModal30" >
+            <div style="height: 60px;" class="modal-header">
+              <nav  aria-label="breadcrumb">
+                <ol class="breadcrumb ">
+                  <li class="breadcrumb-item"><a>Confirmation</a></li>
+
+
+
+                  <button type="button" class="close pull-right"
+                          aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </ol>
+              </nav>
+            </div>
+            <div class="modal-body">
+
+              <h2 style="text-align: center" class="alertDIV"> Etes vous sur de supprimer le conseiller <i style="color: #2A3F54;">{{conseillerSuppression.nom}}&nbsp;{{conseillerSuppression.prenom}}</i></h2>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="closeModal()" tooltip="annuler" data-placement="top">Annuler</button>
+              <button  type="submit" class="btn btn-danger" (click)="supprimerConseiller()" tooltip="Supprimer ce conseiller ?" data-placement="right">Confirmer</button>
+
+            </div>
+          </div>
+
+
+
+
+        </ng-template>
+
+        <ng-template #templateConseillerDetail>
+          <div style="height: 60px;" class="modal-header">
+            <nav  aria-label="breadcrumb">
+              <ol class="breadcrumb ">
+                <li class="bond breadcrumb-item"><a>Détail&nbsp;</a><small >{{selectedConseiller.nom}}&nbsp;{{selectedConseiller.prenom}}</small></li>
+
+
+
+                <button type="button" class="close pull-right"
+                        aria-label="Close" (click)="modalRef.hide()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </ol>
+            </nav>
+          </div>
+          <div class="modal-body form-horizontal form-label-left">
+            <div class="alertDIV">
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nom&nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{selectedConseiller.nom}}</i></p>
+              </div>
+
+
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Prenom &nbsp;<span class="glyphicon glyphicon-user"></span> <span class="required">:</span></label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{selectedConseiller.prenom}}</i></p>
+              </div>
+
+            </div>
+            </div>
+
+          <div class="alertDIV2">
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Email&nbsp;<span class="glyphicon glyphicon-envelope"></span> <span class="required">:</span></label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{selectedConseiller.email}}</i></p>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" >Naissance&nbsp;<span class="glyphicon glyphicon-calendar"></span> <span class="required">:</span> </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color: #2A3F54;font-size: 15px;">{{selectedConseiller.datedenaissance}}</i></p>
+              </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Embauche&nbsp;<span class="glyphicon glyphicon-calendar"></span> <span class="required">:</span> </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <p class="form-control-static"><i style="color:#2A3F54;font-size: 15px;">{{selectedConseiller.dateEmbauche}}</i></p>
+              </div>
+
+            </div>
+          </div>
+
+
+
+            <div class="modal-footer">
+              <button class="center" type="button" class="btn btn-default" tooltip="fermer" (click)="closeModal()">Close</button>
+
+            </div>
+          </div>
+        </ng-template>
+
+
+
+
+            </div>
+      </div>
+    </div>
+</div>
