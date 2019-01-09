@@ -128,6 +128,7 @@ export class ListedesclientsComponent implements OnInit {
 // ########################################## EDITER CLIENTS ET CONSULTER COMPTES
 
 
+// CRUD OPERATIONS
   editerClient(id:number){
     this.router.navigate(['/home/EditClient',id]);
   }
@@ -136,7 +137,7 @@ export class ListedesclientsComponent implements OnInit {
     this.router.navigate(['/home/SimulerCredit',id]);
   }
 
-  consulterComptes(id:number){
+  consulterTousLesComptes(id:number){
     this.router.navigate(['/home/MesComptes',id]);
   }
 

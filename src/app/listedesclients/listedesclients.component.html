@@ -187,7 +187,7 @@
               <div>
 
                 <a (click)="editerClient(client.idclient)" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                <a (click)="consulterComptes(client.idclient)" tooltip="liste des comptes" class="btn btn-info btn-xs"><i class="fa fa-balance-scale"></i> Comptes </a>
+                <a (click)="consulterTousLesComptes(client.idclient)" tooltip="liste des comptes" class="btn btn-info btn-xs"><i class="fa fa-balance-scale"></i> Comptes </a>
                 <a (click)="show(client,temp)" tooltip="supprimer client" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                 <a (click)="openModalRendezVous(client,tempRendezVous)" class="btn btn-warning btn-xs" tooltip="chercher rendez-vous"><i class="fa fa-address-book" ></i>Rendez-vous </a>
                 <a (click)="editCredits(client.idclient)" class="btn btn-dark btn-xs" tooltip="crédits"><i class="fa fa-address-book" ></i>Crédits </a>
