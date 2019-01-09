@@ -9,7 +9,7 @@ import {CalendarComponent} from 'ng-fullcalendar';
 import {Options} from 'fullcalendar';
 import {EventService} from '../../services/EventService';
 import {SchedulerComponent} from '../scheduler/scheduler.component';
-import {EvService} from '../../services/EvService';
+
 import {jsonpCallbackContext} from '@angular/common/http/src/module';
 import {BsModalRef,BsModalService} from 'ngx-bootstrap';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -29,7 +29,7 @@ declare var $ :any;
   selector: 'app-conseillers',
   templateUrl: './conseillers.component.html',
   styleUrls: ['./conseillers.component.css'],
-  providers:[ConseillerService,ConseillerClientService,EventService,EvService,LoaderService]
+  providers:[ConseillerService,ConseillerClientService,EventService,LoaderService]
 })
 export class ConseillersComponent implements OnInit {
 
@@ -256,7 +256,7 @@ this.modalRef=this.modalService.show(template);
 show=false;
   constructor(public conseillerservice:ConseillerService,public formbuilder:FormBuilder,
               public conseilclientservice:ConseillerClientService,
-              protected eventservice:EventService,public evservice:EvService,
+
               private modalService:BsModalService,
               public loaderService:LoaderService,
               public totastr:ToastsManager,
@@ -341,12 +341,7 @@ show=false;
     this.events = [];
   }
 
-  loadevents(){
 
-      this.eventservice.getEvents().subscribe(data => {
-        this.events = data;
-      });
-    }
 
 
   @ViewChild("scheduler_here") schedulerContainer: ElementRef;

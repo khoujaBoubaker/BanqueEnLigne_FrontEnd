@@ -1,18 +1,18 @@
 import {AppComponent} from './app.component';
-import {AboutComponent} from './about/about.component';
+
 import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule, Routes} from '@angular/router';
 import {ContactsComponent} from './contacts/contacts.component';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {ContactService} from '../services/contacts.service';
-import { NewClientComponent } from './new-client/new-client.component';
-import { DetailContatctComponent } from './detail-contatct/detail-contatct.component';
-import { MonprofileComponent } from './monprofile/monprofile.component';
+
+
+
+
 import { ProfilpersonnelComponent } from './profilpersonnel/profilpersonnel.component';
 import { ListeAdministrateursComponent } from './liste-administrateurs/liste-administrateurs.component';
-import { DetailadminComponent } from './detailadmin/detailadmin.component';
+
 import { SomdataComponent } from './somdata/somdata.component';
 import { AgenceComponent } from './agence/agence.component';
 import {AgenceService} from '../services/AgenceService';
@@ -44,7 +44,7 @@ import { ProfileConseillerComponent } from './profile-conseiller/profile-conseil
 
 import {EventService} from '../services/EventService';
 import { SchedulerComponent } from './scheduler/scheduler.component';
-import {EvService} from '../services/EvService';
+
 import { CalendarComponent } from './calendar/calendar.component';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import { LoadingspinnerComponent } from './loadingspinner/loadingspinner.component';
@@ -58,7 +58,7 @@ import { ListItemComponent } from './list-item/list-item.component';
 import {AuthguardService} from '../services/AuthguardService';
 import { RegisterComponent } from './register/register.component';
 import {administrationService} from '../services/administrationService';
-import {AlertService} from '../services/AlertService';
+
 import {ToastModule} from 'ng2-toastr';
 
 import { FooterComponent } from './footer/footer.component';
@@ -75,8 +75,8 @@ import {urlPermission} from '../urlPermission/urlPermission';
 import {AuthenticationServicee} from '../services/AuthenticationServicee';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import {ChiffreAffiareService} from '../services/ChiffreAffiareService';
-import { StaticsComponent } from './statics/statics.component';
-import {WeatherService} from '../services/WeatherService';
+
+
 import { GraphiqueComponent } from './graphique/graphique.component';
 import {GrapheService} from '../services/GrapheService';
 import { GalleryComponent } from './gallery/gallery.component';
@@ -126,7 +126,7 @@ const appRoutes: Routes = [
       {path:'Calendrier',component:CalendarComponent},
       {path:'Agences',component:AgenceComponent},
 
-      {path:'statistics',component:StaticsComponent},
+
       {path:'graphique',component:GraphiqueComponent},
       {path:'gallery',component:GalleryComponent},
       {path:'SimulerCredit/:id',component:NouveauCreditComponent}
@@ -139,14 +139,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent,
     ContactsComponent,
-    NewClientComponent,
-    DetailContatctComponent,
-    MonprofileComponent,
     ProfilpersonnelComponent,
     ListeAdministrateursComponent,
-    DetailadminComponent,
     SomdataComponent,
     AgenceComponent,
     ModalComponent,
@@ -175,8 +170,6 @@ const appRoutes: Routes = [
     HelloPageComponent,
     ModificationConseillerComponent,
     EditagenceComponent,
-
-    StaticsComponent,
     GraphiqueComponent,
     GalleryComponent,
     LogComponent,
@@ -219,7 +212,7 @@ MatMenuModule,
 MatCardModule,MatToolbarModule,MatIconModule,MatDividerModule
   ],
   bootstrap: [AppComponent],
-  providers:[ContactService,AgenceService,EventService,EvService,administrationService,AlertService,AuthenticationServicee,ChiffreAffiareService,WeatherService,GrapheService,ConnectionService,CreditService],
+  providers:[AgenceService,EventService,administrationService,AuthenticationServicee,ChiffreAffiareService,GrapheService,ConnectionService,CreditService],
   exports:[TooltipModule,ModalModule,MatSelectModule]
 
 })

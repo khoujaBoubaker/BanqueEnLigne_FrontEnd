@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild,ElementRef ,ViewEncapsulation} from '@angular/core';
 import {Router,Route} from '@angular/router';
 import {FullCalendarComponent} from '../../Model/FullCalendarComponent';
-import {EvService} from '../../services/EvService';
+
 import {NgProgress} from 'ngx-progressbar';
 
 
@@ -11,11 +11,11 @@ declare var $ :any;
   encapsulation:ViewEncapsulation.None,
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
-  providers:[EvService]
+  styleUrls: ['./calendar.component.css']
+
 })
 export class CalendarComponent implements OnInit {
-  constructor(public evservice:EvService,public ngProgress:NgProgress){
+  constructor(public ngProgress:NgProgress){
 
 
 
@@ -49,9 +49,7 @@ export class CalendarComponent implements OnInit {
 
     scheduler.config.xml_date = "%Y-%m-%d %H:%i";
     scheduler.init(this.schedulerContainer.nativeElement, new Date(),"month");
-    this.evservice.get().then((data)=>{
-      scheduler.parse(data,"json");
-    })
+
   }
 
 

@@ -19,7 +19,7 @@ import {LoadingspinnerComponent} from '../loadingspinner/loadingspinner.componen
 import {CompteCourantCC} from '../../services/CompteCourantsCC';
 import {CompteEpargnesCE} from '../../services/CompteEpargnesCE';
 import {compteEpargne} from '../../Model/compteEpargne';
-import {NavBarService} from '../../services/NavBarService';
+
 import {ToastsManager} from 'ng2-toastr';
 import {Retrait} from '../../Model/Retrait';
 import {MatSelectModule} from '@angular/material';
@@ -57,7 +57,7 @@ import {AuthenticationServicee} from '../../services/AuthenticationServicee';
     Ng4LoadingSpinnerService,
     LoadingspinnerComponent,
     CompteCourantCC,CompteEpargnesCE,
-    NavBarService,
+
     LoginService,
     RendezVousService,
    AuthenticationServicee]
@@ -943,7 +943,7 @@ modif(rendezVous:RendezVous){
               public compteCourantServiceCC:CompteCourantCC,
               public compteEpargneService:CompteEpargnesCE,
               public fgcompteEpargne:FormBuilder,
-              public nav:NavBarService,
+
               public totastr:ToastsManager,
               public vcr:ViewContainerRef,
               public loginService:LoginService,
@@ -952,7 +952,7 @@ modif(rendezVous:RendezVous){
               public authService:AuthenticationServicee,
               public ngProgress:NgProgress) {
 
-    this.nav.show();
+
     this.totastr.setRootViewContainerRef(vcr);
   }
 

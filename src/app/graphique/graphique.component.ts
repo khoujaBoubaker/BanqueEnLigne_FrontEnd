@@ -1,6 +1,6 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {Chart} from 'Chart.js';
-import {WeatherService} from '../../services/WeatherService';
+
 import {variable} from '@angular/compiler/src/output/output_ast';
 import {GrapheService} from '../../services/GrapheService';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
@@ -91,7 +91,7 @@ export class GraphiqueComponent implements OnInit {
     $("#sc1").toggle();
   }
 
-  constructor(public weather:WeatherService,
+  constructor(
               public grapheservice:GrapheService,
               public modalService:BsModalService,
               public chiffreAffairesService:ChiffreAffiareService,
