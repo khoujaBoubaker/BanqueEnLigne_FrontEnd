@@ -127,7 +127,8 @@ export class ListedesclientsComponent implements OnInit {
 // ############################################
 // ########################################## EDITER CLIENTS ET CONSULTER COMPTES
 
-  editclient(id:number){
+
+  editerClient(id:number){
     this.router.navigate(['/home/EditClient',id]);
   }
 
