@@ -54,7 +54,7 @@ import { NouveauConseillerComponent } from './nouveau-conseiller/nouveau-conseil
 import {ConseillersAgence} from '../services/ConseillersAgence';
 import { NouvelleAgenceComponent } from './nouvelle-agence/nouvelle-agence.component';
 import { HomComponent } from './hom/hom.component';
-import { ListItemComponent } from './list-item/list-item.component';
+
 import {AuthguardService} from '../services/AuthguardService';
 import { RegisterComponent } from './register/register.component';
 import {administrationService} from '../services/administrationService';
@@ -66,7 +66,7 @@ import {AgenceConseillersService} from '../services/AgenceConseillersService';
 import { CustomersComponent } from './customers/customers.component';
 import { ModificationClientComponent } from './modification-client/modification-client.component';
 import { ListComptesComponent } from './list-comptes/list-comptes.component';
-import { HelloPageComponent } from './hello-page/hello-page.component';
+
 import { ModificationConseillerComponent } from './modification-conseiller/modification-conseiller.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {SweetAlert} from 'sweetalert/typings/core';
@@ -161,13 +161,13 @@ const appRoutes: Routes = [
     NouveauConseillerComponent,
     NouvelleAgenceComponent,
     HomComponent,
-    ListItemComponent,
+
     RegisterComponent,
     FooterComponent,
     CustomersComponent,
     ModificationClientComponent,
     ListComptesComponent,
-    HelloPageComponent,
+
     ModificationConseillerComponent,
     EditagenceComponent,
     GraphiqueComponent,
