@@ -22,23 +22,18 @@
         "styles.css",
         "../node_modules/vendors/font-awesome/css/font-awesome.min.css",
         "../node_modules/build/css/custom.min.css",
-        "../node_modules/datatables.net-scroller-bs/css/scroller.bootstrap.min.css",
-        "../node_modules/busqets/css/fullcalendar.min.css",
-        "../node_modules/busqets/css/fullcalendar.print.css",
-        "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.css",
+        "../node_modules/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
 
 
-        "./assets/flat/green.css",
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
-        "../node_modules/ngx-select-dropdown/dist/assets/style.css",
-        "../node_modules/bootstrap/js/nprogress.css"
+
+
 
 
       ],
       "scripts": [
 
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/bootstrap/js/dist/bootstrap.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "./assets/js/daterangepicker.js"
 
 

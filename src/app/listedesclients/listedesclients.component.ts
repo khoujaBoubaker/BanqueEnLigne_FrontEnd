@@ -462,19 +462,7 @@ doc.save('test.pdf');
 
     this.ngProgress.start();
 
-    //this.loadScript('../assets/js/custom.min.js');
 
-   // this.loadScript('../assets/js/TooltipsBoubaker.js');
-   // this.loadScript('https://code.jquery.com/jquery-1.12.4.js');
-    //this.loadScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
-
-    //GESTION DE SESSION
-    // SI LE TOKEN ENREGISTRE en memoire est invalide alors
-
-
-
-
-    //console.log("composant clients: "+this.authService.jwtToken);
 
     this.dt = this.year + '-' + this.month + '-' + this.day;
     console.log(this.dt);
@@ -487,10 +475,7 @@ doc.save('test.pdf');
     this.year = this.dateDuJour.getFullYear();
     //console.log(new Date().getDate());
 
-   // this.utilsateur = this.loginService.utilistaeur;
-   // this.infoClient();
-    //this.closeagrAPID();
-    //this.showInfoListesClients();
+
 
     this.formgroupRendezVous = this.fbv.group({
       libelleRDV: '',
@@ -940,7 +925,7 @@ modif(rendezVous:RendezVous){
               public fbv:FormBuilder,
               public agenceService:AgenceService,
               public fgcompte:FormBuilder,
-              public spinnerService: Ng4LoadingSpinnerService,
+
               public http:Http,
               public compteCourantServiceCC:CompteCourantCC,
               public compteEpargneService:CompteEpargnesCE,
@@ -1066,20 +1051,7 @@ this.doSearch();
 
 }
 
-  doSearch() {
-    this.ngProgress.start();
-    this.clientservice.getClients(this.motCle, this.page, this.size).subscribe(
-      data => {
-        this.clients = data;                      /////////////////////////////////////////////////////////////////////////
-        this.pages = new Array(data.totalPages);
-        this.nombreDeClients=data.totalElements;
-        this.showw=false;
-        this.ngProgress.done();
 
-        this.showspinner=false;
-      },
-      error2 => console.log(error2));
-  }
 
   // SEARCH CLIENT TRIES PAR EMAIL DECROISSANT
   doSearchClientEmailCroissant(){
@@ -1094,6 +1066,23 @@ this.doSearch();
   triemailcr(){
     this.tricl="emailcr";
     this.doSearchClientEmailCroissant();
+  }
+
+
+ doSearch() {
+    this.ngProgress.start();
+    this.clientservice.getClients(this.motCle, this.page, this.size).subscribe(
+      data => {
+        this.clients = data;                      /////////////////////////////////////////////////////////////////////////
+        this.pages = new Array(data.totalPages);
+        this.nombreDeClients=data.totalElements;
+        this.showw=false;
+        this.ngProgress.done();
+        alert("search method");
+
+
+      },
+      error2 => console.log(error2));
   }
 
   doSearchClientEmailDecroissant(){
