@@ -1076,7 +1076,7 @@ this.doSearch();
         this.clients = data;                      /////////////////////////////////////////////////////////////////////////
         this.pages = new Array(data.totalPages);
         this.nombreDeClients=data.totalElements;
-        this.showw=false;
+        console.log("progress bar");
         this.ngProgress.done();
         alert("search method");
 
