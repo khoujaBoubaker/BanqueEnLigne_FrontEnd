@@ -1063,7 +1063,7 @@ this.doSearch();
     )
   }
  // EMAIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIL CROISSANT
-  triemailcr(){
+  triemailcr1(){
     this.tricl="emailcr";
     this.doSearchClientEmailCroissant();
   }
@@ -1078,7 +1078,7 @@ this.doSearch();
         this.nombreDeClients=data.totalElements;
         console.log("progress bar");
         this.ngProgress.done();
-        alert("search method");
+      //  alert("search method");
 
 
       },
@@ -1094,7 +1094,7 @@ this.doSearch();
     )
   }
 
-  triemaildec(){
+  triemaildec1(){
     this.tricl="emaildec";
     this.doSearchClientEmailDecroissant();
   }

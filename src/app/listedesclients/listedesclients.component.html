@@ -153,14 +153,14 @@
 
         <table  id="content" #content class="table table-striped projects">
 
-          <thead class="thead-dark">
-          <tr class="table-active">
+          <thead>
+          <tr >
             <th>ID</th>
             <th>Nom</th>
             <th>Prenom</th>
 
-            <th>Email<span class="glyphicon glyphicon-arrow-up pull-right border-bottom-0" [ngClass]="{'tri':tricl=='emaildec'}" tooltip="email décroissant" (click)="triemaildec()"></span>
-              <span style="right: 0px;z-index: 1;" class="glyphicon glyphicon-arrow-down pull-right" [ngClass]="{'triS':tricl=='emailcr'}"  tooltip="email croissant" (click)="triemailcr()"></span>
+            <th>Email<span class="glyphicon glyphicon-arrow-up pull-right border-bottom-0" [ngClass]="{'tri':tricl=='emaildec'}" tooltip="email décroissant" (click)="triemaildec1()"></span>
+              <span style="right: 0px;z-index: 1;" class="glyphicon glyphicon-arrow-down pull-right" [ngClass]="{'triS':tricl=='emailcr'}"  tooltip="email croissant" (click)="triemailcr1()"></span>
             </th>
             <th>Salaire<span class="glyphicon glyphicon-arrow-up pull-right border-bottom-0" [ngClass]="{'tri':tricl=='salaire'}" tooltip="salaire décroissant" (click)="TousLesClientsTriesParSalaire()"></span>
               <span style="right: 0px;z-index: 1;" class="glyphicon glyphicon-arrow-down pull-right" [ngClass]="{'triS':tricl=='salaireCroissant'}"  tooltip="salaire croissant" (click)="trierOC()"></span></th>
