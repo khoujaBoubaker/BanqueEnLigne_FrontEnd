@@ -3,7 +3,7 @@
   <div  class="container body" style="height: 920px;">
     <div class="main_container fixed_footer">
 
-
+      <ng-progress></ng-progress>
 
 
 
@@ -98,7 +98,7 @@
               <!-- fin installing data-->
               <div class="pull-right">
 
-              <button tooltip="nouveau client" class="bouton17" routerLink="/home/NouveauClient"><span class="glyphicon glyphicon-plus"></span></button>
+              <button tooltip="Nouveau" class="bouton17" routerLink="/home/NouveauClient"><span class="glyphicon glyphicon-plus"></span></button>
               </div>
 
             </form>
@@ -142,7 +142,7 @@
 
 
 
-          <div *ngIf="!clients" style="text-align: center;padding:20px;">
+          <div *ngIf="!clients" style="text-align: center;padding:22px;">
             <img  src="../../assets/images/ajax-loader%20(1).gif">
           </div>
 
