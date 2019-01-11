@@ -726,6 +726,7 @@ chercherAvecTriDecroissantSolde(){
      // this.loading=false;
         this.comptesCourantsPart = data;
         this.pagesComptesCourants = new Array(data.totalPages);
+        this.ngProgress.done();
       },
       error2 => console.log(error2))
   }

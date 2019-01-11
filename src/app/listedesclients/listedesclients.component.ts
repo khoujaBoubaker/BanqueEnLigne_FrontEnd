@@ -1045,7 +1045,7 @@ modif(rendezVous:RendezVous){
     console.log(this.tricl);
   }
 
-refreshData(){
+refreshData1(){
 this.ngProgress.start();
 this.doSearch();
 
