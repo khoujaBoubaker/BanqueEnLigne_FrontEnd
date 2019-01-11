@@ -3,6 +3,8 @@
   <div  class="container body" style="height: 820px;">
     <div class="main_container fixed_footer">
 
+      <ng-progress></ng-progress>
+
 
 
       <div class="right_col" role="main" style="color: #4CAF50;height: 900px;">
@@ -433,14 +435,14 @@
                             </li>
                             <li [ngClass]="{'disabled':pageCC==pagesComptesCourants?.length-1}"  class="clickable" ><a (click)="nextCompteCourant()" >Next</a></li>
                             <hr style="background-color: #1ABB9C;"/>
-                            <button type="button" class="btn btn-primary pull-right" tooltip="Total Comptes courants" (click)="solde()">Total Courant</button>
+                            <button type="button" class="btn btn-primary pull-right" tooltip="Total Comptes courants" (click)="soldet()">Total Courant</button>
                             <div class="pull-left">
                               <button routerLink="/home/clients" tooltip="Retour clients" type="button" class="btn btn-success pull-right" > Précédent</button>
                               <button (click)="NouveaucCompteCourant(nvcpt)" tooltip="Nouveau Compte Courant" type="button" class="btn btn-primary pull-right" >Nouveau</button>
                             </div>
                           </ul>
 
-                        </div>gi
+                        </div>
 
 
 

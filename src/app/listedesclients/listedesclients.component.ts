@@ -60,7 +60,7 @@ import {AuthenticationServicee} from '../../services/AuthenticationServicee';
 
     LoginService,
     RendezVousService,
-   AuthenticationServicee]
+    AuthenticationServicee]
 })
 export class ListedesclientsComponent implements OnInit {
 

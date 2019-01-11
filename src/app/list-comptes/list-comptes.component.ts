@@ -213,7 +213,8 @@ this.clientMatched=new Client();
               public operationservice: OperationService,
               public ts:FormBuilder,
               public fb:FormBuilder,
-              public cc:FormBuilder) {
+              public cc:FormBuilder,
+              public ngProgress:NgProgress) {
     this.totastr.setRootViewContainerRef(vcr);
   }
 
@@ -582,6 +583,10 @@ sk(){
 
 
   ngOnInit() {
+
+  // ng progress
+    this.ngProgress.start();
+
     this.chercherAgences();
 
 
@@ -664,7 +669,7 @@ sk(){
 
 
 
-  solde() {
+  soldet() {
 
     this.compteCourantService.getSoldeTotal(this.id).subscribe(data => {
       this.soldeTotal = data;
