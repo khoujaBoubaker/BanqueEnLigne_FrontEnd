@@ -740,7 +740,7 @@ chercherAvecTriDecroissantSolde(){
   }
 
 
-  enleverTri(){
+  deleteTri(){
    this.tricpt=0;
    this.chercher();
    this.totastr.info('aucun tri selectionné','Données');

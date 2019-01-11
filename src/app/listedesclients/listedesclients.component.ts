@@ -785,7 +785,7 @@ doc.save('test.pdf');
 
   // rendez-vous à mettre a jour
   rendezVousToBeUpdated:RendezVous;
-modif(rendezVous:RendezVous){
+  modif(rendezVous:RendezVous){
   this.rendezVousToBeUpdated=rendezVous;
   console.log("-------------------------");
   console.log(this.rendezVousToBeUpdated);
