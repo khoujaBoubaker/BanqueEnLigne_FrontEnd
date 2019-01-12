@@ -242,11 +242,11 @@ export class AppComponent implements OnInit {
   @HostListener("window:scroll",[])
   onWindowScroll(){
     const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    if (number > 20) {
+    if (number > 10) {
       $('#nav').addClass('black');
 
 
-    } else if (number < 20) {
+    } else if (number < 10) {
       $('#nav').removeClass('black');
 
     }
