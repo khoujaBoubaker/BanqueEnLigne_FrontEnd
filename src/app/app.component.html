@@ -188,9 +188,9 @@
         <ul class="nav navbar-nav navbar-right">
 
 
-          <li (click)="cliquer()" class="dropdown">
-            <a style="cursor: pointer;" class="dropdown-toggle user-profile" data-toggle="dropdown">
-              <img [src]="authService.image" >{{authService.nomUserLoggedIn.nom}}
+          <li class="dropdown">
+            <a style="cursor: pointer;text-align:center;" class="dropdown-toggle user-profile" data-toggle="dropdown">
+              <img  [src]="authService.image" >{{authService.nomUserLoggedIn.nom}}
               <i  class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul id="settings" class="dropdown-menu dropdown-user">
