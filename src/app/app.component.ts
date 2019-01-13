@@ -30,6 +30,12 @@ export class AppComponent implements OnInit {
   private image:any;
   k:number;
 
+  adminProfile:Boolean;
+
+  getProfileCurrentUser(){
+    return this.authService.isAdmin();
+  }
+
 
 
   dateduJour:Date = new Date();
@@ -41,7 +47,7 @@ export class AppComponent implements OnInit {
     $("#panel").toggle("slow");
   }
 
-  profile(){
+  gotoprofile(){
     this.router.navigate(['/home/Profile',this.authService.nomUserLoggedIn.id]);
     this.k=0;
 
@@ -119,7 +125,10 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(){
-   // alert('app loaded');
+   //alert('app loaded');
+    console.log("ggggg"+this.authService.isAdmin());
+
+    alert("hh"+this.authService.isAdmin());
 
 
     //this.image=this.sanitizer.bypassSecurityTrustUrl(this.imageType+ this.authService.nomUserLoggedIn.pic);
