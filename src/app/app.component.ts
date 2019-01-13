@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
     $("#panel").toggle("slow");
   }
 
-  goToProfile(){
+  profile(){
     this.router.navigate(['/home/Profile',this.authService.nomUserLoggedIn.id]);
     this.k=0;
 
