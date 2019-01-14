@@ -13,10 +13,10 @@ import {HttpModule} from '@angular/http';
 import { ProfilpersonnelComponent } from './profilpersonnel/profilpersonnel.component';
 import { ListeAdministrateursComponent } from './liste-administrateurs/liste-administrateurs.component';
 
-import { SomdataComponent } from './somdata/somdata.component';
+
 import { AgenceComponent } from './agence/agence.component';
 import {AgenceService} from '../services/AgenceService';
-import { ModalComponent } from './modal/modal.component';
+
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule, MatTooltip} from '@angular/material';
 import { NouveauClientComponent } from './nouveau-client/nouveau-client.component';
@@ -142,9 +142,7 @@ const appRoutes: Routes = [
     ContactsComponent,
     ProfilpersonnelComponent,
     ListeAdministrateursComponent,
-    SomdataComponent,
     AgenceComponent,
-    ModalComponent,
     NouveauClientComponent,
     ListedesclientsComponent,
     OperationsComponent,
@@ -217,12 +215,5 @@ MatCardModule,MatToolbarModule,MatIconModule,MatDividerModule
 
 })
 export class AppModule{
-
-
-
-
-
-
-
 
 }
