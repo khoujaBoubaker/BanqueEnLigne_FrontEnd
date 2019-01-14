@@ -582,6 +582,8 @@ sk(){
   ngOnInit() {
 
 
+
+
     this.ngProgress.start();
 
     this.chercherToutesLesAgences();
@@ -717,6 +719,11 @@ chercherAvecTriDecroissantSolde(){
   triParSolde(){
     this.tricpt=2;
     this.chercherAvecTriDecroissantSolde();
+  }
+
+  openNouveauModal(temp:TemplateRef<any>){
+  this.modalRef=this.modalService.show(temp);
+
   }
 
 
