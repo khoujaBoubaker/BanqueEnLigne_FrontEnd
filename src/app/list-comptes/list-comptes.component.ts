@@ -437,9 +437,10 @@ this.clientMatched=new Client();
   size:number=20;
 
   // chercher agences ou effectuer operation
-  chercherAgences() {
+  chercherToutesLesAgences() {
     this.agenceService.getagences(this.motCle, this.page, this.size).subscribe(data => {
       this.agences = data;
+      console.log("load agences");
     }, error2 => console.log(error2))
   }
 
@@ -563,19 +564,7 @@ sk(){
 
 }
 
-  f(){
-    var drop =
-      "<div class='btn-group select'>" +
-      "<i class='dropdown-arrow'></i>" +
-      "<button class='btn dropdown-toggle clearfix' data-toggle='dropdown'>" +
-      "<span class='filter-option pull-left'></span>&nbsp;" +
-      "</button>" +
-      "<ul class='dropdown-menu' role='menu'>" +
-      "</ul>" +
-      "</div>";
-    return $(drop);
 
-  }
 
 
 
@@ -592,10 +581,10 @@ sk(){
 
   ngOnInit() {
 
-  // ng progress
+
     this.ngProgress.start();
 
-    this.chercherAgences();
+    this.chercherToutesLesAgences();
 
 
 
