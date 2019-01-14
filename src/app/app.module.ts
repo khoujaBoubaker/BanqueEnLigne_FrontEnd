@@ -55,7 +55,6 @@ import {ToastModule} from 'ng2-toastr';
 
 import { FooterComponent } from './footer/footer.component';
 import {AgenceConseillersService} from '../services/AgenceConseillersService';
-import { CustomersComponent } from './customers/customers.component';
 import { ModificationClientComponent } from './modification-client/modification-client.component';
 import { ListComptesComponent } from './list-comptes/list-comptes.component';
 
@@ -117,7 +116,7 @@ const appRoutes: Routes = [
       {path:'graphique',component:GraphiqueComponent},
       {path:'SimulerCredit/:id',component:NouveauCreditComponent}
 
-    ] }]ing"
+    ] }];
 
 
 
@@ -148,7 +147,6 @@ const appRoutes: Routes = [
 
     RegisterComponent,
     FooterComponent,
-    CustomersComponent,
     ModificationClientComponent,
     ListComptesComponent,
 
