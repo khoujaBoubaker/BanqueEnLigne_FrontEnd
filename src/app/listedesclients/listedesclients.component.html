@@ -232,7 +232,7 @@
 
 
           <ul *ngIf="clients?.totalElements>0" class="pagination">
-            <li [ngClass]="{'disabled':page==0}"><a class="clickmoi" (click)="previousI()">Previous</a></li>
+            <li [ngClass]="{'disabled':page==0}"><a class="clickMe" (click)="previousI()">Previous</a></li>
             <li [ngClass]="{'active':i==page}" *ngFor="let p of pages;let i=index">
               <a  class="clickable" (click)="gotoPageI(i)">{{i}}</a> <!-- fonction qui retourne la page correspondante à l'index selectionné -->
             </li>
