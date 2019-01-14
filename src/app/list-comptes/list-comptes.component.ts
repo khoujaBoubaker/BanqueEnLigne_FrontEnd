@@ -721,10 +721,10 @@ chercherAvecTriDecroissantSolde(){
 
 
 
-
+  // chercher les comptes courants par id client
   chercher() {
     this.compteCourantService.getComptesCourants(this.id, this.pageCC, this.sizeCC).subscribe(data => {
-     // this.loading=false;
+        console.log(data);
         this.comptesCourantsPart = data;
         this.pagesComptesCourants = new Array(data.totalPages);
         this.ngProgress.done();
