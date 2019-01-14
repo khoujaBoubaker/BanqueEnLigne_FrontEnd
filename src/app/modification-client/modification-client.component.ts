@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ClientService} from '../../services/ClientService';
 import {Client} from '../../Model/Client';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {ToastsManager} from 'ng2-toastr';
 
 declare var $ :any;
 
@@ -30,12 +31,20 @@ export class ModificationClientComponent implements OnInit {
 
   constructor(public fbc:FormBuilder,
               public route:ActivatedRoute,
+              public totastr: ToastsManager,
               public router:Router,
               public clientservice:ClientService,
               public vcr:ViewContainerRef,
               private modalService:BsModalService) {
 
   }
+
+
+  AnnulerModification(){
+  this.router.navigateByUrl('/home/clients');
+  alert('anuulation');
+
+ }
 
   changed:boolean=false;
   id:number;
