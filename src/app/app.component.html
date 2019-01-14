@@ -189,8 +189,8 @@
 
 
           <li class="dropdown" (click)="cliquer()">
-            <a style="cursor: pointer;text-align:center;" class="dropdown-toggle user-profile" data-toggle="dropdown">
-              <img  [src]="authService.image" >{{authService.nomUserLoggedIn.nom}}
+            <a style="cursor: pointer;border-color: #1ABB9C solid 2px;" class="dropdown-toggle user-profile" data-toggle="dropdown">
+              <img [src]="authService.image" style="border-color: #1ABB9C;" >{{authService.nomUserLoggedIn.nom}}
               <i  class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul id="settings" class="dropdown-menu dropdown-user">
@@ -213,7 +213,7 @@
       <ul  class="nav navbar-right panel_toolbox">
         <li  class="pull-right">
           <span style="color: #2A3F54;" (click)="closeModalProfile()" class="pull-right" class="close">&times;</span>
-          <span  class="glyphicon glyphicon-asterisk"></span>
+
         </li>
       </ul>
 

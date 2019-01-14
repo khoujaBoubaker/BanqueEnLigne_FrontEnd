@@ -62,6 +62,13 @@ export class ListComptesComponent implements OnInit {
 
   compteMatched:Compte;
 
+  // Ajouter fonction qui indique qu'on est sur la pages des comptes
+  // avec le nom du client selectionné .
+  HomeComptes(){
+
+
+  }
+
 
 
 
