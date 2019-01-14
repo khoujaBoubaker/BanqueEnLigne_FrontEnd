@@ -36,13 +36,15 @@ export class ModificationClientComponent implements OnInit {
               public clientservice:ClientService,
               public vcr:ViewContainerRef,
               private modalService:BsModalService) {
+              this.totastr.setRootViewContainerRef(vcr);
 
   }
 
 
   AnnulerModification(){
-  this.router.navigateByUrl('/home/clients');
-  alert('anuulation');
+   this.totastr.info('suppression compte courant annulée', 'Annulation');
+  // this.router.navigateByUrl('/home/clients');
+
 
  }
 
