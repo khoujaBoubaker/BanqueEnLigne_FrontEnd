@@ -947,7 +947,7 @@ pdf.fromHTML(
 
 
 
-    gotoPage(i) {
+    gotoPageI(i) {
     if(this.tricl==""){
       this.page=i;
       this.doSearch();
@@ -975,7 +975,7 @@ pdf.fromHTML(
     }
   }
 
-  previous() {
+  previousI() {
     if(this.page>0) {
       if(this.tricl==""){
       this.page = this.page - 1;
@@ -1019,7 +1019,7 @@ pdf.fromHTML(
 
   }
 
-  next() {
+  nextI() {
     if(this.page<this.pages.length-1) {
       if(this.tricl==""){
       this.page = this.page + 1;
