@@ -584,7 +584,8 @@ sk(){
   // Ajouter fonction qui indique qu'on est sur la pages des comptes
   // avec le nom du client selectionné .
   HomeComptes(){
-  this.totastr.warning("hello","Information");
+  this.totastr.success("Liste des comptes","Client :"+this.client.nom+" "+this.client.prenom);
+
   }
 
 
@@ -595,6 +596,8 @@ sk(){
     this.ngProgress.start();
 
     this.chercherAgences();
+
+
 
 
 
@@ -646,11 +649,13 @@ sk(){
     this.id = +this.route.snapshot.params['id'];
     this.clientService.getClient(this.id).subscribe(data => {
       this.client = data;
+      this.HomeComptes();
 
     }, error2 => console.log(error2));
 
 
     // charger scripts utiles pour formulaire
+
 
 
 

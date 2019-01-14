@@ -215,7 +215,7 @@ pdf.fromHTML(
       'elementHandlers':specialElementHandlers
     });
 
-doc.save('test.pdf');
+  doc.save('test.pdf');
 
   }
 
