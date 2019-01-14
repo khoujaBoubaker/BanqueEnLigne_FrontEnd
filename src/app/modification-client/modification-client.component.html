@@ -97,7 +97,7 @@
 
                 <p class="text-muted font-13 m-b-30"></p>
               <div>
-                <form  class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="updateClient()">
+                <form  class="form-horizontal form-label-left" [formGroup]="formgroupClient" (submit)="updateClient1()">
                 <div class="animate">
                   <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Nom <span class="required">*</span>
@@ -122,8 +122,8 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input type="text"  class="form-control col-md-7 col-xs-12"
-                             formControlName="prenomClient" placeholder="Michel" [(ngModel)]="client.prenom"
-                             required>
+                             formControlName="prenomClient" placeholder="Michel" [(ngModel)]="client.prenom" required>
+
                       <div *ngIf="formgroupClient.controls.prenomClient.valid">
                         <span class="glyphicon glyphicon-ok form-control-feedback" style="color: #4CAF50;"></span></div>
                       <div *ngIf="!formgroupClient.controls.prenomClient.valid"> <span style="color: #b03535;padding-right: 5px;padding-top: 0px;" class="glyphicon glyphicon-remove form-control-feedback"></span></div>

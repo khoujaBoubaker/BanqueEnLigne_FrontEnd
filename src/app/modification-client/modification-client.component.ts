@@ -52,7 +52,7 @@ export class ModificationClientComponent implements OnInit {
   clientSelected: Client;
   clientModifiabl: Client = new Client();
 
-  updateClient() {
+  updateClient1() {
 
 
     // console.log("id "+this.selectedClient.idclient);
