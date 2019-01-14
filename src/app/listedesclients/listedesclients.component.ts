@@ -56,7 +56,6 @@ import {AuthenticationServicee} from '../../services/AuthenticationServicee';
     ComptCourantService,
     Ng4LoadingSpinnerService,
     CompteCourantCC,CompteEpargnesCE,
-
     LoginService,
     RendezVousService,
     AuthenticationServicee]

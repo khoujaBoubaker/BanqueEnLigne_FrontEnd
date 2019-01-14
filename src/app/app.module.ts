@@ -1,22 +1,14 @@
 import {AppComponent} from './app.component';
-
 import {NgModule, OnInit} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule, Routes} from '@angular/router';
 import {ContactsComponent} from './contacts/contacts.component';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-
-
-
-
 import { ProfilpersonnelComponent } from './profilpersonnel/profilpersonnel.component';
 import { ListeAdministrateursComponent } from './liste-administrateurs/liste-administrateurs.component';
-
-
 import { AgenceComponent } from './agence/agence.component';
 import {AgenceService} from '../services/AgenceService';
-
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule, MatTooltip} from '@angular/material';
 import { NouveauClientComponent } from './nouveau-client/nouveau-client.component';
@@ -79,8 +71,6 @@ import {ChiffreAffiareService} from '../services/ChiffreAffiareService';
 
 import { GraphiqueComponent } from './graphique/graphique.component';
 import {GrapheService} from '../services/GrapheService';
-import { GalleryComponent } from './gallery/gallery.component';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCardModule,MatMenuModule,MatToolbarModule,MatIconModule} from '@angular/material';
 import {MatButtonModule,PageEvent} from '@angular/material';
@@ -90,7 +80,6 @@ import {MatProgressBarModule} from '@angular/material';
 declare var $:any;
 
 import {NgProgressModule} from 'ngx-progressbar';
-import { TestComponent } from './test/test.component';
 import {ConnectionService} from '../services/ConnectionService';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileCpComponent } from './profile-cp/profile-cp.component';
@@ -125,13 +114,10 @@ const appRoutes: Routes = [
       {path:'Agences',component:AgenceComponent},
       {path:'Calendrier',component:CalendarComponent},
       {path:'Agences',component:AgenceComponent},
-
-
       {path:'graphique',component:GraphiqueComponent},
-      {path:'gallery',component:GalleryComponent},
       {path:'SimulerCredit/:id',component:NouveauCreditComponent}
 
-    ] }];
+    ] }]ing"
 
 
 
@@ -169,9 +155,7 @@ const appRoutes: Routes = [
     ModificationConseillerComponent,
     EditagenceComponent,
     GraphiqueComponent,
-    GalleryComponent,
     LogComponent,
-    TestComponent,
     UserProfileComponent,
     ProfileCpComponent,
     SimulateurCreditComponent,
