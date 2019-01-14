@@ -47,7 +47,7 @@ import { SchedulerComponent } from './scheduler/scheduler.component';
 
 import { CalendarComponent } from './calendar/calendar.component';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
-import { LoadingspinnerComponent } from './loadingspinner/loadingspinner.component';
+
 import { NavComponenetComponent } from './nav-componenet/nav-componenet.component';
 import { AppheaderComponent } from './appheader/appheader.component';
 import { NouveauConseillerComponent } from './nouveau-conseiller/nouveau-conseiller.component';
@@ -153,7 +153,7 @@ const appRoutes: Routes = [
     ProfileConseillerComponent,
     SchedulerComponent,
     CalendarComponent,
-    LoadingspinnerComponent,
+
     NavComponenetComponent,
     AppheaderComponent,
     NouveauConseillerComponent,

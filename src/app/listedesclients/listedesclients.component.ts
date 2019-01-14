@@ -15,7 +15,7 @@ import {AgenceService} from '../../services/AgenceService';
 import {Agence} from '../../Model/Agence';
 import { Ng4LoadingSpinnerService,Ng4LoadingSpinnerModule,Ng4LoadingSpinnerComponent } from 'ng4-loading-spinner';
 import {Http} from '@angular/http';
-import {LoadingspinnerComponent} from '../loadingspinner/loadingspinner.component';
+
 import {CompteCourantCC} from '../../services/CompteCourantsCC';
 import {CompteEpargnesCE} from '../../services/CompteEpargnesCE';
 import {compteEpargne} from '../../Model/compteEpargne';
@@ -55,7 +55,6 @@ import {AuthenticationServicee} from '../../services/AuthenticationServicee';
     OperationService,
     ComptCourantService,
     Ng4LoadingSpinnerService,
-    LoadingspinnerComponent,
     CompteCourantCC,CompteEpargnesCE,
 
     LoginService,
