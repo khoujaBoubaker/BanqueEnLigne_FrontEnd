@@ -40,7 +40,7 @@ declare const window : any;
 
 
 declare var $ :any;
-
+import * as jsPDF from 'jspdf';
 import {AuthenticationServicee} from '../../services/AuthenticationServicee';
 
 
@@ -56,6 +56,7 @@ import {AuthenticationServicee} from '../../services/AuthenticationServicee';
     ComptCourantService,
     Ng4LoadingSpinnerService,
     CompteCourantCC,CompteEpargnesCE,
+
     LoginService,
     RendezVousService,
     AuthenticationServicee]
@@ -157,12 +158,65 @@ export class ListedesclientsComponent implements OnInit {
   }
 
 
+public telechargerFile(){
+
+  let pdf=new jsPDF('p','pt','letter');
+
+ let  source=$('#customers')[0];
+
+ let specialElementHandlers={
+   '#mypassme':function (element,renderer) {
+     return true;
+
+   }
+
+ };
+let margins={
+   top:80,
+   bottom:60,
+   left:40,
+   width:522
+ };
+
+pdf.fromHTML(
+  source,
+  margins.left,
+  margins.top,{
+    'width':margins.width,
+    'elementHandlers':specialElementHandlers
+
+  },
+
+  function(dispose){
+    pdf.save('Test.pdf');
+  },margins);
+
+
+}
 
 
 
 
 
+  @ViewChild('content') content:ElementRef;
+  public downloadPDF(){
+    let doc=new jsPDF();
 
+    let specialElementHandlers={
+      '#editor':function (element,renderer) {
+        return true;
+
+      }
+    };
+    let content=this.content.nativeElement;
+    doc.fromHTML(content.innerHTML,15,15,{
+      'width':190,
+      'elementHandlers':specialElementHandlers
+    });
+
+  doc.save('test.pdf');
+
+  }
 
 
   // css stubs
