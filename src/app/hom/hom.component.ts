@@ -5,6 +5,8 @@ import {DOCUMENT} from '@angular/platform-browser';
 declare const window : any;
 import {PageEvent} from '@angular/material';
 
+import * as $ from 'jquery';
+
 import {NgProgress} from 'ngx-progressbar';
 import {Router} from '@angular/router';
 import {AuthenticationServicee} from '../../services/AuthenticationServicee';
@@ -101,9 +103,14 @@ export class HomComponent implements OnInit {
 
 
 
-    this.loadScript('../assets/js/jquery.min.js');
+
+    this.loadScript('../assets/js/bootstrap.min.js');
+        this.loadScript('../assets/js/h.js');
+       this.loadScript('../assets/js/jquery.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
     this.loadScript('../assets/js/custom.min.js');
+    this.loadScript('../assets/js/moment.min.js');
+
 
 
     console.log(this.authService.isAdmin());

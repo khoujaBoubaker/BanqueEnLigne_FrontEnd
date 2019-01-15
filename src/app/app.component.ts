@@ -143,9 +143,14 @@ export class AppComponent implements OnInit {
     //console.log(this.authService.nomUserLoggedIn);
     //console.log("verifier si l'utilsateur est admin :"+this.authService.isAdmin());
 
+
+
     this.loadScript('../assets/js/jquery.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
-    //this.loadScript('../assets/js/custom.min.js');
+    this.loadScript('../assets/js/custom.min.js');
+    this.loadScript('../assets/js/moment.min.js');
+
+
 
 
 

@@ -38,7 +38,9 @@
 
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
-        "./assets/js/daterangepicker.js"
+        "./assets/js/h.js",
+        "./assets/js/moment.min.js",
+        "./assets/js/custom.min.js"
 
 
 

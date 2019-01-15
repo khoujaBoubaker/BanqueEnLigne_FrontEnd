@@ -98,7 +98,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomComponent,
     children: [
 
-
+      {path: '', redirectTo: 'login', pathMatch: 'full' },
       {path:'NouveauConseiller',component:NouveauConseillerComponent},
       {path:'NouveauClient',component:NouveauClientComponent},
       {path:'clients',component:ListedesclientsComponent},

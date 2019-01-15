@@ -59,10 +59,8 @@ export class LogComponent implements OnInit {
 
    // this.loadScript('../assets/js/jquery.min.js');
     this.loadScript('../assets/js/h.js');
-    this.loadScript('../assets/js/jquery1.min.js');
-   // this.loadScript("../assets/js/formoid-solid-blue.js");
-    //this.loadScript('https://code.jquery.com/jquery-1.1.14.js');
-    //this.loadScript('https://code.jquery.com/jquery-2.2.4.js');
+
+
 
 
     this.formgroupLG=this.fblogin.group({

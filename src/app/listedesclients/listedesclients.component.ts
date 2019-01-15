@@ -447,10 +447,7 @@ pdf.fromHTML(
    // this.verification();
     console.log("verification des id");
    this.verification();
-   // console.log(this.authService.roles);
 
-
-    // verifier si le token est sauvegardé dans le web storage
 
 
 
