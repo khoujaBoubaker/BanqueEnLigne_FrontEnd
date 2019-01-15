@@ -188,15 +188,15 @@
         <ul class="nav navbar-nav navbar-right">
 
 
-          <li class="dropdown" (click)="cliquer()">
-            <a style="cursor: pointer;border-color: #1ABB9C solid 2px;" class="dropdown-toggle user-profile" data-toggle="dropdown">
+          <li class="dropdown">
+            <a  style="cursor: pointer;border-color: #1ABB9C solid 2px;" class="dropdown-toggle user-profile" data-toggle="dropdown">
               <img [src]="authService.image" style="border-color: #1ABB9C;" >{{authService.nomUserLoggedIn.nom}}
               <i  class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul id="settings" class="dropdown-menu dropdown-user">
               <li><a style="color: #2A3F54;" (click)="gotoprofile()"><i style="color: #1ABB9C;" class="fa fa-user fa-fw"></i> User Profile</a>
               </li>
-              <li><a style="color: #2A3F54;" href="#"><i style="color: #1ABB9C;" class="fa fa-gear fa-fw"></i> Settings</a>
+              <li><a style="color: #2A3F54;"><i style="color: #1ABB9C;" class="fa fa-gear fa-fw"></i> Settings</a>
               </li>
               <li class="divider"></li>
               <li><a style="color: #2A3F54;" (click)="logout1()"><i style="color: #1ABB9C;" class="fa fa-sign-out fa-fw"></i> Logout</a>

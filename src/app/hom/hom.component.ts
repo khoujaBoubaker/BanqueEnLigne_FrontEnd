@@ -20,6 +20,19 @@ export class HomComponent implements OnInit {
   dispe='none';
 
 
+  // add methods to activate navbar
+  //# logout function
+
+   logout1(){
+    this.router.navigate(['/login']);
+    this.authService.logout();
+   }
+
+   // toggle
+
+
+
+
 
 
 
@@ -90,6 +103,7 @@ export class HomComponent implements OnInit {
 
     this.loadScript('../assets/js/jquery.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
+    this.loadScript('../assets/js/custom.min.js');
 
 
     console.log(this.authService.isAdmin());

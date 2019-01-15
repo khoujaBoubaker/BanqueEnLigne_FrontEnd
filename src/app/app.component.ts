@@ -197,7 +197,6 @@ export class AppComponent implements OnInit {
     $("body #c").hide(1000);
     $("body #home").hide(1000);
     $("body #edit").hide(1000);
-
   }
 
 
