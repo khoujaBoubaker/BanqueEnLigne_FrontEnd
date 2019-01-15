@@ -8,7 +8,7 @@ import {FullCalendarDirective} from '../../services/FullCalendarDirectory';
 import {CalendarComponent} from 'ng-fullcalendar';
 import {Options} from 'fullcalendar';
 import {EventService} from '../../services/EventService';
-import {SchedulerComponent} from '../scheduler/scheduler.component';
+
 
 import {jsonpCallbackContext} from '@angular/common/http/src/module';
 import {BsModalRef,BsModalService} from 'ngx-bootstrap';

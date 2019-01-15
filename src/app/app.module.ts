@@ -35,7 +35,7 @@ import { ConseillersComponent } from './conseillers/conseillers.component';
 import { ProfileConseillerComponent } from './profile-conseiller/profile-conseiller.component';
 
 import {EventService} from '../services/EventService';
-import { SchedulerComponent } from './scheduler/scheduler.component';
+
 
 import { CalendarComponent } from './calendar/calendar.component';
 import {TooltipModule} from 'ngx-bootstrap/tooltip';
@@ -95,10 +95,10 @@ const appRoutes: Routes = [
 
   {path:'login',component:LogComponent},
   {path:'',redirectTo:'/login',pathMatch:'full'},
-  { path: 'home', component: AppComponent,
+  { path: 'home', component: HomComponent,
     children: [
 
-      {path: '', redirectTo: 'login', pathMatch: 'full' },
+
       {path:'NouveauConseiller',component:NouveauConseillerComponent},
       {path:'NouveauClient',component:NouveauClientComponent},
       {path:'clients',component:ListedesclientsComponent},
@@ -136,7 +136,6 @@ const appRoutes: Routes = [
     DashboardComponent,
     ConseillersComponent,
     ProfileConseillerComponent,
-    SchedulerComponent,
     CalendarComponent,
 
     NavComponenetComponent,

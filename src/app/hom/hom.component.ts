@@ -17,6 +17,7 @@ import {AuthenticationServicee} from '../../services/AuthenticationServicee';
 export class HomComponent implements OnInit {
 
   admin:Boolean;
+  dispe='none';
 
 
 
@@ -83,11 +84,13 @@ export class HomComponent implements OnInit {
 
   ngOnInit() {
 
+  this.dispe='none';
+
 
 
     this.loadScript('../assets/js/jquery.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
-   // this.loadScript('../assets/js/custom.min.js');
+
 
     console.log(this.authService.isAdmin());
     console.log(this.authService.jwtToken);

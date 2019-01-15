@@ -40,10 +40,16 @@ export class ModificationClientComponent implements OnInit {
 
   }
 
+  afficherTot(){
+  this.totastr.info('suppression compte courant annulée', 'Annulation');
+  }
+
 
   AnnulerModification(){
-   this.totastr.info('suppression compte courant annulée', 'Annulation');
-  // this.router.navigateByUrl('/home/clients');
+   //this.router.navigateByUrl('/home/clients');
+   this.afficherTot();
+  // this.totastr.info('suppression compte courant annulée', 'Annulation');
+   this.router.navigateByUrl('/home/clients');
 
 
  }
