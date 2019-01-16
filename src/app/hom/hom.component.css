@@ -30,3 +30,48 @@
 .th{
   background-color: white;
 }
+
+.mv {
+
+  position: relative;
+  -webkit-animation: mymove 5s ; /* Safari 4.0 - 8.0 */
+  animation: mymove 5s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+  from {left: 200px;}
+  to {left: 0px;}
+}
+
+@keyframes mymove {
+  from {left: 200px;}
+  to {left: 0px;}
+}
+
+
+#snack {
+  visibility: hidden;
+  min-width: 350px;
+  max-height:130px;
+  margin-left: -125px;
+  margin-bottom: 35px;
+  background-color: lightblue;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 36px;
+
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 30px;
+  font-size: 17px;
+}
+
+
+#snack.shw {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fi 0.5s, fo 0.5s 2.5s;
+}

@@ -1,6 +1,11 @@
 .clickMe{
   cursor:pointer;}
 
+  .nvc:hover{
+  cursor:pointer;
+  font-size:1.2em;
+  }
+
 .clickable{
   cursor: pointer;
 }

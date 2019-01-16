@@ -130,7 +130,7 @@
             <a data-toggle="tooltip" data-placement="top" tooltip="Mon profile">
               <span (click)="openModalProfile()" class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
             </a>
-            <a  data-toggle="tooltip"  (click)="w3_open()" tooltip="déconnexion">
+            <a  data-toggle="tooltip"  (click)="w3_openclose()" tooltip="déconnexion">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
@@ -175,9 +175,16 @@
   <div class="top_nav navbar-fixed-top">
     <div id="nav" class="nav_menu laterals">
       <nav>
+
+
+
+
+
+
         <div class="nav toggle">
           <a (click)="fade()" id="menu_toggle"><i class="fa fa-bars"></i></a>
         </div>
+
 
         <div id="dt" class="col-sm-2">
           <div class="daily-weather">
@@ -188,15 +195,17 @@
         <ul class="nav navbar-nav navbar-right">
 
 
+
+
           <li class="dropdown">
-            <a  style="cursor: pointer;border-color: #1ABB9C solid 2px;" class="dropdown-toggle user-profile" data-toggle="dropdown">
+            <a style="cursor: pointer;border-color: #1ABB9C solid 2px;" class="dropdown-toggle user-profile" data-toggle="dropdown">
               <img [src]="authService.image" style="border-color: #1ABB9C;" >{{authService.nomUserLoggedIn.nom}}
               <i  class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul id="settings" class="dropdown-menu dropdown-user">
               <li><a style="color: #2A3F54;" (click)="gotoprofile()"><i style="color: #1ABB9C;" class="fa fa-user fa-fw"></i> User Profile</a>
               </li>
-              <li><a style="color: #2A3F54;"><i style="color: #1ABB9C;" class="fa fa-gear fa-fw"></i> Settings</a>
+              <li><a style="color: #2A3F54;" href="#"><i style="color: #1ABB9C;" class="fa fa-gear fa-fw"></i> Settings</a>
               </li>
               <li class="divider"></li>
               <li><a style="color: #2A3F54;" (click)="logout1()"><i style="color: #1ABB9C;" class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -211,10 +220,13 @@
 
     <div  id="snack">
       <ul  class="nav navbar-right panel_toolbox">
+        <li  class="pull-right">
+          <span style="color: #2A3F54;" (click)="closeModalProfile()" class="pull-right" class="close">&times;</span>
 
+        </li>
       </ul>
 
-
+      <p style="color: #2A3F54;">Profile:&nbsp;{{profile}}</p>
 
       <br/>
 

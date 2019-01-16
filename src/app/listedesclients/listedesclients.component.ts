@@ -443,10 +443,30 @@ pdf.fromHTML(
     console.log("roles"+this.authService.roles);
   }
 
+
+ // sound effect
+ playaudio(){
+let audio=new Audio();
+audio.src="../assets/audio/pop.m4a";
+audio.load();
+audio.play();
+
+ }
+
+
+allerVersNV(){
+this.router.navigate(['/home/NouveauClient']);
+this.playaudio();
+
+}
+
   ngOnInit() {
    // this.verification();
     console.log("verification des id");
    this.verification();
+
+
+
 
 
 

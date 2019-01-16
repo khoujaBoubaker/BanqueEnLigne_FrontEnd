@@ -28,9 +28,11 @@ export class HomComponent implements OnInit {
    logout1(){
     this.router.navigate(['/login']);
     this.authService.logout();
+    this.playaudioOut();
+
    }
 
-   // toggle
+   // open Modal profile
 
 
 
@@ -61,14 +63,10 @@ export class HomComponent implements OnInit {
 
 
   w3_close(){
-    this.disp='none';
+    this.dispe='none';
   }
 
-  w3_open(){
-    this.disp='block';
-    this.dispRecherche='none';
-    console.log("open me");
-  }
+
   dispRecherche='block';
   disp='none';
 
@@ -81,10 +79,64 @@ export class HomComponent implements OnInit {
 
   logout(){
     this.router.navigate(['/login']);
+alert('confirm');
+    this.playaudioOut();
     this.authService.logout();
 
 
+
   }
+
+
+  profile:String="";
+  rechercherProfile(){
+    if(this.authService.isAdmin()==true){
+      this.profile="ADMIN";
+    }
+    else {
+      if(this.authService.isAdmin()==false){
+        this.profile="SIMPLE USER";
+      }
+    }
+  }
+
+
+  openModalProfile(){
+    this.rechercherProfile();
+    $("#snack").addClass("shw");
+
+  }
+
+closeModalProfile(){
+
+ $("#snack").removeClass("shw");
+
+}
+
+// deconnexion
+w3_openclose(){
+    $("body #edit").hide(1000);
+    $("body #home").hide(1000);
+
+    $("body #c").hide(1000);
+    $("body #agences").hide(1000);
+    $("body #a").hide(1000);
+    this.dispe='block';
+  }
+
+// Confirmer deconnexion
+ deconnecter(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
+this.playaudioOut();
+  }
+
+
+
+
+
+
+
 
 
 
@@ -97,7 +149,27 @@ export class HomComponent implements OnInit {
               public router:Router,
               public authService:AuthenticationServicee) { }
 
+
+ playaudio(){
+let audio=new Audio();
+audio.src="../assets/audio/ding.m4a";
+audio.load();
+audio.play();
+
+ }
+
+ playaudioOut(){
+    let audio=new Audio();
+    audio.src="../assets/audio/out.m4a";
+    audio.load();
+    audio.play();
+
+ }
+
+
+
   ngOnInit() {
+this.playaudio();
 
   this.dispe='none';
 
