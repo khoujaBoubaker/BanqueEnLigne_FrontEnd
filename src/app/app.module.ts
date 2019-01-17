@@ -47,7 +47,7 @@ import {ConseillersAgence} from '../services/ConseillersAgence';
 import { NouvelleAgenceComponent } from './nouvelle-agence/nouvelle-agence.component';
 import { HomComponent } from './hom/hom.component';
 
-import {AuthguardService} from '../services/AuthguardService';
+
 import { RegisterComponent } from './register/register.component';
 import {administrationService} from '../services/administrationService';
 import {ToastModule} from 'ng2-toastr';
@@ -81,6 +81,8 @@ import { SimulateurCreditComponent } from './simulateur-credit/simulateur-credit
 import {CreditService} from '../services/CreditService';
 import { NouveauCreditComponent } from './nouveau-credit/nouveau-credit.component';
 
+import {AuthGuardService as AuthGuard}  from '../services/AuthGuardService';
+
 
 
 const appRoutes: Routes = [
@@ -96,7 +98,7 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'login', pathMatch: 'full' },
       {path:'NouveauConseiller',component:NouveauConseillerComponent},
       {path:'NouveauClient',component:NouveauClientComponent},
-      {path:'clients',component:ListedesclientsComponent},
+      {path:'clients',component:ListedesclientsComponent,canActivate:[AuthGuard]},
       {path:'editagence/:id',component:EditagenceComponent},
       {path:'SimulateurCredit',component:SimulateurCreditComponent},
       {path:'Profile/:id',component:UserProfileComponent},
@@ -186,7 +188,7 @@ MatMenuModule,
 MatCardModule,MatToolbarModule,MatIconModule,MatDividerModule
   ],
   bootstrap: [AppComponent],
-  providers:[AgenceService,EventService,administrationService,AuthService,AuthenticationServicee,ChiffreAffiareService,GrapheService,ConnectionService,CreditService],
+  providers:[AgenceService,EventService,administrationService,AuthService,AuthGuard,AuthenticationServicee,ChiffreAffiareService,GrapheService,ConnectionService,CreditService],
   exports:[TooltipModule,ModalModule,MatSelectModule]
 
 })

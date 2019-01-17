@@ -200,6 +200,7 @@ playaudiogun(){
   console.log("ten :"+this.auth.isAuthenticated());
 
 
+
   this.authService.IsAlreadyConnected();
   this.playaudio();
 

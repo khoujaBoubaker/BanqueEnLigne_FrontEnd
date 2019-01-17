@@ -16,7 +16,7 @@ public isAuthenticated(){
 const token = localStorage.getItem('token');
 
 let jwtHelper=new JwtHelper();
-return jwtHelper.isTokenExpired(token);
+return !jwtHelper.isTokenExpired(token);
 
 
 

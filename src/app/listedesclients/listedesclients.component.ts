@@ -42,6 +42,7 @@ declare const window : any;
 declare var $ :any;
 import * as jsPDF from 'jspdf';
 import {AuthenticationServicee} from '../../services/AuthenticationServicee';
+import {AuthService} from '../../services/AuthService';
 
 
 
@@ -472,6 +473,9 @@ this.playaudio();
 
   ngOnInit() {
    // this.verification();
+
+   // verification d'authentication
+  //alert(this.auth.isAuthenticated());
     console.log("verification des id");
    this.verification();
 
@@ -963,7 +967,8 @@ this.playaudio();
               public conseilservice:ConseilService,
               public rendezVousService:RendezVousService,
               public authService:AuthenticationServicee,
-              public ngProgress:NgProgress) {
+              public ngProgress:NgProgress,
+              public auth:AuthService) {
 
 
     this.totastr.setRootViewContainerRef(vcr);
