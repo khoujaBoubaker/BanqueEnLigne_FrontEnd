@@ -39,11 +39,15 @@ export class AuthenticationServicee{
 
 
 
-  loggedIn:Boolean=false;
+
 
   loadToken(){
     this.jwtToken=localStorage.getItem('token');
   }
+
+
+
+
 
 
 
@@ -71,6 +75,11 @@ export class AuthenticationServicee{
 
   }
 
+  verifierConnection(){
+   let jwtHelper=new JwtHelper();
+
+  }
+
   saveToken(jwt:string){
     this.jwtToken=jwt;
     //this.loadToken();
@@ -78,14 +87,14 @@ export class AuthenticationServicee{
     let jwtHelper=new JwtHelper();
     this.roles=jwtHelper.decodeToken(this.jwtToken).roles;
     console.log(this.roles);
-    this.loggedIn=true;
+
 
   }
 
   logout(){
     this.jwtToken=null;
     localStorage.removeItem('token');
-    this.loggedIn=false;
+
   }
 
   IsAlreadyConnected() {

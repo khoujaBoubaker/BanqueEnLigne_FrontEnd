@@ -50,24 +50,20 @@ import { HomComponent } from './hom/hom.component';
 import {AuthguardService} from '../services/AuthguardService';
 import { RegisterComponent } from './register/register.component';
 import {administrationService} from '../services/administrationService';
-
 import {ToastModule} from 'ng2-toastr';
-
 import { FooterComponent } from './footer/footer.component';
 import {AgenceConseillersService} from '../services/AgenceConseillersService';
 import { ModificationClientComponent } from './modification-client/modification-client.component';
 import { ListComptesComponent } from './list-comptes/list-comptes.component';
-
 import { ModificationConseillerComponent } from './modification-conseiller/modification-conseiller.component';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {SweetAlert} from 'sweetalert/typings/core';
 import { EditagenceComponent } from './editagence/editagence.component';
 import {urlPermission} from '../urlPermission/urlPermission';
 import {AuthenticationServicee} from '../services/AuthenticationServicee';
+import {AuthService} from '../services/AuthService';
 import { DashBoardComponent } from './dash-board/dash-board.component';
 import {ChiffreAffiareService} from '../services/ChiffreAffiareService';
-
-
 import { GraphiqueComponent } from './graphique/graphique.component';
 import {GrapheService} from '../services/GrapheService';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -77,7 +73,6 @@ import {MatDividerModule} from '@angular/material/divider';
 import { LogComponent } from './log/log.component';
 import {MatProgressBarModule} from '@angular/material';
 declare var $:any;
-
 import {NgProgressModule} from 'ngx-progressbar';
 import {ConnectionService} from '../services/ConnectionService';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -191,7 +186,7 @@ MatMenuModule,
 MatCardModule,MatToolbarModule,MatIconModule,MatDividerModule
   ],
   bootstrap: [AppComponent],
-  providers:[AgenceService,EventService,administrationService,AuthenticationServicee,ChiffreAffiareService,GrapheService,ConnectionService,CreditService],
+  providers:[AgenceService,EventService,administrationService,AuthService,AuthenticationServicee,ChiffreAffiareService,GrapheService,ConnectionService,CreditService],
   exports:[TooltipModule,ModalModule,MatSelectModule]
 
 })

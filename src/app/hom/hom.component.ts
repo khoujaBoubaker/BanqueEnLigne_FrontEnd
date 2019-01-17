@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 import {NgProgress} from 'ngx-progressbar';
 import {Router} from '@angular/router';
 import {AuthenticationServicee} from '../../services/AuthenticationServicee';
+import {AuthService} from '../../services/AuthService';
 
 @Component({
   selector: 'app-hom',
@@ -20,6 +21,22 @@ export class HomComponent implements OnInit {
 
   admin:Boolean;
   dispe='none';
+
+
+ // go to profile
+gotoprofile(){
+this.router.navigate(['/home/Profile',this.authService.nomUserLoggedIn.id]);
+}
+
+// Activate bouton hide all onglets
+  hideOnglets(){
+    $("body #agences").hide(1000);
+    $("body #c").hide(1000);
+    $("body #home").hide(1000);
+    $("body #edit").hide(1000);
+    $("body #a").hide(1000);
+
+  }
 
 
   // add methods to activate navbar
@@ -147,7 +164,9 @@ this.playaudioOut();
 
   constructor(public ngProgress:NgProgress,
               public router:Router,
-              public authService:AuthenticationServicee) { }
+              public authService:AuthenticationServicee,
+              public auth:AuthService
+              ) { }
 
 
  playaudio(){
@@ -166,10 +185,24 @@ audio.play();
 
  }
 
+playaudiogun(){
+    let audio=new Audio();
+    audio.src="../assets/audio/gun.WAV";
+    audio.load();
+    audio.play();
+
+ }
+
 
 
   ngOnInit() {
-this.playaudio();
+
+  console.log("ten :"+this.auth.isAuthenticated());
+
+
+  this.authService.IsAlreadyConnected();
+  this.playaudio();
+
 
   this.dispe='none';
 

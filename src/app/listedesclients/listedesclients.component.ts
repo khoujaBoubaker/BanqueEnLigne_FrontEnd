@@ -138,6 +138,7 @@ export class ListedesclientsComponent implements OnInit {
 
   consulterTousLesComptes(id:number){
     this.router.navigate(['/home/MesComptes',id]);
+    this.playaudiogun();
   }
 
 
@@ -281,6 +282,15 @@ pdf.fromHTML(
 
 
   }
+
+
+playaudiogun(){
+    let audio=new Audio();
+    audio.src="../assets/audio/gun.WAV";
+    audio.load();
+    audio.play();
+
+ }
 
 
 

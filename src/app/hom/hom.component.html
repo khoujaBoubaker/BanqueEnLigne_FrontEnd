@@ -65,7 +65,7 @@
 
                 <li  [ngClass]="{'effetmenu':effect==1}" (click)="toggleHome()" ><a [ngClass]="{'push_button':effect==1}"><i class="fa fa-home "></i><span class="fa fa-chevron-down"></span>Home</a>
                   <ul  id="home" class="nav child_menu">
-                    <li ><a class="onglet" (click)="goToProfile()" >Mon profile</a></li>
+                    <li ><a class="onglet" (click)="gotoprofile()" >Mon profile</a></li>
                     <li ><a class="onglet" routerLink="/home/graphique">Chiffres</a></li>
 
                   </ul>
@@ -174,7 +174,7 @@
 <div  class="main_container fixed_footer w3-animate-top">
   <div class="top_nav navbar-fixed-top">
     <div id="nav" class="nav_menu laterals">
-      <nav>
+      <nav class="navbar-inverse">
 
 
 
@@ -205,7 +205,7 @@
             <ul id="settings" class="dropdown-menu dropdown-user">
               <li><a style="color: #2A3F54;" (click)="gotoprofile()"><i style="color: #1ABB9C;" class="fa fa-user fa-fw"></i> User Profile</a>
               </li>
-              <li><a style="color: #2A3F54;" href="#"><i style="color: #1ABB9C;" class="fa fa-gear fa-fw"></i> Settings</a>
+              <li><a style="color: #2A3F54;"><i style="color: #1ABB9C;" class="fa fa-gear fa-fw"></i> Settings</a>
               </li>
               <li class="divider"></li>
               <li><a style="color: #2A3F54;" (click)="logout1()"><i style="color: #1ABB9C;" class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -216,6 +216,8 @@
           </li>
         </ul>
       </nav>
+
+
     </div>
 
     <div  id="snack">
@@ -239,8 +241,19 @@
 
 
 
+
+
+
+
+
   </div>
+
+
+
 </div>
+
+
+
 <router-outlet></router-outlet>
 
 
