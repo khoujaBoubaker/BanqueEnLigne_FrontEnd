@@ -10,7 +10,7 @@ constructor(public auth:AuthService,public router:Router){}
 canActivate(){
 if(!this.auth.isAuthenticated()){
 this.router.navigate(['/login']);
-alert('session expirée');
+confirm('session expirée');
 return false;
 }
 return true;
