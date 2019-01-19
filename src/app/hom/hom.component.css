@@ -70,11 +70,61 @@
 }
 
 
+
+
 #snack.shw {
   visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fi 0.5s, fo 0.5s 2.5s;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  animation: fi 0.5s, fo 0.5s 4.5s;
 }
+
+
+
+
+
+#f.btnHautDePage {
+  visibility:visible;
+  min-width: 350px;
+  max-height:130px;
+  margin-left: -325px;
+  margin-bottom: 15px;
+
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 36px;
+
+  position: fixed;
+  z-index: 1;
+  left: 100%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+
+#f {
+  visibility:hidden;
+  min-width: 350px;
+  max-height:130px;
+  margin-left: -325px;
+  margin-bottom: 15px;
+
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 36px;
+
+  position: fixed;
+  z-index: 1;
+  left: 100%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+
+
+
+
 
 
 

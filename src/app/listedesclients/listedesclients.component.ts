@@ -139,7 +139,7 @@ export class ListedesclientsComponent implements OnInit {
 
   consulterTousLesComptes(id:number){
     this.router.navigate(['/home/MesComptes',id]);
-    this.playaudiogun();
+    this.playaudio();
   }
 
 

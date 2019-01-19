@@ -16,6 +16,7 @@ import { ListedesclientsComponent } from './listedesclients/listedesclients.comp
 import { OperationsComponent } from './operations/operations.component';
 import { NewClComponent } from './new-cl/new-cl.component';
 import { NouveauFormulaireComponent } from './nouveau-formulaire/nouveau-formulaire.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
@@ -111,7 +112,10 @@ const appRoutes: Routes = [
       {path:'Calendrier',component:CalendarComponent},
       {path:'Agences',component:AgenceComponent},
       {path:'graphique',component:GraphiqueComponent},
-      {path:'SimulerCredit/:id',component:NouveauCreditComponent}
+      {path:'SimulerCredit/:id',component:NouveauCreditComponent},
+      {path:'contacts',component:ContactsComponent}
+
+
 
     ] }];
 

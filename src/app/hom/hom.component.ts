@@ -124,6 +124,9 @@ alert('confirm');
 
   }
 
+
+
+
 closeModalProfile(){
 
  $("#snack").removeClass("shw");
@@ -225,16 +228,37 @@ playaudiogun(){
 
   }
 
+@HostListener("window:scroll",[])
+haut(){
+ const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+ //number=0;
+window.scrollTo(0,number - 20);
+
+}
+
   @HostListener("window:scroll",[])
   onWindowScroll(){
     const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (number > 20) {
       $('#nav').addClass('black');
+      $('#f').addClass('btnHautDePage');
+
      
 
     } else if (number < 20) {
       $('#nav').removeClass('black');
+      $('#f').removeClass('btnHautDePage');
     }
+
+else if (number >30){
+  $('#f').addClass('btnHautDePage');
+}
+ else if(number<30){
+$('#f').removeClass('btnHautDePage');
+
+}
+
+
 
 
   }
