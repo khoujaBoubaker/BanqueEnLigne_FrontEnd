@@ -34,6 +34,9 @@ export class GraphiqueComponent implements OnInit {
 
 
 
+
+
+
   // calculer chiffre affaires aujourd'hui
 
   public CalculerChiffreAffairesAujourdhui(){
@@ -130,6 +133,11 @@ export class GraphiqueComponent implements OnInit {
   charthere:Boolean=true;
 
   ngOnInit() {
+  // load scripts files
+   this.loadScript('../assets/js/jquery.min.js');
+   this.loadScript('../assets/js/Chart.min.js');
+
+
     this.ngProgress.start();
 
     this.CalculerChiffreAffairesAujourdhui();

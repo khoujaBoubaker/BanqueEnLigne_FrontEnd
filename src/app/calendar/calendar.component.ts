@@ -15,10 +15,16 @@ declare var $ :any;
 
 })
 export class CalendarComponent implements OnInit {
-  constructor(public ngProgress:NgProgress){
+  constructor(public ngProgress:NgProgress){}
 
-
-
+public loadScript(url: string) {
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
   }
 
   @ViewChild("scheduler_here") schedulerContainer: ElementRef;

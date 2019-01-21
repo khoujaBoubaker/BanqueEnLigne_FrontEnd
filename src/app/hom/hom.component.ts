@@ -212,13 +212,14 @@ playaudiogun(){
 
 
 
-
+  //  this.loadScript('../node_modules/chart.js/dist/Chart.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
-        this.loadScript('../assets/js/h.js');
-       this.loadScript('../assets/js/jquery.min.js');
+    this.loadScript('../assets/js/h.js');
+    this.loadScript('../assets/js/jquery.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
     this.loadScript('../assets/js/custom.min.js');
     this.loadScript('../assets/js/moment.min.js');
+   // this.loadScript('../assets/js/Chart.min.js');
 
 
 
@@ -228,11 +229,16 @@ playaudiogun(){
 
   }
 
+onActivate(event){
+window.scroll(0,0);
+}
+
 @HostListener("window:scroll",[])
 haut(){
  const number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
  //number=0;
 window.scrollTo(0,number - 20);
+
 
 }
 

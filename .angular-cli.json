@@ -40,7 +40,12 @@
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "./assets/js/h.js",
         "./assets/js/moment.min.js",
-        "./assets/js/custom.min.js"
+        "./assets/js/custom.min.js",
+        "./assets/js/jquery-ui.js",
+        "../src/assets/js/fullcalendar.min.js"
+
+
+
 
 
 

@@ -63,7 +63,7 @@
               <ul class="nav side-menu">
 
 
-                <li  [ngClass]="{'effetmenu':effect==1}" (click)="toggleHome()" ><a [ngClass]="{'push_button':effect==1}"><i class="fa fa-home "></i><span class="fa fa-chevron-down"></span>Home</a>
+                <li  [ngClass]="{'effetmenu':effect==1}"><a [ngClass]="{'push_button':effect==1}"><i class="fa fa-home "></i><span class="fa fa-chevron-down"></span>Home</a>
                   <ul  id="home" class="nav child_menu">
                     <li ><a class="onglet" (click)="gotoprofile()" >Mon profile</a></li>
                     <li ><a class="onglet" routerLink="/home/graphique">Chiffres</a></li>
@@ -75,28 +75,28 @@
 
 
 
-                <li [ngClass]="{'effetmenu':effect==2}" (click)="toggleForm()"><a [ngClass]="{'push_button':effect==2}"><i class="fa fa-edit"></i><span class="fa fa-chevron-down"></span>Gestion des clients </a>
+                <li [ngClass]="{'effetmenu':effect==2}"><a [ngClass]="{'push_button':effect==2}"><i class="fa fa-edit"></i><span class="fa fa-chevron-down"></span>Gestion des clients </a>
                   <ul id="edit" class="nav child_menu">
                     <li><a class="onglet" [ngClass]="{'activ':zone==5}" routerLink="/home/clients">Clients</a></li>
                     <li><a class="onglet" [ngClass]="{'activ':zone==7}" routerLink="/home/NouveauClient">Nouveau client</a></li>
                   </ul>
                 </li>
 
-                <li [ngClass]="{'effetmenu':effect==5}" (click)="togglegeneral()"><a [ngClass]="{'push_button':effect==5}" ><i class="fa fa-edit"></i><span class="fa fa-chevron-down"></span>Gestion des conseillers </a>
+                <li [ngClass]="{'effetmenu':effect==5}"><a [ngClass]="{'push_button':effect==5}" ><i class="fa fa-edit"></i><span class="fa fa-chevron-down"></span>Gestion des conseillers </a>
                   <ul id="c" class="nav child_menu">
                     <li><a class="onglet" routerLink="/home/conseillers" >Conseillers</a></li>
                     <li><a class="onglet" routerLink="/home/NouveauConseiller">Nouveau conseiller</a></li>
                   </ul>
                 </li>
 
-                <li [ngClass]="{'effetmenu':effect==3}" (click)="toggleCalendrier()"><a [ngClass]="{'push_button':effect==3}"><i class="fa fa-desktop"></i><span class="fa fa-chevron-down"></span>Calendrier</a>
+                <li [ngClass]="{'effetmenu':effect==3}"><a [ngClass]="{'push_button':effect==3}"><i class="fa fa-desktop"></i><span class="fa fa-chevron-down"></span>Calendrier</a>
                   <ul id="a" class="nav child_menu">
                     <li><a class="onglet" routerLink="/home/Calendrier">Calendar</a></li>
                   </ul>
                 </li>
 
 
-                <li [ngClass]="{'effetmenu':effect==4}" (click)="toggleagences()"><a [ngClass]="{'push_button':effect==4}" ><i class="fa fa-clone"></i>Agences <span class="fa fa-chevron-down"></span></a>
+                <li [ngClass]="{'effetmenu':effect==4}" ><a [ngClass]="{'push_button':effect==4}" ><i class="fa fa-clone"></i>Agences <span class="fa fa-chevron-down"></span></a>
                   <ul id="agences" class="nav child_menu">
                     <li><a class="onglet" routerLink="/home/NouvelleAgence">Nouvelle agence</a></li>
                     <li><a class="onglet" routerLink="/home/Agences">Agences</a>
@@ -238,7 +238,7 @@
     </div>
 
     <div id="f">
-      <a (click)="haut()"  class="w3-button w3-black">Haut de page</a>
+      <a (click)="haut()"  class="w3-button w3-black"><span class="glyphicon glyphicon-arrow-up"></span>Haut de page</a>
     </div>
 
   </div>
@@ -246,7 +246,7 @@
 
 
 
-<router-outlet></router-outlet>
+<router-outlet  (activate)="onActivate($event)"></router-outlet>
 
 
 
