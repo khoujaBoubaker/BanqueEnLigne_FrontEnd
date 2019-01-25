@@ -121,6 +121,17 @@
   font-size: 17px;
 }
 
+.btn{
+background-color:#39e600;
+color:#003366;
+
+}
+
+.btn:hover{
+background-color:#003366;
+color:#39e600;
+}
+
 
 
 

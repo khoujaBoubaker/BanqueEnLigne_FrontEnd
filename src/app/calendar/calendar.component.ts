@@ -34,6 +34,8 @@ public loadScript(url: string) {
 
 
   ngOnInit(){
+    this.loadScript('../assets/js/jquery.min.js');
+    this.loadScript('../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.js');
 
     this.ngProgress.start();
     this.ngProgress.done();

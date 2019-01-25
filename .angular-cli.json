@@ -41,8 +41,10 @@
         "./assets/js/h.js",
         "./assets/js/moment.min.js",
         "./assets/js/custom.min.js",
-        "./assets/js/jquery-ui.js",
-        "../src/assets/js/fullcalendar.min.js"
+
+        "./assets/js/Chart.min.js",
+        "./assets/js/fullcalendar.min.js",
+        "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.js"
 
 
 

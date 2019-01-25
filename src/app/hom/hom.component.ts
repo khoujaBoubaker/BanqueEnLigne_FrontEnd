@@ -23,6 +23,9 @@ export class HomComponent implements OnInit {
   dispe='none';
 
 
+// navbar toggle functions
+
+
  // go to profile
 gotoprofile(){
 this.router.navigate(['/home/Profile',this.authService.nomUserLoggedIn.id]);
@@ -215,11 +218,14 @@ playaudiogun(){
   //  this.loadScript('../node_modules/chart.js/dist/Chart.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
     this.loadScript('../assets/js/h.js');
-    this.loadScript('../assets/js/jquery.min.js');
+
+    this.loadScript('../assets/js/jquery1.min.js');
     this.loadScript('../assets/js/bootstrap.min.js');
     this.loadScript('../assets/js/custom.min.js');
     this.loadScript('../assets/js/moment.min.js');
-   // this.loadScript('../assets/js/Chart.min.js');
+    this.loadScript('../assets/js/Chart.min.js');
+
+   // this.loadScript('../assets/js/fullcalendar.js');
 
 
 
@@ -249,20 +255,13 @@ window.scrollTo(0,number - 20);
       $('#nav').addClass('black');
       $('#f').addClass('btnHautDePage');
 
-     
 
     } else if (number < 20) {
       $('#nav').removeClass('black');
       $('#f').removeClass('btnHautDePage');
     }
 
-else if (number >30){
-  $('#f').addClass('btnHautDePage');
-}
- else if(number<30){
-$('#f').removeClass('btnHautDePage');
 
-}
 
 
 

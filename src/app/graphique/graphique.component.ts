@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef,AfterViewInit} from '@angular/core';
 import {Chart} from 'Chart.js';
 
 import {variable} from '@angular/compiler/src/output/output_ast';
@@ -9,6 +9,7 @@ import {NgProgress} from 'ngx-progressbar';
 import {ClientService} from '../../services/ClientService';
 import {ConseillerService} from '../../services/ConseillerService';
 
+
 declare var $:any;
 
 @Component({
@@ -17,7 +18,7 @@ declare var $:any;
   styleUrls: ['./graphique.component.css'],
   providers:[ChiffreAffiareService,ClientService,ConseillerService]
 })
-export class GraphiqueComponent implements OnInit {
+export class GraphiqueComponent implements OnInit,AfterViewInit {
 
   chjours:number=0;
   chSemaine : number=0;
@@ -30,6 +31,15 @@ export class GraphiqueComponent implements OnInit {
   nombreDeJoursAujourdhui:number=0;
 
  // totalconseillers:number;
+
+
+  ngAfterViewInit() {
+
+   // alert('load data');
+   //this.loadScript('../assets/js/jquery1.min.js');
+
+
+  }
 
 
 
@@ -134,8 +144,9 @@ export class GraphiqueComponent implements OnInit {
 
   ngOnInit() {
   // load scripts files
-   this.loadScript('../assets/js/jquery.min.js');
-   this.loadScript('../assets/js/Chart.min.js');
+    // this.loadScript('../assets/js/jquery.min.js');
+     //this.loadScript('../assets/js/jquery-ui.js');
+     //this.loadScript('../assets/js/Chart.min.js');
 
 
     this.ngProgress.start();
