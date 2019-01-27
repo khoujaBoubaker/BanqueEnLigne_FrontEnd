@@ -24,6 +24,37 @@ export class HomComponent implements OnInit {
 
 
 // navbar toggle functions
+hide(){
+this.effect=1;
+$("#home").slideDown(1500);
+$("#c").slideUp(1500);
+$("#edit").slideUp(1500);
+}
+
+// clients toggle clients
+hideClients(){
+this.effect=2;
+$("#home").slideUp(1500);
+$("#c").slideUp(1500);
+$("#edit").slideDown(1500);
+}
+
+// hide toggle conseillers
+hideConseillers(){
+this.effect=5;
+$("#c").slideDown(1500);
+$("#home").slideUp(1500);
+$("#edit").slideUp(1500);
+}
+
+hideCalendrier(){
+this.effect=3;
+$("#a").slideDown(1500);
+$("#c").slideUp(1500);
+$("#home").slideUp(1500);
+$("#edit").slideUp(1500);
+
+}
 
 
  // go to profile
@@ -38,7 +69,6 @@ this.router.navigate(['/home/Profile',this.authService.nomUserLoggedIn.id]);
     $("body #home").hide(1000);
     $("body #edit").hide(1000);
     $("body #a").hide(1000);
-
   }
 
 
@@ -151,7 +181,7 @@ w3_openclose(){
  deconnecter(){
     this.authService.logout();
     this.router.navigate(['/login']);
-this.playaudioOut();
+    this.playaudioOut();
   }
 
 
